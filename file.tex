@@ -35,7 +35,7 @@ L'intera applicazione è stata sviluppata inizialmente in Kotlin per ambiente An
 
 Lo sviluppo in Kotlin è stato applicato con Jetpack Compose, per permettere uno sviluppo moderno e in linea con le attuali applicazioni sul mercato, con una struttura architetturale basata sul Model-View-ViewModel (MVVM) garantendo una composizione comprensibile per lo sviluppo dell'app.
 
-\section{Progettazione}
+\section{Progettazione e sviluppo Android}
 
 \subsection{Requisiti}
 Si riportano di seguito i requisiti \textit{funzionali} e \textit{non funzionali}
@@ -92,7 +92,7 @@ Si riportano di seguito i requisiti \textit{funzionali} e \textit{non funzionali
     \item \textit{RNF1: Sviluppo in Kotlin} - L'applicazione è stata sviluppata principalmente con il linguaggio di programmazione Kotlin
     \item \textit{RNF2: Applicazione in Jetpack Compose} - L'applicazione è stata realizzata con Jetpack Compose per realizzare le interfacce grafiche
     \item \textit{RNF3: Struttura MVVM} - L'applicazione ha una struttura architetturale basata su Model-View-ViewModel per agevolare la programmazione con sezioni dedicate
-    \item \textit{RNF4: Firebase e Firestore per memorizzazione e accesso/autenticazione utente} - L'applicazione ha come base per la memorizzazione di dati e la gestione della registrazione e l'accesso dell'utente un database tramite la piattaforma Firebase
+    \item \textit{RNF4: Firebase Firestore per memorizzazione e accesso/autenticazione utente} - L'applicazione fa utilizzo per la memorizzazione di dati e la gestione della registrazione e l'accesso dell'utente di un database tramite la piattaforma Google Firebase
     \item \textit{RNF5: API di Google Books} - L'applicazione si sincronizza e fa utilizzo delle API Key di Google Books per mostrare i libri nel catalogo e nella ricerca
     \item \textit{RNF6: compatibilità con Android 13+} - L'applicazione ha una compatibilità con il livello di API 33, permettendone l'utilizzo su android 13 e oltre
 \end{itemize}
@@ -173,15 +173,30 @@ per le ricerche e una chiave generata da Google Cloud per permetterne l'abilitaz
 \textit{Link:  https://www.googleapis.com/books/v1/volumes?q=search-terms}.
 
 "q" è il parametro da inserire per effettuare la ricerca tramite titolo o autore
-\subsection{UI - Interfaccia applicazione}
 
-\section{Programmazione in Android}
+\subsection{Diagramma delle componenti}
+
+Il seguente diagramma di componenti rappresenta le principali istanze e le loro interazioni, in particolare tra l'utente e un singolo libro scelto, la lista dei libri e la richiesta di amicizia verso un altro utente.
+Per il libro l'utente può decidere se inserirlo in una lista o rimuoverlo, mentre per la richiesta l'utente può inviarne una e visualizzarne una ricevuta, per poi decidere se accettarla o rifiutarla.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\linewidth]{diagramma_componenti.png}
+  \caption{Diagramma delle componenti}
+  \label{fig:sitemap}
+\end{figure}
 
 \subsection{MVVM}
 
+\subsection{UI - Interfaccia applicazione}
+
+\subsection{Sviluppo in Kotlin - Android Studio}
+
+
+
 \subsection{Struttura cartelle applicazione}
 
-\section{Programmazione in Flutter}
+\section{Progettazione e sviluppo in Flutter}
 
 \section{Errori e possibili bug}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.4.28)  21 OCT 2025 23:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.4.28)  21 OCT 2025 23:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -180,6 +180,9 @@ LaTeX Warning: Label `fig:sitemap' multiply defined.
 
 LaTeX Warning: Label `fig:sitemap' multiply defined.
 
+
+LaTeX Warning: Label `fig:sitemap' multiply defined.
+
 )
 \openout1 = `file.aux'.
 
@@ -245,7 +248,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 [1
 
 {C:/Users/crist/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-<images/req_funzionali.png, id=84, 643.40375pt x 984.67876pt>
+<images/req_funzionali.png, id=89, 643.40375pt x 984.67876pt>
 File: images/req_funzionali.png Graphic file (type png)
 <use images/req_funzionali.png>
 Package pdftex.def Info: images/req_funzionali.png  used on input line 46.
@@ -271,7 +274,7 @@ Overfull \hbox (19.81192pt too wide) in paragraph at lines 76--77
 []\OT1/cmr/m/it/10 RF20: Vi-su-al-iz-zazione per-centuale com-ple-ta-mento di libri \OT1/cmr/m/n/10 - L'applicazione
  []
 
-<images/req_non_funzionali.png, id=102, 412.54124pt x 432.61626pt>
+<images/req_non_funzionali.png, id=107, 412.54124pt x 432.61626pt>
 File: images/req_non_funzionali.png Graphic file (type png)
 <use images/req_non_funzionali.png>
 Package pdftex.def Info: images/req_non_funzionali.png  used on input line 86.
@@ -279,12 +282,12 @@ Package pdftex.def Info: images/req_non_funzionali.png  used on input line 86.
 
 
 [5 <./images/req_non_funzionali.png>]
-<images/cu_attori.png, id=109, 337.26pt x 231.86626pt>
+<images/cu_attori.png, id=114, 337.26pt x 231.86626pt>
 File: images/cu_attori.png Graphic file (type png)
 <use images/cu_attori.png>
 Package pdftex.def Info: images/cu_attori.png  used on input line 105.
 (pdftex.def)             Requested size: 207.0021pt x 142.31561pt.
-<images/cu_utente.png, id=110, 884.30376pt x 1004.75375pt>
+<images/cu_utente.png, id=115, 884.30376pt x 1004.75375pt>
 File: images/cu_utente.png Graphic file (type png)
 <use images/cu_utente.png>
 Package pdftex.def Info: images/cu_utente.png  used on input line 112.
@@ -299,7 +302,7 @@ Overfull \hbox (48.53992pt too wide) in paragraph at lines 118--119
 
 
 [7 <./images/cu_utente.png>]
-<images/cu_attivita.png, id=124, 794.97pt x 1145.27875pt>
+<images/cu_attivita.png, id=129, 794.97pt x 1145.27875pt>
 File: images/cu_attivita.png Graphic file (type png)
 <use images/cu_attivita.png>
 Package pdftex.def Info: images/cu_attivita.png  used on input line 133.
@@ -316,8 +319,16 @@ Overfull \hbox (3.643pt too wide) in paragraph at lines 162--163
 
 
 [10]
+<images/diagramma_componenti.png, id=144, 1024.82875pt x 526.96875pt>
+File: images/diagramma_componenti.png Graphic file (type png)
+<use images/diagramma_componenti.png>
+Package pdftex.def Info: images/diagramma_componenti.png  used on input line 184.
+(pdftex.def)             Requested size: 345.0pt x 177.398pt.
 
-[11] (file.aux)
+
+[11 <./images/diagramma_componenti.png>]
+
+[12] (file.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-03-26>
@@ -327,20 +338,20 @@ L3 programming layer <2025-03-26>
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `file.out' has not changed.
-(rerunfilecheck)             Checksum: EF577EC526DB5A8A67DDB164013AF896;2227.
+(rerunfilecheck)             Checksum: 8A3C1E8712036CBFB1012134584074DA;2654.
  ) 
 Here is how much of TeX's memory you used:
- 8937 strings out of 469959
- 141783 string characters out of 5469834
- 531374 words of memory out of 5000000
- 35616 multiletter control sequences out of 15000+600000
+ 8950 strings out of 469959
+ 142163 string characters out of 5469834
+ 532380 words of memory out of 5000000
+ 35626 multiletter control sequences out of 15000+600000
  631761 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,6n,79p,422b,638s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\crist\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on file.pdf (11 pages, 435188 bytes).
+Output written on file.pdf (12 pages, 500713 bytes).
 PDF statistics:
- 182 PDF objects out of 1000 (max. 8388607)
- 32 named destinations out of 1000 (max. 500000)
- 138 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 194 PDF objects out of 1000 (max. 8388607)
+ 35 named destinations out of 1000 (max. 500000)
+ 151 words of extra memory for PDF output out of 10000 (max. 10000000)
 
