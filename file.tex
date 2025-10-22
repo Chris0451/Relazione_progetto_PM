@@ -34,6 +34,7 @@ L'utente può visualizzare e modificare i propri dati personali e interagire con
 L'intera applicazione è stata sviluppata inizialmente in Kotlin per ambiente Android e in seguito in Flutter per un funzionamento multipiattaforma, in modo tale da permettere una maggiore compatibilità e una migliore interazione tra utenti con diversi dispositivi mobile.
 
 Lo sviluppo in Kotlin è stato applicato con Jetpack Compose, per permettere uno sviluppo moderno e in linea con le attuali applicazioni sul mercato, con una struttura architetturale basata sul Model-View-ViewModel (MVVM) garantendo una composizione comprensibile per lo sviluppo dell'app.
+Le informazioni principali dei libri vengono visualizzate tramite l'utilizzo di API fornite da Google Books.
 
 \section{Progettazione e sviluppo Android}
 
@@ -97,7 +98,7 @@ Si riportano di seguito i requisiti \textit{funzionali} e \textit{non funzionali
     \item \textit{RNF6: compatibilità con Android 13+} - L'applicazione ha una compatibilità con il livello di API 33, permettendone l'utilizzo su android 13 e oltre
 \end{itemize}
 
-\subsection{Casi d'uso}
+\subsubsection{Casi d'uso}
 Si riportano gli attori e i tre casi d'uso principali che descrivono le azioni principali che si possono svolgere nell'applicazione a partire dai requisiti elencati in precedenza.
 
 \begin{figure}[H]
@@ -109,7 +110,7 @@ Si riportano gli attori e i tre casi d'uso principali che descrivono le azioni p
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1\linewidth]{cu_utente.png}
+  \includegraphics[width=.8\linewidth]{cu_utente.png}
   \caption{Gestione utente}
   \label{fig:sitemap}
 \end{figure}
@@ -130,7 +131,7 @@ Si riportano gli attori e i tre casi d'uso principali che descrivono le azioni p
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.9\linewidth]{cu_attivita.png}
+  \includegraphics[width=0.72\linewidth]{cu_attivita.png}
   \caption{Gestione attività}
   \label{fig:sitemap}
 \end{figure}
@@ -151,30 +152,22 @@ Si riportano gli attori e i tre casi d'uso principali che descrivono le azioni p
     \item \textit{CU24: AggiornaPagineInLettura} - L'utente può aggiornare le pagine 
 \end{itemize}
 
-\subsection{Gestione Database - Firebase}
-In presenza di un sistema di autenticazione e registrazione a un servizio online, con la possibilità per l'utente di interagire con altri utenti, e permettere il salvataggio personale di libri nel proprio profilo,
-l'infrastruttura migliore per manipolare questi dati risulta essere il database gestionale Firestore di Google Firebase.
+\subsection{Architettura applicazione}
 
-Firestore è un DB NoSQL strutturato a documenti, il quale permette il salvataggio di dati in documenti raggrupati in collezioni e può contenere sottocollezioni e campi annidati. Tali documenti e collezioni vengono generati con la scrittura di dati tramite codice.
+\subsubsection{MVVM}
 
-Il suo utilizzo si concentra su due componenti della sezione \textit{Creazione}:
+Per la struttura dell'applicazione è stato scelto il pattern architetturale Model-View-ViewModel (MVVM) per ottenere
+una separazione netta delle responsabilità tale da rendere il codice scalabile e facilmente aggiornabile.
+Le sue principali componenti sono:
 \begin{itemize}
-  \item \textit{Authentication:} permette di gestire il metodo di accesso degli utenti tramite diversi servizi. Nel caso di questo progetto abbiamo implementato esclusivamente l'autenticazione semplice tramite email e password. 
-  \item \textit{Firestore Database:} permette la memorizzazione tramite documenti e collezioni descritti in precedenza dei dati dell'utente, dei libri salvati e delle richieste di amicizia inviate tra utenti. Sono state implementate delle regole specifiche 
-  per permettere un corretto e coerente accesso ai dati e la loro relativa modifica.
+  \item \textbf{Model:} Gestisce i dati dell'applicazione e della loro persistenza, principalmente in remoto con Firebase nel caso specifico di questa applicazione, 
+  permettendo operazioni di accesso, modifica e salvataggio dei dati per gli \textit{utenti} che si registrano e dei \textit{libri} che salvano in determinate liste. 
+  \item \textbf{View:} Rappresenta le interfacce dell'applicazione per permettere all'utente di interagire con la logica dell'applicazione. 
+  Vengono definite tramite funzioni con la notazione iniziale \textit{@Composable} e possono essere richiamate nel file contenente il MainActivity o in altre funzioni con la stessa notazione.
+  \item \textbf{ViewModel:} Funge da intermediario tra View e Model e permette il cambiamento dello stato della UI con le interazioni dell'utente tramite \textit{LiveData}
 \end{itemize}
 
-
-\subsection{API utilizzate - Google Books}
-Le API di Google Books sono state utilizzata per ottenere le informazioni principali dei libri, in modo da permettere
-all'utente la visualizzazione di tali informazioni e il conseguente salvataggio. L'API viene fornita tramite un link 
-per le ricerche e una chiave generata da Google Cloud per permetterne l'abilitazione e la limitazione del tipo di dispositivo che la utilizzerà.
-
-\textit{Link:  https://www.googleapis.com/books/v1/volumes?q=search-terms}.
-
-"q" è il parametro da inserire per effettuare la ricerca tramite titolo o autore
-
-\subsection{Diagramma delle componenti}
+\subsubsection{Diagramma delle componenti}
 
 Il seguente diagramma di componenti rappresenta le principali istanze e le loro interazioni, in particolare tra l'utente e un singolo libro scelto, la lista dei libri e la richiesta di amicizia verso un altro utente.
 Per il libro l'utente può decidere se inserirlo in una lista o rimuoverlo, mentre per la richiesta l'utente può inviarne una e visualizzarne una ricevuta, per poi decidere se accettarla o rifiutarla.
@@ -186,18 +179,95 @@ Per il libro l'utente può decidere se inserirlo in una lista o rimuoverlo, ment
   \label{fig:sitemap}
 \end{figure}
 
-\subsection{MVVM}
+\subsection{Gestione Database - Firebase}
+In presenza di un sistema di autenticazione e registrazione a un servizio online, con la possibilità per l'utente di interagire con altri utenti, e permettere il salvataggio personale di libri nel proprio profilo,
+l'infrastruttura migliore per manipolare questi dati risulta essere il database gestionale Firestore di Google Firebase.
 
-\subsection{UI - Interfaccia applicazione}
+Firestore è un DB NoSQL strutturato a documenti, il quale permette il salvataggio di dati in documenti raggrupati in collezioni e può contenere sottocollezioni e campi annidati. Tali documenti e collezioni vengono generati con la scrittura di dati tramite codice.
 
-\subsection{Sviluppo in Kotlin - Android Studio}
+Il suo utilizzo si concentra su due componenti della sezione \textit{Creazione}:
+\begin{itemize}
+  \item \textit{Authentication:} permette di gestire il metodo di accesso degli utenti tramite diversi servizi. Nel caso di questo progetto abbiamo implementato esclusivamente l'autenticazione semplice tramite email e password.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{authentication.png}
+    \caption{Diagramma delle componenti}
+    \label{fig:sitemap}
+  \end{figure}
+  \item \textit{Firestore Database:} permette la memorizzazione tramite documenti e collezioni descritti in precedenza dei dati dell'utente, delle richieste di amicizia inviate tra utenti e dei libri salvati con ognuno la relativa sessione. 
+  Sono state implementate delle regole specifiche per permettere un corretto e coerente accesso ai dati e la loro relativa modifica. Di seguito i documenti e le collezioni generate:
+  
+  \textit{INSERIRE SCREEN PER OGNI SEZIONE}
+
+  \begin{itemize}
+    \item \textbf{Salvataggio utenti:} Utenti registrati e salvati nel servizio tramite il form di registrazione, memorizzando nome, cognome, username e mail;
+    \item \textbf{Salvataggio usernames:} Username salvati al momento della registrazione per permettere un controllo di univocità;
+    \item \textbf{Salvataggio di amici tramite richieste:} Lista di utenti che si aggiorna per ogni singolo utente quando accetta una richiesta di amicizia da un altro utente;
+    \item \textbf{Salvataggio di libri dal catalogo:} Raccolta di libri salvati per ogni utente, ognuno con le sue informazioni e lo stato per visualizzarlo in una determinata lista tra quelle fornite;
+    \item \textbf{Salvataggio sessione di lettura:} Per ogni libro nello stato "In lettura", viene memorizzata una sessione di lettura contenente il tempo memorizzato in secondi e convertito a schermo in ore:minuti:secondi;
+    \item \textbf{Regole di accesso ai documenti definiti:} Le seguenti regole scritte nell'omonima sotto-sezione permettono la definizione di un accesso; 
+  \end{itemize} 
+\end{itemize}
 
 
 
-\subsection{Struttura cartelle applicazione}
+\subsection{API utilizzate - Google Books}
+Le API di Google Books sono state utilizzata per ottenere le informazioni principali dei libri, in modo da permettere
+all'utente la loro visualizzazione e il conseguente salvataggio. L'API viene fornita tramite un link 
+per le ricerche e una chiave generata da Google Cloud per permetterne l'abilitazione e la limitazione del tipo di dispositivo che la utilizzerà.
+
+\textit{Link:  https://www.googleapis.com/books/v1/volumes?q=search-terms}.
+
+\textit{"q"} è il parametro da inserire per effettuare la ricerca tramite titolo o autore. Sono presenti altri parametri, i cui principali per l'applicazione sono stati:
+\begin{itemize}
+  \item \textit{maxResults}, per mostrare la quantità di libri da visualizzare, utilizzato in particolare nel catalogo e nella ricerca.
+  \item \textit{orderBy}, il quale può essere relevance o newest per mostrare libri di maggiore rilievo tramite parametriche di Google o nuove uscite.
+  \item \textit{langRestrict}, ossia la restrizione dei libri da visualizzare e ricercare con la una lingua specifica.
+\end{itemize}
+
+
+\subsection{Sviluppo}
+Come anticipato in precedenza, l'applicazione è interamente sviluppata in \textbf{Jetpack Compose}, un toolkit dichiarativo di Android che permette, al variare del proprio stato, di ridisegnare le parti necessarie al cambiamento di tale stato.
+
+Permette un approccio dichiarativo tramite la definizione di funzioni con notazione \textit{@Composable}, le quali permettono di definire parti di interfaccia utente esclusivamente con codice Kotlin. 
+In queste funzioni si controlla lo stato per permettere l'aggiornamento di determinate parti coinvolte.
+
+Sono disponibili una serie di layout predefiniti (Column, Row, Box) per strutturare al meglio una componente dell'interfaccia e le funzioni accettano un parametro Modifier che permette di modificarne l'aspetto estetico.
+
+Per la costruzione di un'interfaccia tradizionale è stato utilizzata la funzione \textit{Scaffold} con parametri per definire componenti predefinite come TopAppBar, BottomAppBar, FloatingActionButton e altri ancora.
+
+Si possono distinguere due tipi di funzioni Composable:
+\begin{itemize}
+  \item \textbf{Stateful}, fa utilizzo della keyword \textit{remember} che permette di memorizzare dati tra diverse recomposition
+  \item \textbf{Steless}, ossia un Composable orivo di stato
+\end{itemize}
+
+Le liste scorrevoli che visualizzano molti elementi vengono gestite da componenti \textit{Lazy}, che forniscono un blocco per descrivere i singoli \textit{item} da visualizzare.  
+Ne esistono diverse versioni:
+\begin{itemize}
+  \item \textbf{LazyRow} per lo scorrimento orizzontale,
+  \item \textbf{LazyColumn} per lo scorrimento verticale,
+  \item \textbf{LazyVerticalGrid e LazyHorizontalGrid} per lo scorrimento di una griglia rispettivamente verticale e orizzontale
+\end{itemize}
+
+La navigazione viene principalmente gestita tramite 
+
+Tali funzioni possono essere richiamate da un Activity o Fragment, da altre funzioni \textit{@Composable}, all'interno di una destinazione definita in Navigation-Compose e in liste Lazy.
+
+\subsubsection{Struttura cartelle}
+
+\subsubsection{File di configurazione}
+
+\subsection{Spiegazione codice in dettaglio}
+
+\subsubsection{Funzioni composable per l'interfaccia}
 
 \section{Progettazione e sviluppo in Flutter}
 
+\section{UI - Interfaccia applicazione}
+
 \section{Errori e possibili bug}
+
+\section{Conclusioni}
 
 \end{document}

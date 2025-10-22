@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1761083318.08927 "c:/Users/crist/Desktop/Universita/Anno3/2semestre/Programmazione_Mobile/Relazione_progetto/file.tex" "file.pdf" "file" 1761083318.80437 0
+["pdflatex"] 1761163196.81955 "c:/Users/crist/Desktop/Universita/Anno3/2semestre/Programmazione_Mobile/Relazione_progetto/file.tex" "file.pdf" "file" 1761163197.60636 0
   "C:/Users/crist/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1760121965 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/crist/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1749477545 11548 29a40d93b273fa7baf5a6111b8dfc3a2 ""
   "C:/Users/crist/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1745830434 13148213 e8c3038c1c5145615142a826c59a37f5 ""
@@ -65,15 +65,16 @@
   "C:/Users/crist/AppData/Local/Programs/MiKTeX/tex/latex/refcount/refcount.sty" 1576433952 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "C:/Users/crist/AppData/Local/Programs/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1751104012 9684 a33a14b82ce60d6e77cb9be689d79ee6 ""
   "C:/Users/crist/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "c:/Users/crist/Desktop/Universita/Anno3/2semestre/Programmazione_Mobile/Relazione_progetto/file.tex" 1761083316 14873 a92f23e5462790a4563d0356e3aeb12e ""
-  "file.aux" 1761083318 3281 4fdb80aa956e0d3ca1682df485ad3d1e "pdflatex"
-  "file.out" 1761083318 2654 8a3c1e8712036cbfb1012134584074da "pdflatex"
-  "file.tex" 1761083316 14873 a92f23e5462790a4563d0356e3aeb12e ""
-  "file.toc" 1761083318 1325 4bc60890cc944896e8ea7522cc630dcd "pdflatex"
+  "c:/Users/crist/Desktop/Universita/Anno3/2semestre/Programmazione_Mobile/Relazione_progetto/file.tex" 1761163195 20252 c1ff8a8e4a70dbdb639d9d750301a17d ""
+  "file.aux" 1761163197 4155 69f2c316a4b7ee111ab9b25766d820be "pdflatex"
+  "file.out" 1761163197 3415 e10e2d616eea375a5a0a7ad3635254a2 "pdflatex"
+  "file.tex" 1761163195 20252 c1ff8a8e4a70dbdb639d9d750301a17d ""
+  "file.toc" 1761163197 1784 4a6b978628b7c314795552be88079758 "pdflatex"
+  "images/authentication.png" 1761126345 117004 67e227cb6805f076805dcefcbfc75fac ""
   "images/cu_attivita.png" 1761068401 217537 dcc28c64c66317ec23e9ec89253130de ""
   "images/cu_attori.png" 1761057623 11110 f7b1c371e3b90f33ae0479bfd39f15b0 ""
   "images/cu_utente.png" 1761064389 181213 97ed38d7b12c9ae5a590677f059b7161 ""
-  "images/diagramma_componenti.png" 1761083140 186339 44fb24b03a19007a9c3b0cb63966b831 ""
+  "images/diagramma_componenti.png" 1761126017 162485 37f3c3e297559884909726a8988865b4 ""
   "images/req_funzionali.png" 1761064073 164229 239f90237c26cdbf23b573af55f09d14 ""
   "images/req_non_funzionali.png" 1760128380 51260 f42267e6bdde13cd11023b154cfd5e28 ""
   (generated)
