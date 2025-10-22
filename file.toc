@@ -13,8 +13,15 @@
 \contentsline {subsubsection}{\numberline {2.5.1}Struttura cartelle}{13}{subsubsection.2.5.1}%
 \contentsline {subsubsection}{\numberline {2.5.2}File di configurazione}{13}{subsubsection.2.5.2}%
 \contentsline {subsection}{\numberline {2.6}Spiegazione codice in dettaglio}{13}{subsection.2.6}%
-\contentsline {subsubsection}{\numberline {2.6.1}Funzioni composable per l'interfaccia}{13}{subsubsection.2.6.1}%
+\contentsline {subsubsection}{\numberline {2.6.1}Componenti Compose riutilizzabili}{13}{subsubsection.2.6.1}%
+\contentsline {subsubsection}{\numberline {2.6.2}Dependency Injection}{13}{subsubsection.2.6.2}%
+\contentsline {subsubsection}{\numberline {2.6.3}Model dell'applicazione}{13}{subsubsection.2.6.3}%
+\contentsline {subsubsection}{\numberline {2.6.4}Funzioni composable per l'interfaccia}{13}{subsubsection.2.6.4}%
+\contentsline {subsubsection}{\numberline {2.6.5}File di definizione del ViewModel}{13}{subsubsection.2.6.5}%
+\contentsline {subsubsection}{\numberline {2.6.6}Repository}{13}{subsubsection.2.6.6}%
+\contentsline {subsubsection}{\numberline {2.6.7}UseCases}{13}{subsubsection.2.6.7}%
+\contentsline {subsection}{\numberline {2.7}Unit Testing}{13}{subsection.2.7}%
 \contentsline {section}{\numberline {3}Progettazione e sviluppo in Flutter}{13}{section.3}%
 \contentsline {section}{\numberline {4}UI - Interfaccia applicazione}{13}{section.4}%
-\contentsline {section}{\numberline {5}Errori e possibili bug}{13}{section.5}%
+\contentsline {section}{\numberline {5}Discussioni di problematiche riscontrate}{13}{section.5}%
 \contentsline {section}{\numberline {6}Conclusioni}{13}{section.6}%
