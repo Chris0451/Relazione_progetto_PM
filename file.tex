@@ -250,19 +250,36 @@ Ne esistono diverse versioni:
   \item \textbf{LazyVerticalGrid e LazyHorizontalGrid} per lo scorrimento di una griglia rispettivamente verticale e orizzontale
 \end{itemize}
 
-La navigazione viene principalmente gestita tramite 
+La navigazione viene principalmente gestita tramite un file dedicato, denominato \textbf{AppNavHost.kt},
+nel quale viene creato un \textit{NavController} e un \textit{NavHost},
+il quale fa uso della funzione \textit{composable} che permette di definire le rotte di destinazione
+all'interno dell'applicazione. Tali rotte vengono definite in formato di stringa in un altro file denominato \textbf{Routes.kt} 
 
-Tali funzioni possono essere richiamate da un Activity o Fragment, da altre funzioni \textit{@Composable}, all'interno di una destinazione definita in Navigation-Compose e in liste Lazy.
+Le funzioni con notazione \textit{@Composable} possono essere richiamate da un Activity o Fragment, da altre funzioni \textit{@Composable}, 
+all'interno di una destinazione definita in Navigation-Compose e in liste Lazy.
 
-\subsubsection{Struttura cartelle}
+\subsubsection{Struttura package}
+Il progetto, strutturato con architettura MVVM, è stato suddiviso in macro-package al cui interno sono presenti file o altri package caratteristici.
+
+La struttura delle macro-cartelle risulta la seguente:
+
+\begin{itemize}
+  \item \textbf{core:} contiene i package con i file di parti di interfaccia
+  \textit{@Composable} riutilizzabili nel codice e i file utilizzati per la personalizzazione globale dell'app.
+  \item \textbf{di:} moduli di \textit{Dependency Injection} (Hilt) che descrivono come creare e fornire le dipendenze dell’app. 
+  Le classi ricevono gli oggetti necessari tramite iniezione, senza istanziarli al proprio interno. 
+  Contiene i file usati a livello globale per integrare le Google Books API e configurare lo stack di rete.
+  \item \textbf{features:} è presente il codice principale dell'applicazione scritto in diversi file distinti e gestito in package annidati per la loro funzionalità nell'applicazione.
+  \item \textbf{navigation:} contiene i file di gestione della navigazione e di creazione delle route
+\end{itemize}
 
 \subsubsection{File di configurazione}
 
 \subsection{Spiegazione codice in dettaglio}
 
-\subsubsection{Componenti Compose riutilizzabili}
+\subsubsection{core: Componenti Compose riutilizzabili}
 
-\subsubsection{Dependency Injection}
+\subsubsection{di: Dependency Injection}
 
 \subsubsection{Model dell'applicazione}
 
