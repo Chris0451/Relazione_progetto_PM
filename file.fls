@@ -120,8 +120,8 @@ INPUT .\file.toc
 INPUT .\file.toc
 INPUT file.toc
 INPUT C:\Users\crist\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
-OUTPUT file.toc
 INPUT C:\Users\crist\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
+OUTPUT file.toc
 INPUT C:\Users\crist\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
 INPUT C:\Users\crist\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti10.tfm
 INPUT .\images\req_funzionali.png

@@ -38,7 +38,7 @@ Le informazioni principali dei libri vengono visualizzate tramite l'utilizzo di 
 
 \section{Progettazione e sviluppo Android}
 
-\subsection{Requisiti}
+\subsection{Requisiti e casi d'uso}
 Si riportano di seguito i requisiti \textit{funzionali} e \textit{non funzionali}
 \subsubsection{Requisiti funzionali}
 
@@ -327,6 +327,17 @@ utilizzati per distinguere le diverse sezioni dell'applicazione. Ognuno di loro 
   \item \textbf{shelves:} contiene ulteriori package con file per gestione della sezione "scaffali", contenente le liste di libri salvati dall'utente distinte in tre categorie: \textit{da leggere, in lettura e letti}
 \end{itemize} 
 
+\subsubsection{File di sorgente per gestione autenticazione}
+I seguenti file sono utilizzati per la gestione dell'accesso e della registrazione dell'utente nel database Firestore.
+\begin{itemize}
+  \item \textbf{FirebaseAuthDataSource.kt:} Sorgente dati che incapsula \textit{FirebaseAuth} per operazioni di autenticazione. 
+  Espone funzioni sospese \textit{createUser(email, password)} e \textit{signIn(email, password)} (ritornano \textit{AuthResult} usando \textit{await()}), oltre a metodi sincroni \textit{signOut()} e \textit{currentUid()} per terminare la sessione e ottenere l’UID corrente.
+
+  \item \textbf{FirestoreUserDataSource.kt:} Sorgente dati che incapsula \textit{FirebaseFirestore} per la gestione dei profili utente, usando le collezioni \textit{users} e \textit{usernames}. 
+  Fornisce \textit{isUsernameTaken(username)} e \textit{userExists(uid)}; \textit{createUserAtomically(uid, profile)} esegue una transazione che verifica collisioni sullo username e registra in modo coerente sia il documento utente sia il mapping username\,$\rightarrow$\,uid (merge con \textit{SetOptions}). \textit{getUserProfile(uid)} legge e mappa il documento in \textit{UserModelDto}. \textit{updateUserProfile(uid, username, name, surname, email)} aggiorna i campi (incluso \textit{updatedAt}) e, in transazione, se lo username cambia rimuove il vecchio mapping in \textit{usernames}, verifica che il nuovo non sia occupato e crea il nuovo mapping prima di aggiornare il documento in \textit{users}; eventuali eccezioni sono rilanciate per la gestione a livello ViewModel.
+
+\end{itemize}
+
 \subsubsection{Model: file principali}
 I Model dell'applicazione vengono qui descritti distinguendo i package interni di \textbf{features}, i quali sono:
 \begin{itemize}
@@ -514,26 +525,114 @@ I seguenti file descritti rappresentano le view dell'applicazione definite in Je
 \end{itemize}
 
 \subsubsection{Repository}
+I seguenti file implementano il \textit{Repository pattern}, fungendo da strato di astrazione tra \textit{UseCase}/ViewModel e le sorgenti dati concrete (rete e backend). Espongono API di dominio stabili e testabili, nascondendo dettagli tecnologici (Firebase Auth/Firestore, Retrofit verso Google Books) e curando: 
+\begin{itemize}
+  \item La trasformazione dei DTO remoti in modelli di dominio, inclusa la normalizzazione dei dati (es. estrazione ISBN, forzatura \textit{https} per le immagini); 
+  \item La gestione asincrona tramite coroutine e \textit{Flow\textless{}T\textgreater{}} per stream in tempo reale (osservazione libri per stato, aggiornamenti profilo, ecc.); 
+  \item La coerenza su Firestore con scritture atomiche/transaction o \textit{batch write}, merge controllati (\textit{SetOptions.merge}) e validazioni applicative (vincoli su pagine totali/lette, unicità dello \textit{username}); 
+  \item La mappatura degli errori provider–specific in esiti di dominio (sealed result \textit{Success}/\textit{Error}) così da semplificare la logica di UI. In sintesi, i repository centralizzano l’accesso ai dati (autenticazione, catalogo libri, scaffali e sessioni di lettura), applicano regole funzionali e offrono un contratto pulito e indipendente dall’infrastruttura ai layer superiori.
+\end{itemize}
+Di seguito la distinzione per package:
 \begin{itemize}
   \item \textbf{auth:}
+  \begin{itemize}
+    \item \textbf{AuthRepository.kt/AuthRepositoryImpl.kt:} Definisce il contratto e l’implementazione del livello di dominio per l’autenticazione. L’interfaccia espone \textit{isUsernameAvailable}, \textit{register}, \textit{login} e \textit{getCurrentUserProfile}, 
+    con risultati modellati come sealed result \textit{RegisterResult} e \textit{LoginResult} (varianti \textit{Success}/\textit{Error} con codice e messaggio). L’implementazione usa \textit{FirebaseAuthDataSource} e \textit{FirestoreUserDataSource}: 
+    verifica la disponibilità dello username (negando \textit{isUsernameTaken}); in \textit{register} crea l’utente su Auth, costruisce \textit{UserModelDto} e salva in modo atomico profilo e mapping username\,$\rightarrow$\,uid, 
+    mappando gli errori più comuni (es. \textit{EMAIL\_IN\_USE}, \textit{USERNAME\_TAKEN}, \textit{NETWORK}, \textit{AUTH\_ERROR}); in \textit{login} effettua il sign-in, controlla l’esistenza del profilo su Firestore (altrimenti esegue sign-out),
+    e normalizza gli errori frequenti (\textit{USER\_NOT\_FOUND}, \textit{USER\_DISABLED}, \textit{INVALID\_EMAIL}, \textit{WRONG\_PASSWORD}, \textit{INVALID\_CREDENTIALS}, \textit{TOO\_MANY\_REQUESTS}, \textit{NETWORK}). 
+    Tutte le operazioni I/O girano su dispatcher dedicato e ritornano esiti strutturati anziché propagare eccezioni ai layer superiori.
+  \end{itemize}
   \item \textbf{catalog:}
+  \begin{itemize}
+    \item \textbf{CatalogRepository.kt/CatalogRepositoryImpl.kt:} Definisce il contratto del catalogo (\textit{search(query, page, pageSize=21)} e \textit{byCategory(category, page, pageSize=18)}) e la relativa implementazione \textit{@Singleton} basata su \textit{GoogleBooksApi}. 
+    L’implementazione normalizza le query con \textit{normalizeQuery}: lascia passare direttamente forme tipo \textit{isbn:\,...}; in caso di testo che contiene esattamente 10 o 13 cifre (per 13 cifre richiede prefisso 978/979) costruisce una query ibrida \textit{isbn:\,digits OR raw}, 
+    altrimenti usa il testo così com’è. I risultati JSON sono mappati a dominio con \textit{VolumeItem.toDomain()}, che popola \textit{Book} estraendo autore, categorie, data, descrizione, pagina totale e thumbnail (via \textit{bestThumbnailHttps}, che sceglie \textit{thumbnail} 
+    o \textit{smallThumbnail} e forza \textit{https}). Gli ISBN sono derivati da \textit{VolumeInfo.extractIsbns()} (per \textit{ISBN\_13} filtra solo cifre e valida lunghezza 13; per \textit{ISBN\_10} rimuove i trattini, porta in maiuscolo, accetta cifre o \textit{X} e valida lunghezza 10). 
+    La ricerca per categoria usa \textit{byCategory}: prova \textit{subject:categoria} in italiano, se vuoto tenta una traduzione interna (mappa \textit{it}\,$\rightarrow$\,\textit{en}, es. “Avventura”\,$\rightarrow$\,“Adventure”), e in ultima istanza ripete \textit{subject:category}; 
+    in tutti i casi imposta \textit{orderBy=relevance} e \textit{projection=full}, calcolando la paginazione con \textit{startIndex = page * pageSize}.
+  \end{itemize}
   \item \textbf{home:}
-  \item \textbf{profile:}
+  \begin{itemize}
+    \item \textbf{HomeRepository.kt/HomeRepositoryImpl.kt:} Definisce il contratto del dominio \textit{Home} (\textit{observeReadingBooks}, \textit{addReadingSession}, \textit{updatePagesRead}, \textit{setStatus}) e la relativa implementazione \textit{@Singleton} su Firestore/Firebase Auth. 
+    \textit{observeReadingBooks()} interroga \textit{users/\{uid\}/books} filtrando \textit{status=READING}, ordinando per \textit{updatedAt} decrescente e, tramite \textit{callbackFlow}, mappa in tempo reale i documenti in \textit{UiHomeBook}. \textit{addReadingSession(bookId, startMillis, endMillis)} 
+    valida i tempi, calcola la durata in secondi (\(\ge 1\)) e salva in batch una nuova sessione in \textit{books/\{bookId\}/sessions} aggiornando anche \textit{totalReadSeconds} con \textit{FieldValue.increment} e \textit{updatedAt}. \textit{updatePagesRead} esegue un \textit{merge} delle chiavi \textit{pageInReading} 
+    e \textit{updatedAt}. \textit{setStatus} aggiorna \textit{status}, \textit{updatedAt} e \textit{volumeId}, fondendo opzionalmente dal \textit{payload} i metadati disponibili (titolo, thumbnail, autori, categorie, ISBN, \textit{pageCount} se \(>0\)); tutte le operazioni sono \textit{suspend} con \textit{await()}.
+  \end{itemize}
   \item \textbf{shelves:}
+  \begin{itemize}
+    \item \textbf{ShelvesRepository.kt/ShelvesRepositoryImpl.kt:} Definisce il contratto degli scaffali (\textit{observeBooks}, \textit{observeBookStatus}, \textit{observeUserBook}, \textit{setStatus}, \textit{removeBook}, \textit{setPageCount}, \textit{setPageInReading}, \textit{upsertStatusBook}) e l’implementazione su Firestore/Firebase Auth. 
+    La collezione utente è \textit{users/\{uid\}/books}. \textit{observeBooks(status)} espone aggiornamenti realtime via \textit{callbackFlow} filtrando \textit{status} e ordinando per \textit{updatedAt} decrescente, mappando i documenti in \textit{UserBook} con il mapper \textit{toUserBook} (tipo \textit{Flow\textless{}List\textless{}UserBook\textgreater{}\textgreater{}}).
+    \textit{observeBookStatus(id)} ascolta il singolo documento e restituisce lo stato come enum oppure \textit{null} se assente/invalidato; \textit{observeUserBook(id)} restituisce l’intero \textit{UserBook} o \textit{null}. \textit{setStatus(id, payload, status)} esegue un merge che imposta \textit{status}, \textit{updatedAt}, \textit{volumeId} e aggiunge metadati dal \textit{payload} solo se mancanti (titolo, thumbnail, autori, categorie, ISBN);
+    \textit{pageCount} è integrato solo se quello esistente è assente o \(\le 0\) e il \textit{payload} porta un valore \textgreater{} 0. \textit{removeBook(id)} elimina il documento. 
+    \textit{setPageCount(id, n)} valida \(n \textgreater{} 0\) e salva \textit{pageCount} con \textit{updatedAt}; \textit{setPageInReading(id, n)} valida \(n \ge 0\) e, se presente un totale, impone \(n \le \textit{pageCount}\), 
+    quindi salva con merge. \textit{upsertStatusBook(userBook, payload, status, pageCount, pageInReading)} effettua un’unica patch atomica: imposta \textit{status}/\textit{updatedAt}/\textit{volumeId}, fonde i metadati mancanti, decide \textit{pageCount} (priorità al parametro se \textgreater{} 0, altrimenti dal \textit{payload} se l’esistente \(\le 0\)) e scrive \textit{pageInReading} se fornito. Tutte le operazioni sono \textit{suspend} con \textit{await()} e usano \textit{SetOptions.merge()} per preservare i campi esistenti.
+  \end{itemize}
 \end{itemize}
 
 \subsubsection{UseCases}
+Gli \textit{Use Case} incapsulano singole operazioni di dominio (interazioni dell’utente o regole applicative) offrendo un’API coerente ai ViewModel. Sono oggetti leggeri, tipicamente \textit{stateless}, iniettati con \textbf{Hilt} e invocati tramite \textit{operator fun invoke(...)} per un uso naturale. Delegano ai \textit{Repository} l’accesso ai dati (rete, Firebase) e restituiscono risultati di dominio (valori, \textit{Flow\textless{}\textgreater{}}, sealed result); in questo modo separano la logica applicativa dai dettagli infrastrutturali e semplificano i test.
+
 \begin{itemize}
   \item \textbf{auth:}
+  \begin{itemize}
+    \item \textbf{LoginUserUseCase.kt:} invoca \textit{AuthRepository.login(email, password)} e ritorna \textit{LoginResult} (successo/errore normalizzato).
+    \item \textbf{RegisterUserUseCase.kt:} invoca \textit{AuthRepository.register(...)} e ritorna \textit{RegisterResult} (gestione di collisioni email/username e errori di rete).
+    \item \textbf{GetCurrentUidUseCase.kt:} legge l’UID dall’istanza \textit{FirebaseAuth} iniettata e lo ritorna (o \textit{null} se non autenticato).
+    \item \textbf{CheckUsernameAvailableUseCase.kt:} verifica disponibilità username demandando a \textit{AuthRepository.isUsernameAvailable}, con guardia su stringhe vuote.
+  \end{itemize}
+
   \item \textbf{catalog:}
+  \begin{itemize}
+    \item \textbf{SearchBookUseCase.kt:} normalizza la query: se già in forma \textit{isbn:\textless{}codice\textgreater{}} la inoltra; altrimenti, se il testo contiene 10 o 13 cifre (prefisso 978/979 per 13), costruisce la ibrida \textit{isbn:\textless{}digits\textgreater{} OR raw} e chiama \textit{CatalogRepository.search}.
+    \item \textbf{GetCategoryFeedUseCase.kt:} recupera l’elenco libri per categoria con \textit{CatalogRepository.byCategory(category, page)} (pagina 0 di default).
+  \end{itemize}
+
   \item \textbf{home:}
-  \item \textbf{profile:}
+  \begin{itemize}
+    \item \textbf{StartBookTimerUseCase.kt:} avvia una sessione di lettura restituendo il \textit{startMillis} (usato dal \textit{HomeViewModel} per mostrare un timer live).
+    \item \textbf{SetBookTimerUseCase.kt:} registra una sessione completata delegando a \textit{HomeRepository.addReadingSession(bookId, startMillis, endMillis)} (aggiorna \textit{sessions} e \textit{totalReadSeconds}).
+  \end{itemize}
+
   \item \textbf{shelves:}
+  \begin{itemize}
+    \item \textbf{ObserveBooksByStatusUseCase.kt:} espone \textit{Flow\textless{}List\textless{}UserBook\textgreater{}\textgreater{}} da \textit{ShelvesRepository.observeBooks(status)}.
+    \item \textbf{ObserveBookStatusUseCase.kt:} espone \textit{Flow\textless{}ReadingStatus?\textgreater{}} per un volume (\textit{null} se assente).
+    \item \textbf{ObserveUserBookUseCase.kt:} espone \textit{Flow\textless{}UserBook?\textgreater{}} per osservare i metadati del libro salvato.
+    \item \textbf{RemoveBookFromShelfUseCase.kt:} rimuove il documento libro tramite \textit{ShelvesRepository.removeBook(id)}.
+    \item \textbf{SetBookStatusUseCase.kt:} imposta lo stato unico del libro (\textit{TO\_READ}/\textit{READING}/\textit{READ}) con eventuale \textit{payload} metadati.
+    \item \textbf{SetPageCountUseCase.kt:} assegna/aggiorna \textit{pageCount} validando valori \textgreater{} 0.
+    \item \textbf{SetPageInReadingUseCase.kt:} aggiorna le pagine lette validando \textit{0 \textless{}= n \textless{}= pageCount} quando disponibile.
+    \item \textbf{UpsertStatusBookUseCase.kt:} scrittura atomica di stato e metadati: decide \textit{pageCount} (parametro prioritario \textgreater{} 0, altrimenti dal \textit{payload} se mancante), imposta opzionalmente \textit{pageInReading}.
+  \end{itemize}
 \end{itemize}
 
+
 \subsection{Unit Testing}
+I test sono organizzati su due livelli complementari: \textit{unit test} (JVM pura) per validare la logica di dominio e di presentazione senza dipendenze Android, e \textit{instrumented test} (dispositivo/emulatore) per verificare integrazioni con il framework e l’interazione UI. Nel progetto sono impiegati \textit{JUnit4}, \textit{Truth} per le asserzioni, \textit{MockK} per il mocking, le librerie di test delle \textit{Coroutines} (scheduler virtuale, \textit{runTest}), \textit{Robolectric} per eseguire componenti Android su JVM, e per i test strumentati \textit{Hilt Android Testing}, \textit{Jetpack Compose Testing} e \textit{Navigation Testing}. L’uso di \textit{Hilt} consente di sostituire dipendenze reali con mock attraverso \textit{@BindValue}, mentre il controllo del dispatcher principale con \textit{Dispatchers.setMain} e gli scheduler di test garantisce determinismo temporale.
+\subsubsection{Unit Test - HomeViewModelTest.kt}
+Verifica il comportamento della logica di temporizzazione e aggiornamento pagine del \textit{HomeViewModel} isolandolo da I/O esterni. Le dipendenze \textit{HomeRepository}, \textit{StartBookTimerUseCase} e \textit{SetBookTimerUseCase} sono mockate con \textit{MockK}; il flusso dei libri in lettura è simulato con \textit{MutableStateFlow}. I test adottano \textit{RobolectricTestRunner} (esecuzione su JVM), \textit{StandardTestDispatcher} e \textit{runTest}/\textit{runCurrent} per pilotare il tempo virtuale e collezionano lo \textit{uiState} per attivare le combinazioni di flusso.
+In particolare: 
+(i) avvio sessione: l’invocazione di \textit{onStart} imposta \textit{isRunning=true} e valorizza \textit{sessionStartMillis} con il timestamp restituito dall’use case, verificando anche l’unicità della sessione quando un’altra è in corso; 
+(ii) arresto sessione: \textit{onStop} rimuove lo stato di running, apre la dialog di aggiornamento pagine e invoca \textit{SetBookTimerUseCase} con l’intervallo \textit{start/end}; 
+(iii) conferma pagine: \textit{confirmPages} invia \textit{repo.updatePagesRead} e, se il numero confermato raggiunge il totale, imposta lo stato \textit{READ} tramite \textit{repo.setStatus} costruendo un \textit{UserBook} coerente e chiudendo la dialog. Le asserzioni verificano i campi di \textit{HomeItemState}, l’apertura/chiusura della dialog e le interazioni attese con i mock.
+\subsubsection{Instrumented Test - BookDetailScreenInstrumentedTest.kt}
+Convalida il flusso di interazione della \textit{BookDetailScreen} in un ambiente Android reale con \textit{Compose}. Il test è annotato \textit{@HiltAndroidTest} e utilizza \textit{HiltAndroidRule} più \textit{createAndroidComposeRule} su \textbf{HiltTestActivity}. Le dipendenze del \textit{ViewModel} sono sostituite a livello di processo mediante \textit{@BindValue} (mock di \textit{ObserveBookStatusUseCase}, \textit{SetBookStatusUseCase}, \textit{RemoveBookFromShelfUseCase}, \textit{SetPageCountUseCase}, \textit{ObserveUserBookUseCase}, \textit{UpsertStatusBookUseCase}).
+La schermata è montata dentro un \textit{NavHost} pilotato da \textit{TestNavHostController} con \textit{ComposeNavigator} per simulare la navigazione.
+I casi coperti:
+\begin{itemize}
+  \item Se lo stato corrente è \textit{TO-READ}, il tap sull’icona "Da leggere" esegue la rimozione dallo scaffale verificando l’invocazione del relativo use case;
+  \item In assenza di stato e con totale pagine noto, il tap su "Letto" invoca \textit{UpsertStatusBookUseCase} con \textit{status=READ}, \textit{pageInReading} uguale al totale e \textit{pageCount} non ripetuto (valore \textit{null} perché già noto dal libro).
+\end{itemize}
+Il test driver di Compose interagisce con i nodi tramite \textit{contentDescription}, 
+assicurando accessibilità e selettori stabili. L’infrastruttura di test include \textbf{HiltTestRunner} (bootstrap di \textit{HiltTestApplication}) 
+e un manifest di test che dichiara \textbf{HiltTestActivity} per l’host delle UI.
 
 \section{Progettazione e sviluppo in Flutter}
+\subsection{Requisiti e casi d'uso}
+\subsubsection{Requisiti funzionali}
+\subsubsection{Requisiti non funzionali}
+\subsubsection{Casi d'uso}
 
 \section{UI - Interfaccia applicazione}
 
