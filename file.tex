@@ -270,26 +270,266 @@ La struttura delle macro-cartelle risulta la seguente:
   Le classi ricevono gli oggetti necessari tramite iniezione, senza istanziarli al proprio interno. 
   Contiene i file usati a livello globale per integrare le Google Books API e configurare lo stack di rete.
   \item \textbf{features:} è presente il codice principale dell'applicazione scritto in diversi file distinti e gestito in package annidati per la loro funzionalità nell'applicazione.
-  \item \textbf{navigation:} contiene i file di gestione della navigazione e di creazione delle route
+  \item \textbf{navigation:} contiene i file di gestione della navigazione e di creazione delle route.
 \end{itemize}
 
 \subsubsection{File di configurazione}
 
+Sono stati modificati i file di configurazione per l'importazione di diverse dipendenze nel progetto.
+I principali file sono:
+
+\begin{itemize}
+  \item \textbf{AndroidManifest.xml:} Utilizzato per la dichiarazione di diversi componenti e permessi per l'app sviluppata su Android che riconosce in runtime.
+  Il principale permesso applicato è stato INTERNET per permettere la richiesta via rete di libri tramite le API fornite.
+  \item \textbf{build.gradle.kts (app):} Definisce la modalità di compilazione del modulo \textit{app} e quali librerie collegare per il loro utilizzo. A differenze di AndroidManifest, viene valutato a build-time.
+  \item \textbf{build.gradle.kts (root):} Permette l'applicazione di configurazioni e impostazioni condivise a tutti i moduli.
+\end{itemize}
+
 \subsection{Spiegazione codice in dettaglio}
+Di seguito, viene suddivisa in sezioni la spiegazione nel dettaglio dello scopo dei file con le proprie componenti utilizzate.
 
 \subsubsection{core: Componenti Compose riutilizzabili}
+In questo package troviamo componenti \textit{@Compose} riutilizzabili nel codice, elencati e descritti di seguito:
+
+\begin{itemize}
+  \item \textbf{AppScaffold.kt:} Struttura principale del componente Scaffold dell'applicazione, con parametri \textit{topBar} e \textit{bottomBar} assegnati in \textbf{AppNavHost.kt}. Permette la definizione della struttura principale dell'applicazione.
+  \item \textbf{HeaderComponent.kt:} Struttura dell'intestazione dell'app, costruita con \textit{TopAppBar}, contenente il logo dell'applicazione e il titolo "Reading Stats".
+  \item \textbf{NavBarComponent.kt:} Struttura della barra di navigazione per permettere di navigare tra le quattro sezioni principali dell'applicazione: \textbf{Scaffali, Catalogo, Home e Profilo}. Al richiamo con il parametro assegnato di tipo \textit{NavController}, viene assegnata poi al parametro bottomBar di AppScaffold. 
+  \item \textbf{SerchBar.kt:} Barra di ricerca costruita e utilizzata nella schermata del \textbf{Catalogo} e nella sezione \textit{Amici} del \textbf{Profilo}, rispettivamente utilizzata per la ricerca di libri o per la ricerca di amici registrati all'applicazione.
+  \item \textbf{VerticalScrollBar.kt:} Barra di scorrimento verticale richiamata nella finestra di dialogo per la selezione dei filtri del \textbf{Catalogo}.
+\end{itemize}
 
 \subsubsection{di: Dependency Injection}
+Tale package racchiude i moduli \textbf{Hilt} che dichiarano come costruire le dipendenze dell'app a runtime, come \textit{Firebase, Retrofit e OkHttp}. Permette quindi una configurazione centralizzata e una migliore testabiità dell'intera app.
 
-\subsubsection{Model dell'applicazione}
+\begin{itemize}
+  \item \textbf{AuthModule.kt:} permette la definizione e l'iniziezione nei ViewModel della catena \textbf{UseCase → Repository → DataSource → Firebase}.
+  Fornisce servizi di base per l'autenticazione e l'estrazione di dati da database Firestore. Sono presenti degli use case per il login, la registrazione e il controllo dello username.
+  Fa uso di due annotazioni:
+  \begin{itemize}
+    \item \textit{@Singleton:} Annotazione di scope per mantenere una sola istanza del binding per il tempo di vita del componente su cui è installato.
+    \item \textit{@InstallIn:} Annotazione di installazione di modulo il quale comunica con Hilt a quale componente deve essere unito il modulo (con annotazione \textit{@Module}) che contiene le notazioni \textit{@Provides o @Bind}.
+    Definisce quindi il raggio d'azione del modulo e la visibilità dei binding.
+  \end{itemize}
+  \item \textbf{NetworkModule.kt:} Permette la configurazione di rete dell'applicazione e la possibilità di richiedere le informazioni dei libri tramite l'url fornito dalle API di Google Books.
+  \item \textbf{KeysModule.kt:} Definisce un qualifier \textit{@BooksApiKey} per evitare collisioni tra generiche String e la chiave fornita da Google Books quando viene iniettata.
+\end{itemize}
 
-\subsubsection{Funzioni composable per l'interfaccia}
+\subsubsection{Package interni a features}
+Di seguito vengono elencati e descritti lo scopo dei singoli package contenuti in \textbf{features}, 
+utilizzati per distinguere le diverse sezioni dell'applicazione. Ognuno di loro contiene a sua volta dei package per l'applicazione della struttura con MVVM, quindi con schermate definite con funzioni \textit{@Composable} e model per rappresentare classi i cui oggetti saranno memorizzati nel database Firestore.
+\begin{itemize}
+  \item \textbf{auth:} contiene ulteriori package con file per la corretta gestione dell'accesso e della registrazione dell'utente tramite Firestore.
+  \item \textbf{bookdetail:} contiene i file di schermata delle info del libro selezionato dal catalogo o dalla lista dei libri salvati nel proprio scaffale, con un view model dedicato alla gestione del salvataggio nelle liste e all'aggiornamento delle pagine lette.
+  \item \textbf{catalog:} contiene ulteriori package con file per la visualizzazione e gestione del catalogo di libri, richiamando grazie al proprio view-model la possibilità di effettuare query per l'estrazione di libri.
+  \item \textbf{home:} contiene ulteriori package con file per la sezione home, la quale permette di visualizzare e interagire con i libri salvati nella lista "In lettura" in modo da permettere l'avvio di un timer dedicato per ciascuno di loro.
+  \item \textbf{profile:} contiene ulteriori package con file per la gestione del profilo utente, nel quale è possibile visualizzare le proprie informazioni e visualizzare le informazioni relative agli utenti amici.
+  \item \textbf{shelves:} contiene ulteriori package con file per gestione della sezione "scaffali", contenente le liste di libri salvati dall'utente distinte in tre categorie: \textit{da leggere, in lettura e letti}
+\end{itemize} 
 
-\subsubsection{File di definizione del ViewModel}
+\subsubsection{Model: file principali}
+I Model dell'applicazione vengono qui descritti distinguendo i package interni di \textbf{features}, i quali sono:
+\begin{itemize}
+  \item \textbf{auth:}
+  \begin{itemize}
+    \item \textbf{data.model.UserModelDto.kt:} descrive le componenti principali dell'utente che si registra e fa uso del servizio.
+    Viene denotato con \textit{DTO} per indicare Data Transfer Object, ossia una classe contenitore utilizzata per trasportare informazioni tra diversi processi.
+    In questo caso viene utilizzata per la gestione delle informazioni da salvare per gli utenti nel database Firestore.
+    \item \textbf{domain.model:}
+    \begin{itemize}
+      \item \textbf{LoginFormState.kt:} File di rappresentazione dello stato per il login dell'utente che accede, contenente quindi le informazioni essenziali per il suo accesso e la conseguente verifica.
+      \item \textbf{RegisterFormState.kt:} Rispetto a LoginState, questo file contiene più informazioni necessarie per la memorizzazione per la memorizzazione dell'utente nel servizio.
+    \end{itemize}
+  \end{itemize}
+  \item \textbf{catalog:}
+  \begin{itemize}
+    \item \textbf{data.dto.GoogleBooksDto.kt:} contiene determinati DTO per Google Books, utilizzati per la loro ricerca e l'estrazione delle informazioni principali.
+    \item \textbf{domain.model.Book.kt:} Model principale del libro, utilizzato per definire e raccogliere le informazioni estratte e richiamarle da un oggetto istanziato.
+  \end{itemize}
+  \item \textbf{home:}
+  \begin{itemize}
+    \item \textbf{domain.model.UiHomeBook.kt:} Model del libro per la sezione home, contenente le informazioni principali del libro, il numero di pagine lette registrate dall'utente (attributo \textit{pageInReading}) e il totale dei secondi di lettura (attributo \textit{totalReadSeconds}).
+    \item \textbf{domain.model.HomeItemState.kt:} Stato del relativo UiHomeBook per tenere conto dell'inizio e della fine della sessione di lettura avviata, rispettivamente memorizzati negli attributi \textit{sessionStartMillis} e \textit{sessionElapsedSec}.
+    Restituisce il totale dei secondi di lettura tra più sessioni memorizzando in \textit{totalReadSec} i secondi delle sessioni precedenti che vengono sommati a \textit{sessionElapsedSec}. Tale valore viene memorizzato in una funzione get() denominato \textit{totalWithSession}.
+    \item \textbf{domain.model.PagesDialogState.kt:} Stato della finestra di dialogo utilizzato per aggiornare le pagine lette al termine di una sessione di un determinato libro in lettura.
+    \item \textbf{domain.model.HomeUiState.kt:} Stato rappresentante la lista di libri in lettura visualizzabile nella home.
+    
+  \end{itemize}
+  \item \textbf{profile:}
+  \begin{itemize}
+    \item \textbf{data.model.FriendModels.kt:} Model relativo all'amico e alla richiesta di amicizia, 
+    con relativo stato per definire se un utente è amico o meno di un altro o se è in attesa una richiesta inviata.
+  \end{itemize}
+  \item \textbf{shelves:}
+  \begin{itemize}
+    \item \textbf{data.dto.UserBookDto.kt:} Model rappresentante il libro salvato nelle liste negli scaffali, con attributo aggiuntivo \textit{status} per memorizzare lo stato di lettura e il salvataggio nella relativa lista.
+    Viene aggiunta la denominazione DTO per la memorizzazione in Firestore.
+    \item \textbf{domain.model:}
+    \begin{itemize}
+      \item \textbf{ReadingStatus.kt:} Enum rappresentante i tre stati di lettura principali: \textbf{TO-READ, READING, READ}
+      \item \textbf{UserBook.kt:} Model da cui UserBookDto si adatta per il salvataggio dei dati.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+
+\subsubsection{View: funzioni Composable per l'interfaccia}
+I seguenti file descritti rappresentano le view dell'applicazione definite in Jetpack Compose, con caratterictiche distintive per ognuno di esse.
+\begin{itemize}
+  \item \textbf{auth:}
+  \begin{itemize}
+    \item \textbf{ui.components:}
+    \begin{itemize}
+      \item \textbf{LoginScreen.kt:} Schermata iniziale necessaria per il login dell'utente registrato. E' presente un \textit{TextButton} per il passaggio alla schermata di registrazione. Fino a quando l'utente non inserisce una mail con il proprio formato e una password da almeno 6 caratteri, non è possibile cliccare il pulsante \textit{Button} per accedere.
+      \item \textbf{RegistrationScreen.kt:} Schermata di registrazione con i campi principali da compilare: nome, cognome, username, email, password e relativa conferma. Come per il login, qui è presente un \textit{TextButton} per il passaggio alla schermata di login. Se tutti i campi non sono compilati correttamente non è possibile registrarsi in quanto il \textit{Button} rimane bloccato. 
+      Vengono visualizzati dei messaggi di errore nel caso in cui l'utente inserisce un username utilizzato da un altro utente o quando si registra con una mail presente nel database.
+    \end{itemize}
+  \end{itemize}
+  \item \textbf{profile:}
+  \begin{itemize}
+    \item \textbf{ui.components:}
+    \begin{itemize}
+      \item \textbf{ProfileScreen.kt:}
+      \item \textbf{DatiPersonali.kt:}
+      \item \textbf{ModificaDatiPersonali.kt:}
+      \item \textbf{ListaAmici.kt:}
+      \item \textbf{FriendComponents.kt:}
+      \item \textbf{InfoSupporto.kt:}
+    \end{itemize}
+  \end{itemize}
+  \item \textbf{catalog:}
+  \begin{itemize}
+    \item \textbf{ui.components:}
+    \begin{itemize}
+      \item \textbf{BookCard.kt:} Componente che rappresenta un libro selezionabile con immagine di copertina renderizzata via \textit{AsyncImage}
+       (modello costruito dalla \textit{thumbnail} del \textit{Book}, con \textit{fallback}/\textit{error} e \textit{crossfade}); sotto è mostrato il titolo troncato su più righe. 
+       L’intera card è cliccabile e invoca \textit{onClick(Book)} per navigare, ad esempio, alla schermata \textbf{BookDetailScreen.kt}.
+      \item \textbf{CategoryRow.kt:} Componente che visualizza una riga orizzontale di libri per una categoria. Accetta \textit{title}, \textit{books} e \textit{onBookClick}; mostra l’intestazione della categoria, un placeholder quando 
+      la lista è vuota e la lista scorrevole realizzata con \textit{LazyRow} (incapsulata in \textit{Surface} arrotondata), componendo \textbf{BookCard.kt} per ciascun elemento e propagando \textit{onBookClick}.
+      \item \textbf{CatalogScreen.kt:} Schermata principale del catalogo che include una \textit{SearchBar} (ricerca istantanea con debounce e ricerca esplicita), una barra \textit{Filtri} per aprire \textit{FiltersDialog} 
+      (selezione multipla con checkbox, azzera/conferma), e un corpo che alterna: una griglia \textit{LazyVerticalGrid} a tre colonne per i risultati di ricerca (con indicatore \textit{CircularProgressIndicator} durante il caricamento) 
+      oppure una colonna \textit{LazyColumn} di righe categoria composte da \textbf{CategoryRow.kt} quando non ci sono risultati. Alla conferma dei filtri vengono mostrate solo le categorie selezionate.
+    \end{itemize}
+  \end{itemize}
+  \item \textbf{bookdetail:}
+  \begin{itemize}
+    \item \textbf{ui.components:}
+    \begin{itemize}
+      \item \textbf{BookDetailScreen.kt:} Schermata che mostra i dettagli del libro (copertina con \textit{AsyncImage}, titolo, autori, data, conteggio pagine) con \textit{TopAppBar} e gestione del tasto indietro via \textit{BackHandler}.
+      Integra \textit{BookStatusBar} con tre \textit{IconButton} a selezione esclusiva per impostare lo stato (\textit{Da leggere}, \textit{In lettura}, \textit{Letto}); al click, 
+      per \textit{In lettura} avvia un flusso di dialoghi (gestito da \textit{ReadingFlowDialogs} nello stesso file) che chiede eventualmente le pagine totali e poi le pagine lette, mentre per \textit{Da leggere}/\textit{Letto} 
+      richiede solo le pagine totali se mancanti, altrimenti applica direttamente lo stato. Usa \textit{SnackbarHost} per notifiche evento e \textit{ExpandableText} per la descrizione, e collega il ViewModel al volume tramite \textit{bindVolume}.
+      \item \textbf{ReadingDialogs.kt:} Descrive due funzioni \textit{@Composable} per finestre di dialogo da richiamare al click di una delle tre componenti \textit{IconButton} in \textbf{BookDetailScreen.kt}:
+      \begin{itemize}
+        \item \textit{TotalPagesDialog:} Richiamata quando l'attributo \textit{pageCount} è null e quindi non è presente tale valore di riferimento per aggiornare le pagine in lettura del libro selezionato.
+        Permette di impostare il valore numerico in un componente \textit{OutlinedTextField} e confermare o annullare la digitazione con componenti \textit{Button} dedicati.
+        \item \textit{ReadPagesDialog:} Richiamata per aggiornare le pagine in lettura del libro selezionato.
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+  \item \textbf{shelves:}
+  \begin{itemize}
+    \item \textbf{ui.components:}
+    \begin{itemize}
+      \item \textbf{ShelvesScreen.kt:} Contiene funzioni \textit{@Composable} per la definizione della schermata della sezione "Scaffali", caratterizzata dalla struttura principale definita dalla funzione \textit{ShelvesScreen}, 
+      strutturata con un componente \textit{Scaffold}. Questa contiene una lista in colonna di componenti \textit{Card} al cui interno viene richiamata la funzione \textit{ShelfRow} che rappresenta uno scaffale, ossia una lista di libri salvati dal catalogo; 
+      la schermata include inoltre un \textit{FloatingActionButton} per l’avvio dello scanner ISBN (\textit{GmsBarcodeScanning}), un \textit{SnackbarHost} per i messaggi, semantiche di accessibilità (\textit{contentDescription}) e la gestione dell’abilitazione 
+      dei tap tramite \textit{rememberCanInteract} in base al \textit{Lifecycle}.
+      \item \textbf{SelectedShelfScreen.kt:} Contiene la struttura, costruita in \textit{Scaffold}, della lista di libri selezionata a partire dalle tre liste principali, con \textit{TopAppBar} (icona di ritorno) e dati osservati dal \textit{ShelvesViewModel} 
+      tramite \textit{collectAsStateWithLifecycle}. In mancanza di libri salvati, si visualizza in un \textit{Box} centrale il testo "Nessun libro presente in lista". In presenza di libri è possibile visualizzare in ciascun libro anche un indicatore circolare 
+      del progresso di lettura, il quale permette di far visualizzare all'utente la percentuale di lettura totale. Ogni riga, definita con la funzione \textit{ShelfBookRow}, contiene l'immagine del libro (thumb con fallback in preview, \textit{BookThumb}) 
+      e l’indicatore \textit{ReadingProgressCircle}, renderizzati all’interno di una \textit{LazyColumn}.
+    \end{itemize}
+  \end{itemize}
+  \item \textbf{home:}
+  \begin{itemize}
+    \item \textbf{ui.components:}
+    \begin{itemize}
+      \item \textbf{HomeScreen.kt:} Contiene funzioni \textit{@Composable} per la schermata principale \emph{Home}, focalizzata sui libri in lettura e sulla gestione delle sessioni. 
+      L’istanza di \textit{HomeViewModel} è ottenuta via Hilt e lo stato è osservato con \textit{collectAsState()}; se non ci sono elementi viene mostrato un placeholder centrale. L’elenco è reso con \textit{LazyColumn} che compone card 
+      (\textit{ReadingCard}) con copertina (Coil \textit{AsyncImage} con fallback/errore), titolo, indicatore grafico del progresso (\textit{ReadingProgressCircle}) e tempo totale formattato (\textit{formatSeconds}). Ogni card espone un pulsante contestuale “Riprendi/Termina” che invoca \textit{viewModel.onStart(book)} o \textit{viewModel.onStop(book)}; 
+      è garantita un’unica sessione attiva alla volta (\textit{anyRunning}) e, quando in corso, è mostrato anche il timer della sessione. Al termine, se previsto, viene aperta la dialog \textit{PagesDialog} per aggiornare le pagine lette, delegando la conferma a \textit{viewModel.confirmPages(pages)}.
+      \item \textbf{ReadingDialogs.kt:} Definisce il composable \textit{PagesDialog} per inserire/aggiornare le 
+      \emph{pagine lette totali} alla chiusura di una sessione. L’interfaccia è una \textit{BasicAlertDialog} con 
+      \textit{Surface} sagomata, titolo dinamico (mostra l’intervallo consentito \((0..pageCount)\) se disponibile), 
+      campo numerico con filtro solo cifre e validazioni (non vuoto, valore valido, \(\ge 0\) e \(\le\) \textit{pageCount} se noto); 
+      lo stato dell’input è indicizzato su \textit{book.id} per mantenere correttamente il valore al cambio libro. I pulsanti “Annulla/Salva” 
+      invocano rispettivamente \textit{onDismiss} e \textit{onConfirm(Int)}; l’integrazione con \textit{HomeScreen} consente di persistere l’aggiornamento tramite \textit{HomeViewModel}.
+    \end{itemize}
+  \end{itemize}
+  
+\end{itemize}
+
+\subsubsection{ViewModel: file di definizione}
+\begin{itemize}
+  \item \textbf{auth:}
+  \begin{itemize}
+    \item \textbf{AuthViewModel.kt:} ViewModel di autenticazione annotato \textit{@HiltViewModel} che inietta i casi d’uso \textit{CheckUsernameAvailableUseCase}, 
+    \textit{RegisterUserUseCase} e \textit{LoginUserUseCase}. Gestisce due flussi di stato (\textit{StateFlow}): \textit{RegistrationFormState} per la registrazione e \textit{LoginFormState} per il login, esponendo metodi di aggiornamento 
+    dei campi (\textit{onNameChange}, \textit{onSurnameChange}, \textit{onEmailChange}, \textit{onPasswordChange}, \textit{onConfirmPasswordChange}, \textit{onUsernameChange}, \textit{onLoginEmailChange}, \textit{onLoginPasswordChange}). 
+    La verifica disponibilità dell’username è \emph{debounced} (job cancellabile con \textit{delay(250)} in \textit{viewModelScope}), con normalizzazione (\textit{trim().lowercase()}) e aggiornamento di \textit{usernameAvailable}. 
+    Le azioni \textit{submitRegister()} e \textit{submitLogin()} rispettano i guard (\textit{canSubmit}, \textit{isSubmitting}) e, in coroutine, chiamano i rispettivi use case, mappando gli esiti (\textit{Success}/\textit{Error}) 
+    in flag di successo e messaggi utente localizzati (es. “Email già registrata.”, “Email o Password non corretti.”, “Problema di rete, riprova.”, “Configurazione Firebase non valida.”). L’UI può osservare i due \textit{StateFlow} con \textit{collectAsState()} 
+    per abilitare/disabilitare i pulsanti, mostrare errori e reagire al completamento del flusso di autenticazione.
+  \end{itemize}
+  \item \textbf{catalog:}
+  \begin{itemize}
+    \item \textbf{CatalogViewModel.kt:} ViewModel del catalogo annotato \textit{@HiltViewModel} che inietta \textit{SearchBookUseCase}, \textit{GetCategoryFeedUseCase}, \textit{UserPreferencesRepository} e \textit{GetCurrentUidUseCase}. Gestisce lo stato principale (\textit{UiState}) con query di ricerca, stato di caricamento, risultati, 
+    elenco delle categorie disponibili e selezionate, righe di categoria (\textit{CategoryRowState \{ category, books, isLoading, error \}}), visibilità del dialog dei filtri e \textit{currentUid}. All’avvio recupera l’utente corrente, carica le categorie selezionate salvate e popola ogni riga tramite \textit{getCategoryFeed} 
+    (con fallback alla pagina successiva se vuota). Espone azioni per ricerca “istantanea” con debounce (\textit{performLiveSearch}), ricerca esplicita (\textit{performSearch}), pulizia query (\textit{clearSearch}), apertura/chiusura del dialog filtri e gestione del set di categorie (\textit{toggleCategory}, \textit{clearFilters}, 
+    \textit{confirmFilters} con persistenza su \textit{UserPreferencesRepository} e ricarica delle righe).
+  \end{itemize}
+  \item \textbf{bookdetail:}
+  \begin{itemize}
+    \item \textbf{BookDetailViewModel.kt:} ViewModel dei dettagli libro annotato \textit{@HiltViewModel} che riceve da DI: \textit{SavedStateHandle}, \textit{ObserveBookStatusUseCase}, \textit{ObserveUserBookUseCase}, \textit{SetBookStatusUseCase}, \textit{RemoveBookFromShelfUseCase}, 
+    \textit{SetPageCountUseCase} e \textit{UpsertStatusBookUseCase}. Estrae e mantiene il \textit{volumeId} (anche tramite \textit{bindVolume}) e pubblica tre \textit{StateFlow}: \textit{status} (stato di lettura corrente), \textit{savedReadPages} (pagine lette) e \textit{savedTotalPages} (totale pagine), 
+    ottenuti osservando il repository utente; espone inoltre un \textit{SharedFlow} di \textit{events} per messaggi UI. Fornisce operazioni atomiche di aggiornamento: \textit{setStatusWithPages} (scrive stato, pagine lette e totali in un’unica chiamata), \textit{onStatusIconClick} (toggle/trasferimento tra liste o rimozione dallo scaffale) e \textit{updatePageCount} (aggiorna il totale pagine).
+  \end{itemize}
+  \item \textbf{home:}
+  \begin{itemize}
+    \item \textbf{HomeViewModel.kt:} ViewModel della schermata \emph{Home} annotato \textit{@HiltViewModel} che inietta \textit{HomeRepository}, \textit{StartBookTimerUseCase} e \textit{SetBookTimerUseCase}. Mantiene due stati interni mappa (\textit{MutableStateFlow}) per i timer: \emph{running} (bookId → istante di avvio) e \emph{ticking} (bookId → secondi trascorsi), più lo stato della dialog pagine (\textit{PagesDialogState}). 
+    Espone \textit{uiState} come \textit{StateFlow<HomeUiState>} ottenuto con \textit{combine} tra i libri in lettura (\textit{repo.observeReadingBooks()}), i timer e la dialog, mappando ciascun libro in \textit{HomeItemState} (inclusi \emph{isRunning}, \emph{sessionElapsedSec} e \emph{totalReadSec}). L’azione \emph{onStart} avvia una singola sessione alla volta (guardando \emph{running}), chiama \textit{startTimer} 
+    per ottenere l’istante di avvio e attiva un ticker a 1 Hz che aggiorna \emph{ticking}; \emph{onStop} ferma subito la sessione in UI, apre la \emph{PagesDialog} e salva in background l’intervallo con \textit{setTimer}. Con \emph{confirmPages} aggiorna le pagine lette (\textit{repo.updatePagesRead}) e, se raggiunge il totale, imposta lo stato \textit{READ} tramite \textit{repo.setStatus} passando il \textit{UserBook} completo; \emph{closeDialog} chiude la dialog. Il ticker viene disattivato automaticamente quando non ci sono sessioni attive.
+  \end{itemize}
+  \item \textbf{profile:}
+  \begin{itemize}
+    \item \textbf{ProfileViewModel.kt:} ViewModel della sezione profilo che gestisce caricamento e aggiornamento dei dati utente su Firestore. 
+    
+    All’avvio carica il profilo dell’utente corrente (ricavato da \textit{FirebaseAuth}) tramite \textit{FirestoreUserDataSource.getUserProfile} e 
+    lo espone come \textit{StateFlow\textless{}UserModelDto?\textgreater{}} (\textit{user}); gestisce flag di caricamento interni (\textit{\_loading}, \textit{updateLoading}) 
+    e un esito di aggiornamento (\textit{updateResult} con valori “success”, “error\_no\_user”, “error\_update\_failed”). La funzione \textit{updateUserProfile(username, name, surname, email)}
+    invia le modifiche al datasource (\textit{updateUserProfile}), aggiorna lo stato locale in caso di successo e popola \textit{updateResult}; \textit{clearUpdateResult()} azzera l’esito. Tutte le operazioni avvengono in \textit{viewModelScope} con coroutine.
+
+  \end{itemize}
+  \item \textbf{shelves:}
+  \begin{itemize}
+    \item \textbf{ShelvesViewModel.kt:} ViewModel della sezione “Scaffali” annotato \textit{@HiltViewModel}. 
+    Ricava lo stato richiesto dagli argomenti di navigazione tramite \textit{SavedStateHandle} (\textit{shelfStatus}) e lo mappa in un titolo (\textit{Da leggere}, \textit{In lettura}, \textit{Letti}); 
+    in caso di valore non valido usa \textit{READ} come default. 
+    
+    Osserva i libri per stato con \textit{ObserveBooksByStatusUseCase}, trasformandoli in \textit{UiShelfBook} ed esponendoli come \textit{StateFlow\textless{}List\textless{}UiShelfBook\textgreater{}\textgreater{}} con \textit{stateIn} e \textit{SharingStarted.WhileSubscribed(5000)} (valore iniziale lista vuota). 
+    Fornisce inoltre \textit{findBookByScan(raw)}: estrae le sole cifre, costruisce i candidati ISBN (EAN-13 \textit{978}/\textit{979} e, se \textit{978}, calcola anche l’ISBN-10), prova la ricerca mirata \textit{isbn:\textless{}codice\textgreater{}} con \textit{SearchBookUseCase} e, se non è stato trovato nulla, effettua una ricerca libera sul testo grezzo;
+    l’operazione gira su \textit{Dispatchers.IO}.
+  \end{itemize}
+\end{itemize}
 
 \subsubsection{Repository}
+\begin{itemize}
+  \item \textbf{auth:}
+  \item \textbf{catalog:}
+  \item \textbf{home:}
+  \item \textbf{profile:}
+  \item \textbf{shelves:}
+\end{itemize}
 
 \subsubsection{UseCases}
+\begin{itemize}
+  \item \textbf{auth:}
+  \item \textbf{catalog:}
+  \item \textbf{home:}
+  \item \textbf{profile:}
+  \item \textbf{shelves:}
+\end{itemize}
 
 \subsection{Unit Testing}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.4.28)  23 OCT 2025 09:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.4.28)  27 OCT 2025 19:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -251,7 +251,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 [1
 
 {C:/Users/crist/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-<images/req_funzionali.png, id=149, 643.40375pt x 984.67876pt>
+<images/req_funzionali.png, id=154, 643.40375pt x 984.67876pt>
 File: images/req_funzionali.png Graphic file (type png)
 <use images/req_funzionali.png>
 Package pdftex.def Info: images/req_funzionali.png  used on input line 47.
@@ -277,7 +277,7 @@ Overfull \hbox (19.81192pt too wide) in paragraph at lines 77--78
 []\OT1/cmr/m/it/10 RF20: Vi-su-al-iz-zazione per-centuale com-ple-ta-mento di libri \OT1/cmr/m/n/10 - L'applicazione
  []
 
-<images/req_non_funzionali.png, id=167, 412.54124pt x 432.61626pt>
+<images/req_non_funzionali.png, id=172, 412.54124pt x 432.61626pt>
 File: images/req_non_funzionali.png Graphic file (type png)
 <use images/req_non_funzionali.png>
 Package pdftex.def Info: images/req_non_funzionali.png  used on input line 87.
@@ -285,12 +285,12 @@ Package pdftex.def Info: images/req_non_funzionali.png  used on input line 87.
 
 
 [5 <./images/req_non_funzionali.png>]
-<images/cu_attori.png, id=174, 337.26pt x 231.86626pt>
+<images/cu_attori.png, id=179, 337.26pt x 231.86626pt>
 File: images/cu_attori.png Graphic file (type png)
 <use images/cu_attori.png>
 Package pdftex.def Info: images/cu_attori.png  used on input line 106.
 (pdftex.def)             Requested size: 207.0021pt x 142.31561pt.
-<images/cu_utente.png, id=175, 884.30376pt x 1004.75375pt>
+<images/cu_utente.png, id=180, 884.30376pt x 1004.75375pt>
 File: images/cu_utente.png Graphic file (type png)
 <use images/cu_utente.png>
 Package pdftex.def Info: images/cu_utente.png  used on input line 113.
@@ -305,7 +305,7 @@ Overfull \hbox (48.53992pt too wide) in paragraph at lines 119--120
 
 
 [7 <./images/cu_utente.png>]
-<images/cu_attivita.png, id=189, 794.97pt x 1145.27875pt>
+<images/cu_attivita.png, id=194, 794.97pt x 1145.27875pt>
 File: images/cu_attivita.png Graphic file (type png)
 <use images/cu_attivita.png>
 Package pdftex.def Info: images/cu_attivita.png  used on input line 134.
@@ -320,12 +320,12 @@ Overfull \hbox (3.43784pt too wide) in paragraph at lines 165--167
 
 
 [9]
-<images/diagramma_componenti.png, id=200, 1024.82875pt x 421.575pt>
+<images/diagramma_componenti.png, id=205, 1024.82875pt x 421.575pt>
 File: images/diagramma_componenti.png Graphic file (type png)
 <use images/diagramma_componenti.png>
 Package pdftex.def Info: images/diagramma_componenti.png  used on input line 177.
 (pdftex.def)             Requested size: 345.0pt x 141.9184pt.
-<images/authentication.png, id=201, 1076.52188pt x 683.55376pt>
+<images/authentication.png, id=206, 1076.52188pt x 683.55376pt>
 File: images/authentication.png Graphic file (type png)
 <use images/authentication.png>
 Package pdftex.def Info: images/authentication.png  used on input line 193.
@@ -344,8 +344,155 @@ Overfull \hbox (3.643pt too wide) in paragraph at lines 190--196
 [12]
 
 [13]
+Overfull \hbox (30.11821pt too wide) in paragraph at lines 295--296
+[]\OT1/cmr/bx/n/10 AppScaffold.kt: \OT1/cmr/m/n/10 Strut-tura prin-ci-pale del com-po-nente Scaf-fold dell'applicazione,
+ []
 
-[14] (file.aux)
+
+Overfull \hbox (5.25053pt too wide) in paragraph at lines 306--310
+\OT1/cmr/m/n/10 For-nisce servizi di base per l'autenticazione e l'estrazione di dati da database
+ []
+
+
+
+[14]
+Overfull \hbox (3.56279pt too wide) in paragraph at lines 322--323
+[]\OT1/cmr/bx/n/10 auth: \OT1/cmr/m/n/10 con-tiene ul-te-ri-ori pack-age con file per la cor-retta ges-tione dell'accesso
+ []
+
+
+
+[15]
+Overfull \hbox (15.0692pt too wide) in paragraph at lines 346--347
+[]\OT1/cmr/bx/n/10 data.dto.GoogleBooksDto.kt: \OT1/cmr/m/n/10 con-tiene de-ter-mi-nati DTO per Google
+ []
+
+
+
+[16]
+Overfull \hbox (2.94534pt too wide) in paragraph at lines 360--362
+[]\OT1/cmr/bx/n/10 data.model.FriendModels.kt: \OT1/cmr/m/n/10 Model rel-a-tivo all'amico e alla richi-
+ []
+
+
+Overfull \hbox (22.60274pt too wide) in paragraph at lines 383--384
+[]\OT1/cmr/bx/n/10 LoginScreen.kt: \OT1/cmr/m/n/10 Scher-mata in-iziale nec-es-saria per il lo-gin dell'utente
+ []
+
+
+Overfull \hbox (0.97191pt too wide) in paragraph at lines 384--386
+[]\OT1/cmr/bx/n/10 RegistrationScreen.kt: \OT1/cmr/m/n/10 Scher-mata di reg-is-trazione con i campi
+ []
+
+
+
+[17]
+
+[18]
+Overfull \hbox (23.54251pt too wide) in paragraph at lines 434--438
+[]\OT1/cmr/bx/n/10 ShelvesScreen.kt: \OT1/cmr/m/n/10 Con-tiene fun-zioni \OT1/cmr/m/it/10 @Com-pos-able \OT1/cmr/m/n/10 per la definizione
+ []
+
+
+Overfull \hbox (2.3116pt too wide) in paragraph at lines 434--438
+\OT1/cmr/m/n/10 della scher-mata della sezione "Scaf-fali", carat-ter-iz-zata dalla strut-
+ []
+
+
+
+[19]
+Overfull \hbox (12.85017pt too wide) in paragraph at lines 452--458
+\OT1/cmr/m/n/10 mata, titolo di-nam-ico (mostra l'intervallo con-sen-tito $(0\OML/cmm/m/it/10 ::pageCount\OT1/cmr/m/n/10 )$
+ []
+
+
+Overfull \hbox (27.89452pt too wide) in paragraph at lines 452--458
+\OT1/cmr/m/it/10 Home-Screen \OT1/cmr/m/n/10 con-sente di per-sis-tere l'aggiornamento tramite \OT1/cmr/m/it/10 HomeView-
+ []
+
+
+Overfull \hbox (23.21341pt too wide) in paragraph at lines 467--474
+[]\OT1/cmr/bx/n/10 AuthViewModel.kt: \OT1/cmr/m/n/10 View-Model di au-t-en-ti-cazione an-no-tato \OT1/cmr/m/it/10 @HiltView-
+ []
+
+
+Overfull \hbox (1.35431pt too wide) in paragraph at lines 467--474
+\OT1/cmr/m/n/10 (\OT1/cmr/m/it/10 State-Flow\OT1/cmr/m/n/10 ): \OT1/cmr/m/it/10 Reg-is-tra-tionForm-State \OT1/cmr/m/n/10 per la reg-is-trazione e \OT1/cmr/m/it/10 Login-Form-
+ []
+
+
+Overfull \hbox (0.87599pt too wide) in paragraph at lines 467--474
+\OT1/cmr/m/it/10 Change\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 on-Con-firm-Pass-word-Change\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 onUser-nameChange\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 on-LoginE-
+ []
+
+
+Overfull \hbox (39.85817pt too wide) in paragraph at lines 467--474
+\OT1/cmr/m/it/10 mailChange\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 on-Login-Pass-word-Change\OT1/cmr/m/n/10 ). La ver-i-fica disponi-bilit^^Ra dell'username
+ []
+
+
+Overfull \hbox (6.10115pt too wide) in paragraph at lines 467--474
+\OT1/cmr/m/it/10 Flow \OT1/cmr/m/n/10 con \OT1/cmr/m/it/10 col-lec-tAsState() \OT1/cmr/m/n/10 per abil-itare/disabilitare i pul-santi, mostrare
+ []
+
+
+
+[20]
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 478.
+ (C:\Users\crist\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
+File: omscmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 478.
+
+Overfull \hbox (13.97716pt too wide) in paragraph at lines 477--481
+[]\OT1/cmr/bx/n/10 CatalogViewModel.kt: \OT1/cmr/m/n/10 View-Model del cat-a-l-ogo an-no-tato \OT1/cmr/m/it/10 @HiltView-
+ []
+
+
+Overfull \hbox (9.30661pt too wide) in paragraph at lines 477--481
+\OT1/cmr/m/it/10 Model \OT1/cmr/m/n/10 che ini-etta \OT1/cmr/m/it/10 Search-BookUse-Case\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 Get-Cat-e-go-ryFee-dUse-Case\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 User-
+ []
+
+
+Overfull \hbox (8.48137pt too wide) in paragraph at lines 484--487
+\OT1/cmr/m/it/10 Sta-tusUse-Case\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 Ob-serveUser-BookUse-Case\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 Set-Book-Sta-tusUse-Case\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 Re-
+ []
+
+
+Overfull \hbox (10.75888pt too wide) in paragraph at lines 490--493
+\OT1/cmr/m/n/10 ot-tenuto con \OT1/cmr/m/it/10 com-bine \OT1/cmr/m/n/10 tra i libri in let-tura (\OT1/cmr/m/it/10 repo.observeReadingBooks()\OT1/cmr/m/n/10 ),
+ []
+
+
+
+[21]
+LaTeX Font Info:    Trying to load font information for OML+cmr on input line 499.
+ (C:\Users\crist\AppData\Local\Programs\MiKTeX\tex/latex/base\omlcmr.fd
+File: omlcmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/it' in size <10> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 499.
+
+Overfull \hbox (9.11717pt too wide) in paragraph at lines 498--502
+[]\OT1/cmr/m/n/10 All'avvio car-ica il pro-filo dell'utente cor-rente (ri-ca-vato da \OT1/cmr/m/it/10 Fire-baseAuth\OT1/cmr/m/n/10 )
+ []
+
+
+Overfull \hbox (10.51671pt too wide) in paragraph at lines 498--502
+\OT1/cmr/m/n/10 tramite \OT1/cmr/m/it/10 Fire-storeUser-Data-Source.getUserProfile \OT1/cmr/m/n/10 e lo espone come \OT1/cmr/m/it/10 State-
+ []
+
+
+Overfull \hbox (39.14233pt too wide) in paragraph at lines 510--513
+\OT1/cmr/m/n/10 man-doli in \OT1/cmr/m/it/10 UiShelf-Book \OT1/cmr/m/n/10 ed espo-nen-doli come \OT1/cmr/m/it/10 State-Flow\OML/cmm/m/it/10 <\OT1/cmr/m/it/10 List\OML/cmm/m/it/10 <\OT1/cmr/m/it/10 UiShelfBook\OML/cmm/m/it/10 >>
+ []
+
+
+
+[22]
+
+[23] (file.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-03-26>
@@ -355,20 +502,20 @@ L3 programming layer <2025-03-26>
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `file.out' has not changed.
-(rerunfilecheck)             Checksum: 7EE548BBE9E938AB71A98239053AA3B4;4744.
+(rerunfilecheck)             Checksum: 40014C8CD40E94CBE31C9ABA9B79D60B;4964.
  ) 
 Here is how much of TeX's memory you used:
- 8986 strings out of 469959
- 142916 string characters out of 5469834
- 538389 words of memory out of 5000000
- 35647 multiletter control sequences out of 15000+600000
- 631761 words of font info for 56 fonts, out of 8000000 for 9000
+ 9045 strings out of 469959
+ 143900 string characters out of 5469834
+ 539389 words of memory out of 5000000
+ 35689 multiletter control sequences out of 15000+600000
+ 632101 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,7n,79p,422b,638s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\crist\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on file.pdf (14 pages, 577142 bytes).
+ 75i,7n,79p,674b,743s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\crist\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcbx1000.pk> <C:\Users\crist\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on file.pdf (23 pages, 628780 bytes).
 PDF statistics:
- 271 PDF objects out of 1000 (max. 8388607)
- 50 named destinations out of 1000 (max. 500000)
- 252 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 332 PDF objects out of 1000 (max. 8388607)
+ 60 named destinations out of 1000 (max. 500000)
+ 260 words of extra memory for PDF output out of 10000 (max. 10000000)
 

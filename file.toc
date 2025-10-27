@@ -11,17 +11,18 @@
 \contentsline {subsection}{\numberline {2.4}API utilizzate - Google Books}{12}{subsection.2.4}%
 \contentsline {subsection}{\numberline {2.5}Sviluppo}{12}{subsection.2.5}%
 \contentsline {subsubsection}{\numberline {2.5.1}Struttura package}{13}{subsubsection.2.5.1}%
-\contentsline {subsubsection}{\numberline {2.5.2}File di configurazione}{14}{subsubsection.2.5.2}%
+\contentsline {subsubsection}{\numberline {2.5.2}File di configurazione}{13}{subsubsection.2.5.2}%
 \contentsline {subsection}{\numberline {2.6}Spiegazione codice in dettaglio}{14}{subsection.2.6}%
 \contentsline {subsubsection}{\numberline {2.6.1}core: Componenti Compose riutilizzabili}{14}{subsubsection.2.6.1}%
 \contentsline {subsubsection}{\numberline {2.6.2}di: Dependency Injection}{14}{subsubsection.2.6.2}%
-\contentsline {subsubsection}{\numberline {2.6.3}Model dell'applicazione}{14}{subsubsection.2.6.3}%
-\contentsline {subsubsection}{\numberline {2.6.4}Funzioni composable per l'interfaccia}{14}{subsubsection.2.6.4}%
-\contentsline {subsubsection}{\numberline {2.6.5}File di definizione del ViewModel}{14}{subsubsection.2.6.5}%
-\contentsline {subsubsection}{\numberline {2.6.6}Repository}{14}{subsubsection.2.6.6}%
-\contentsline {subsubsection}{\numberline {2.6.7}UseCases}{14}{subsubsection.2.6.7}%
-\contentsline {subsection}{\numberline {2.7}Unit Testing}{14}{subsection.2.7}%
-\contentsline {section}{\numberline {3}Progettazione e sviluppo in Flutter}{14}{section.3}%
-\contentsline {section}{\numberline {4}UI - Interfaccia applicazione}{14}{section.4}%
-\contentsline {section}{\numberline {5}Discussioni di problematiche riscontrate}{14}{section.5}%
-\contentsline {section}{\numberline {6}Conclusioni}{14}{section.6}%
+\contentsline {subsubsection}{\numberline {2.6.3}Package interni a features}{15}{subsubsection.2.6.3}%
+\contentsline {subsubsection}{\numberline {2.6.4}Model: file principali}{16}{subsubsection.2.6.4}%
+\contentsline {subsubsection}{\numberline {2.6.5}View: funzioni Composable per l'interfaccia}{17}{subsubsection.2.6.5}%
+\contentsline {subsubsection}{\numberline {2.6.6}ViewModel: file di definizione}{20}{subsubsection.2.6.6}%
+\contentsline {subsubsection}{\numberline {2.6.7}Repository}{23}{subsubsection.2.6.7}%
+\contentsline {subsubsection}{\numberline {2.6.8}UseCases}{23}{subsubsection.2.6.8}%
+\contentsline {subsection}{\numberline {2.7}Unit Testing}{23}{subsection.2.7}%
+\contentsline {section}{\numberline {3}Progettazione e sviluppo in Flutter}{23}{section.3}%
+\contentsline {section}{\numberline {4}UI - Interfaccia applicazione}{23}{section.4}%
+\contentsline {section}{\numberline {5}Discussioni di problematiche riscontrate}{23}{section.5}%
+\contentsline {section}{\numberline {6}Conclusioni}{23}{section.6}%
