@@ -630,9 +630,175 @@ e un manifest di test che dichiara \textbf{HiltTestActivity} per l’host delle 
 
 \section{Progettazione e sviluppo in Flutter}
 \subsection{Requisiti e casi d'uso}
+Si riportano di seguito i requisiti \textit{funzionali} e \textit{non funzionali}
 \subsubsection{Requisiti funzionali}
+
+\begin{itemize}
+    \item \textit{Gestione utente}
+    \begin{itemize}
+        \item \textit{RF1: Registrazione utente} - L'applicazione permette di registarsi con le proprie informazioni personali
+        \item \textit{RF2: Login utente} - L'applicazione permette di autenticare l'utente registrato con le proprie informazioni personali
+        \item \textit{RF3: Visualizzazione dati utente} - L'applicazione permette di visualizzare i propri dati personali
+        \item \textit{RF4: Modifica dati utente} - L'applicazione permette di modificare i propri dati personali
+        \item \textit{RF5: Visualizzazione lista amici} - L'applicazione permette di visualizzare la lista degli amici che hanno accettato la sua richiesta d'amicizia
+        \item \textit{RF6: Visualizzazione profilo amico} - L'applicazione permette di visualizzare il profilo di un suo amico nella lista
+        \item \textit{RF7: Aggiunta amici in lista amici} - L'applicazione permette di aggiungere un amico nella sua lista inviando una richiesta
+        \item \textit{RF8: Gestione richiesta di amicizia} - L'utente può decidere se accettare o rifiutare una richesta di amicizia
+        \item \textit{RF9: Rimozione amici da lista amici} - L'applicazione permette di rimuovere un amico dalla lista amici
+        \item \textit{RF10: Ricerca utente} - L'applicazione permette di ricercare un utente digitando il suo username o nome completo
+        \item \textit{RF11: Eliminazione account utente} - L'applicazione permette all'utente di cancellare il proprio profilo
+    \end{itemize}
+    \item \textit{Gestione attività}
+    \begin{itemize}
+        \item \textit{RF12: Visualizza catalogo dell'applicazione} - L'applicazione permette di visualizzare il catalogo dei libri distinti in categorie
+        \item \textit{RF13: Ricerca libro in formato testo o tramite scansione codice a barre} - L'applicazione permette la ricerca del libro digitando testualmente il titolo in una casella di ricerca apposita oppure scansionando il codice a barre di un libro fisico
+        \item \textit{RF14: Visualizzazione lista libri (da leggere, in lettura, letti)} - L'applicazione permette di visualizzare il contenuto delle liste principali formate dai libri salvati dall'utente
+        \item \textit{RF15: Filtraggio categorie libri} - L'applicazione permette all'utente di filtrare le categorie dei libri da visualizzare nel catalogo 
+        \item \textit{RF16: Aggiunta libri alla lista} - L'applicazione permette all'utente di aggiungere i libri in una delle apposite liste fornite dall'app
+        \item \textit{RF17: Rimozione libri dalla lista} - L'applicazione permette la rimozione di libri dalle liste
+        \item \textit{RF18: Gestione timer lettura} - L'applicazione permette di tenere sotto controllo il tempo di lettura di un libro con l'utilizzo di un timer dedicato attivabile e disattivabile dall'utente
+        \item \textit{RF19: Visualizzazione tempo personale di lettura} - L'applicazione permette all'utente di visualizzare per ogni singolo libro il tempo di lettura impiegato con l'utilizzo del timer
+        \item \textit{RF20: Visualizzazione percentuale completamento di libri} - L'applicazione permette di visualizzare la percentuale di completamento di ogni singolo libro, calcolata tramite il numero di pagine lette dall'utente rispetto al numero di pagine totali di un determinato libro
+        \item \textit{RF21: Aggiornamento percentuale di pagine in lettura di un libro} - L'applicazione permette di aggiornare il numero di pagine lette di un libro per calcolare la percentuale di completamento
+        \item \textit{RF22: Visualizzazione informazioni libro} - L'applicazione permette la visualizzazione delle info di un determinato libro 
+    \end{itemize}
+\end{itemize}
+
 \subsubsection{Requisiti non funzionali}
+\begin{itemize}[label=\textendash]
+    \item \textit{RNF1: Sviluppo in Dart} - L'applicazione è stata sviluppata principalmente con il linguaggio di programmazione Dart
+    \item \textit{RNF2: Struttura MVVM} - L'applicazione ha una struttura architetturale basata su Model-View-ViewModel per agevolare la programmazione con sezioni dedicate
+    \item \textit{RNF3: Firebase Firestore per memorizzazione e accesso/autenticazione utente} - L'applicazione fa utilizzo per la memorizzazione di dati e la gestione della registrazione e l'accesso dell'utente di un database tramite la piattaforma Google Firebase
+    \item \textit{RNF4: API di Google Books} - L'applicazione si sincronizza e fa utilizzo delle API Key di Google Books per mostrare i libri nel catalogo e nella ricerca
+\end{itemize}
+
 \subsubsection{Casi d'uso}
+Si riportano gli attori e i tre casi d'uso principali che descrivono le azioni principali che si possono svolgere nell'applicazione a partire dai requisiti elencati in precedenza.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.6\linewidth]{cu_attori.png}
+  \caption{Attori principali}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.8\linewidth]{cu_utente.png}
+  \caption{Gestione utente}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{itemize}[label=\textendash]
+    \item \textit{CU1: RegistrazioneUtente} - L'utente, per usufruire dei servizi offerti dall'applicazione, ha bissogno di registarsi con le proprie informazioni personali
+    \item \textit{CU2: LoginUtente} - L'utente può accedere ai servizi forniti inserendo le proprie credenziali (email e password) precedentemente utilizzate per registrarsi
+    \item \textit{CU3: VisualizzaDatiUtente} - L'utente può visualizzare le proprie informazioni personali in una sezione dedicata
+    \item \textit{CU4: ModificaDatiUtente} - L'utente può modificare i propri dati personali
+    \item \textit{CU5: RicercaUtente} - L'utente può ricercare un utente digitando il suo nome utente (usernam) o nome completo (nome e/o cognome)
+    \item \textit{CU6: RichiestaAmicizia} - L'utente può aggiungere amici nella propria lista inviando richieste ad altri utenti
+    \item \textit{CU7: RimozioneAmicizia} - L'utente può rimuovere gli amici dalla propria lista
+    \item \textit{CU8: AccettaRichiesta} - L'utente può accettare la richiesta di amicizia da un altro utente che l'ha inviata
+    \item \textit{CU9: RifiutaRichiesta} - L'utente può rifiutare la richiesta di amicizia da un altro utente che l'ha inviata
+    \item \textit{CU10: VisualizzaProfiloAmici} - L'utente può visualizzare il profilo dei propri amici con le loro statistiche di lettura
+    \item \textit{CU11: EliminaAccountUtente} - L'utente può eliminare il proprio account utente
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.72\linewidth]{cu_attivita.png}
+  \caption{Gestione attività}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{itemize}[label=\textendash]
+    \item \textit{CU12: VisualizzaCatalogo} - L'utente può visualizzare il catalogo di libri separato in categorie
+    \item \textit{CU13: RicercaLibro} - L'utente può ricercare il libro digitando il titolo nella barra di ricerca presente nel catalogo
+    \item \textit{CU14: ScansioneCodiceISBN} - L'utente può effettuare la scansione del codice ISBN di un libro fisico tramite la fotocamera del telefono
+    \item \textit{CU15: FiltroCategorie} - L'utente può filtrare le categorie del catalogo selezionandole da un lista con checkbox
+    \item \textit{CU16: VisualizzaListaLibri} - L'utente può visualizzare una delle tre liste principali (da leggere, in lettura, letti) per memorizzare i libri salvati
+    \item \textit{CU17: AggiuntaLibroInLista} - L'utente può aggiungere un libro selezionato in una delle tre liste principali (da leggere, in lettura, letti)
+    \item \textit{CU18: RimozioneLibroDaLista} - L'utente può rimuovere un libro presente in una delle tre liste principali (da leggere, in lettura, letti)
+    \item \textit{CU19: VisualizzaInfoLibro} - L'utente può visualizzare le informazioni principali che rappresentano il libro selezionandolo dal catalogo o dalle liste
+    \item \textit{CU20: VisualizzaTempoLettura} - L'utente può visualizzare il tempo di lettura di un proprio libro
+    \item \textit{CU21: InizioTimerLettura} - L'utente può iniziare la sessione di lettura di un libro tramite l'inizio di un timer dedicato
+    \item \textit{CU22: TermineTimerLettura} - L'utente può terminare la sessione di lettura di un libro permettendo di fermare il timer
+    \item \textit{CU23: VisualizzaPagineInLettura} - L'utente può visualizzare le pagine in lettura di un libro salvato nell'omonima lista
+    \item \textit{CU24: AggiornaPagineInLettura} - L'utente può aggiornare le pagine 
+\end{itemize}
+
+\subsubsection{Sviluppo codice}
+\begin{itemize}
+  \item \textbf{core/ui/widgets/app-search-bar.dart:}
+  \item \textbf{features/auth:}
+  \begin{itemize}
+    \item \textbf{data/auth-repository.dart:}
+    \item \textbf{model/auth-state.dart:}
+    \item \textbf{ui:}
+    \begin{itemize}
+      \item \textbf{login-screen.dart:}
+      \item \textbf{registration-screen.dart:}
+    \end{itemize}
+    \item \textbf{viewmodel/auth-view-model.dart:}
+  \end{itemize}
+  \item \textbf{features/bookdetail:}
+  \begin{itemize}
+    \item \textbf{ui/widgets/reading-dialogs.dart:}
+    \item \textbf{ui/book-detail-screen.dart:}
+    \item \textbf{viewmodel/book-detail-view-model.dart:}
+  \end{itemize}
+  \item \textbf{features/catalog:}
+  \begin{itemize}
+    \item \textbf{data:}
+    \begin{itemize}
+      \item \textbf{book-mapper.dart:}
+      \item \textbf{books-api.dart:}
+      \item \textbf{books-repository.dart:}
+    \end{itemize}
+    \item \textbf{model:}
+    \begin{itemize}
+      \item \textbf{book.dart:}
+      \item \textbf{catalog-state.dart:}
+      \item \textbf{category-section.dart:}
+      \item \textbf{volume.dart:}
+      \item \textbf{volume.g.dart:}
+    \end{itemize}
+    \item \textbf{ui:}
+    \begin{itemize}
+      \item \textbf{widgets:}
+      \begin{itemize}
+        \item \textbf{book-card.dart:}
+        \item \textbf{category-row.dart:}
+      \end{itemize}
+      \item \textbf{catalog-screen.dart:}
+    \end{itemize}
+    \item \textbf{viewmodel/catalog-view-model.dart:}
+  \end{itemize}
+  \item \textbf{features/home:}
+  \begin{itemize}
+    \item \textbf{data:}
+    \begin{itemize}
+      \item \textbf{firestore-home-repository.dart:}
+      \item \textbf{home-repository.dart:}
+    \end{itemize}
+    \item \textbf{model:}
+    \begin{itemize}
+      \item \textbf{ui-home-book.dart:}
+    \end{itemize}
+    \item \textbf{ui:}
+    \begin{itemize}
+      \item \textbf{widgets:}
+      \begin{itemize}
+        \item \textbf{book-card.dart:}
+        \item \textbf{category-row.dart:}
+      \end{itemize}
+      \item \textbf{catalog-screen.dart:}
+    \end{itemize}
+    \item \textbf{viewmodel/catalog-view-model.dart:}
+  \end{itemize}
+  \item \textbf{features/profile:}
+  \item \textbf{features/shelves:}
+  \item \textbf{navigation:}
+\end{itemize}
 
 \section{UI - Interfaccia applicazione}
 
