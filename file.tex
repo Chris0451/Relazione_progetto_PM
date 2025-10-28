@@ -4,7 +4,7 @@
 \usepackage[hidelinks]{hyperref}
 
 \graphicspath{{images/}}
-\author{Cristian Di Cintio - S1110150 \and Federico Di Giovannangelo - S0000000}
+\author{Cristian Di Cintio - S1110150}
 \date{}
 
 \title{READING STATS\par \large RELAZIONE DI PROGRAMMAZIONE MOBILE}
@@ -18,7 +18,7 @@
 
 \section{Introduzione}
 
-L'applicazione sviluppata ha come obiettivo la memorizzazione delle statistiche di libri in lettura dell'utente. Tali statistiche riguardano la percentuale di completamento del libro e il tempo impiegato, memorizzato per ciascuno libro.
+L'applicazione sviluppata ha come obiettivo la memorizzazione delle statistiche di libri selezionati dall'utente. Tali statistiche riguardano la percentuale di completamento del libro e il tempo impiegato, memorizzato per ciascuno libro.
 
 L'utente per usufruire delle funzionalità dell'app deve registrarsi con nome, cognome, email, username e password. Per lo username e l'email vengono effettuati dei controlli per verificare l'univocità e non permettere la registrazione di utenti con medesimo username o email.
 
@@ -33,7 +33,7 @@ L'utente può visualizzare e modificare i propri dati personali e interagire con
 
 L'intera applicazione è stata sviluppata inizialmente in Kotlin per ambiente Android e in seguito in Flutter per un funzionamento multipiattaforma, in modo tale da permettere una maggiore compatibilità e una migliore interazione tra utenti con diversi dispositivi mobile.
 
-Lo sviluppo in Kotlin è stato applicato con Jetpack Compose, per permettere uno sviluppo moderno e in linea con le attuali applicazioni sul mercato, con una struttura architetturale basata sul Model-View-ViewModel (MVVM) garantendo una composizione comprensibile per lo sviluppo dell'app.
+Lo sviluppo in Kotlin è stato applicato con Jetpack Compose, per permettere uno sviluppo moderno e in linea con le attuali applicazioni sul mercato, con una struttura architetturale basata sul Model-View-ViewModel (MVVM) garantendo una composizione comprensibile e ordinata per lo sviluppo dell'app.
 Le informazioni principali dei libri vengono visualizzate tramite l'utilizzo di API fornite da Google Books.
 
 \section{Progettazione e sviluppo Android}
@@ -187,7 +187,7 @@ Firestore è un DB NoSQL strutturato a documenti, il quale permette il salvatagg
 
 Il suo utilizzo si concentra su due componenti della sezione \textit{Creazione}:
 \begin{itemize}
-  \item \textit{Authentication:} permette di gestire il metodo di accesso degli utenti tramite diversi servizi. Nel caso di questo progetto abbiamo implementato esclusivamente l'autenticazione semplice tramite email e password.
+  \item \textit{Authentication:} permette di gestire il metodo di accesso degli utenti tramite diversi servizi. Nel caso di questo progetto è stato implementato esclusivamente l'autenticazione semplice tramite email e password.
     \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{authentication.png}
@@ -196,23 +196,102 @@ Il suo utilizzo si concentra su due componenti della sezione \textit{Creazione}:
   \end{figure}
   \item \textit{Firestore Database:} permette la memorizzazione tramite documenti e collezioni descritti in precedenza dei dati dell'utente, delle richieste di amicizia inviate tra utenti e dei libri salvati con ognuno la relativa sessione. 
   Sono state implementate delle regole specifiche per permettere un corretto e coerente accesso ai dati e la loro relativa modifica. Di seguito i documenti e le collezioni generate:
-  
-  \textit{INSERIRE SCREEN PER OGNI SEZIONE}
 
   \begin{itemize}
     \item \textbf{Salvataggio utenti:} Utenti registrati e salvati nel servizio tramite il form di registrazione, memorizzando nome, cognome, username e mail;
+    
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.7\linewidth]{users.png}
+      \caption{Salvataggio utenti}
+      \label{fig:sitemap}
+    \end{figure}
+    
     \item \textbf{Salvataggio usernames:} Username salvati al momento della registrazione per permettere un controllo di univocità;
+    
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.7\linewidth]{usernames.png}
+      \caption{Salvataggio usernames}
+      \label{fig:sitemap}
+    \end{figure}
+    
     \item \textbf{Salvataggio di amici tramite richieste:} Lista di utenti che si aggiorna per ogni singolo utente quando accetta una richiesta di amicizia da un altro utente;
+    
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.7\linewidth]{requests.png}
+      \caption{Salvataggio richieste}
+      \label{fig:sitemap}
+    \end{figure}
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.7\linewidth]{friends.png}
+      \caption{Salvataggio amicizie accettate}
+      \label{fig:sitemap}
+    \end{figure}
+
     \item \textbf{Salvataggio di libri dal catalogo:} Raccolta di libri salvati per ogni utente, ognuno con le sue informazioni e lo stato per visualizzarlo in una determinata lista tra quelle fornite;
+    
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.7\linewidth]{books.png}
+      \caption{Salvataggio libri per utente}
+      \label{fig:sitemap}
+    \end{figure}
+    
     \item \textbf{Salvataggio sessione di lettura:} Per ogni libro nello stato "In lettura", viene memorizzata una sessione di lettura contenente il tempo memorizzato in secondi e convertito a schermo in ore:minuti:secondi;
-    \item \textbf{Regole di accesso ai documenti definiti:} Le seguenti regole scritte nell'omonima sotto-sezione permettono la definizione di un accesso; 
+    
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.7\linewidth]{sessions.png}
+      \caption{Salvataggio sessioni di lettura}
+      \label{fig:sitemap}
+    \end{figure}
+    
+    \item \textbf{Regole di accesso ai documenti definiti:} queste regole stabiliscono chi può leggere o scrivere i dati e validano la forma dei documenti, con focus su profili utente, libri, sessioni di lettura, richieste di amicizia e prenotazioni di username. In sintesi:
+    \begin{itemize}
+    \item \textit{Funzioni di supporto}. \textbf{isOwner} consente l’azione solo al proprietario autenticato. \textbf{totalAfterWrite} ricava il valore “page count” effettivo dopo la scrittura (nuovo o esistente). Le funzioni \textbf{isValidBookWrite}, \textbf{isValidBookCreate} e \textbf{isValidBookUpdate} applicano vincoli di tipo e dominio sui campi del libro: stato limitato a \textit{TO-READ, READING, READ}, “updated at” numerico, titolo stringa, miniature opzionali, autori e categorie liste, “page count” intero positivo, “page in reading” intero non negativo e mai superiore al “page count”.
+    \item \textbf{/users/{uid}} (profilo). Lettura pubblica. Creazione, aggiornamento e cancellazione consentite al proprietario. È ammesso anche un aggiornamento ristretto al solo campo \textit{friends} (lista di identificativi utente) mantenendo invariati tutti gli altri campi; ciò abilita l’allineamento della lista amicizie senza esporre il resto del profilo.
+    \item \textbf{/users/{uid}/books/{bookId}}. Lettura consentita al proprietario e ai suoi amici (condivisione sociale: accesso in sola lettura se l’identificativo del lettore è presente nella lista amici del proprietario). Scrittura riservata al proprietario:
+    \begin{itemize}
+    \item \textit{create}: richiede sempre “volume id” e il rispetto dei vincoli di \textit{valid book}.
+    \item \textit{update}: ammesso solo se la modifica riguarda esclusivamente insiemi di campi predefiniti e coerenti con i flussi dell’app (per esempio solo “updated at” e “total read seconds”; solo “page in reading”; combinazioni tra “page in reading”, “status”, “updated at”). Ogni update è comunque validato da \textit{isValidBookUpdate}, impedendo stati o valori fuori dominio.
+    \item \textit{delete}: solo proprietario.
+    \end{itemize}
+    \item \textbf{/users/{uid}/books/{bookId}/sessions/{sessionId}}. Lettura e creazione riservate al proprietario. Le sessioni devono avere esclusivamente i tre campi \textit{start}, \textit{end}, \textit{seconds}, tutti numerici, con “seconds” maggiore o uguale a uno. Questo evita inserimenti parziali o con formati errati.
+    \item \textbf{/friend-requests/{document=**}}. Lettura e scrittura consentite agli utenti autenticati; abilita l’invio e la gestione delle richieste.
+    \item \textbf{/usernames/{uname}}. Lettura pubblica. \textit{Create} permessa solo se il documento non esiste e l’identificativo salvato corrisponde all’utente autenticato; \textit{delete} consentita solo al proprietario. Questo schema garantisce la prenotazione univoca del nome utente e previene conflitti.
+    \end{itemize}
+    Nel complesso, le regole combinano controllo di proprietà, condivisione sicura con gli amici per i soli dati dei libri, e validazione rigorosa dei campi per impedire stati incoerenti (per esempio “page in reading” non può superare “page count”).
+
+  
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.7\linewidth]{firebase1.png}
+      \label{fig:sitemap}
+    \end{figure}
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.7\linewidth]{firebase2.png}
+      \label{fig:sitemap}
+    \end{figure}
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.7\linewidth]{firebase3.png}
+      \label{fig:sitemap}
+    \end{figure}
+  
   \end{itemize} 
 \end{itemize}
 
 
 
 \subsection{API utilizzate - Google Books}
-Le API di Google Books sono state utilizzata per ottenere le informazioni principali dei libri, in modo da permettere
+Le API di Google Books sono state utilizzate per ottenere le informazioni principali dei libri, in modo da permettere
 all'utente la loro visualizzazione e il conseguente salvataggio. L'API viene fornita tramite un link 
 per le ricerche e una chiave generata da Google Cloud per permetterne l'abilitazione e la limitazione del tipo di dispositivo che la utilizzerà.
 
@@ -239,7 +318,7 @@ Per la costruzione di un'interfaccia tradizionale è stato utilizzata la funzion
 Si possono distinguere due tipi di funzioni Composable:
 \begin{itemize}
   \item \textbf{Stateful}, fa utilizzo della keyword \textit{remember} che permette di memorizzare dati tra diverse recomposition
-  \item \textbf{Steless}, ossia un Composable orivo di stato
+  \item \textbf{Steless}, ossia un Composable privo di stato
 \end{itemize}
 
 Le liste scorrevoli che visualizzano molti elementi vengono gestite da componenti \textit{Lazy}, che forniscono un blocco per descrivere i singoli \textit{item} da visualizzare.  
@@ -281,7 +360,7 @@ I principali file sono:
 \begin{itemize}
   \item \textbf{AndroidManifest.xml:} Utilizzato per la dichiarazione di diversi componenti e permessi per l'app sviluppata su Android che riconosce in runtime.
   Il principale permesso applicato è stato INTERNET per permettere la richiesta via rete di libri tramite le API fornite.
-  \item \textbf{build.gradle.kts (app):} Definisce la modalità di compilazione del modulo \textit{app} e quali librerie collegare per il loro utilizzo. A differenze di AndroidManifest, viene valutato a build-time.
+  \item \textbf{build.gradle.kts (app):} Definisce la modalità di compilazione del modulo \textit{app} e quali librerie collegare per il loro utilizzo. A differenza di AndroidManifest, viene valutato a build-time.
   \item \textbf{build.gradle.kts (root):} Permette l'applicazione di configurazioni e impostazioni condivise a tutti i moduli.
 \end{itemize}
 
@@ -331,10 +410,10 @@ utilizzati per distinguere le diverse sezioni dell'applicazione. Ognuno di loro 
 I seguenti file sono utilizzati per la gestione dell'accesso e della registrazione dell'utente nel database Firestore.
 \begin{itemize}
   \item \textbf{FirebaseAuthDataSource.kt:} Sorgente dati che incapsula \textit{FirebaseAuth} per operazioni di autenticazione. 
-  Espone funzioni sospese \textit{createUser(email, password)} e \textit{signIn(email, password)} (ritornano \textit{AuthResult} usando \textit{await()}), oltre a metodi sincroni \textit{signOut()} e \textit{currentUid()} per terminare la sessione e ottenere l’UID corrente.
+  Espone funzioni sospese \textit{createUser(email, password)} e \textit{signIn(email, password)}, i quali ritornano \textit{AuthResult} usando \textit{await()}, oltre a metodi sincroni \textit{signOut()} e \textit{currentUid()} per terminare la sessione e ottenere l’UID corrente.
 
   \item \textbf{FirestoreUserDataSource.kt:} Sorgente dati che incapsula \textit{FirebaseFirestore} per la gestione dei profili utente, usando le collezioni \textit{users} e \textit{usernames}. 
-  Fornisce \textit{isUsernameTaken(username)} e \textit{userExists(uid)}; \textit{createUserAtomically(uid, profile)} esegue una transazione che verifica collisioni sullo username e registra in modo coerente sia il documento utente sia il mapping username\,$\rightarrow$\,uid (merge con \textit{SetOptions}). \textit{getUserProfile(uid)} legge e mappa il documento in \textit{UserModelDto}. \textit{updateUserProfile(uid, username, name, surname, email)} aggiorna i campi (incluso \textit{updatedAt}) e, in transazione, se lo username cambia rimuove il vecchio mapping in \textit{usernames}, verifica che il nuovo non sia occupato e crea il nuovo mapping prima di aggiornare il documento in \textit{users}; eventuali eccezioni sono rilanciate per la gestione a livello ViewModel.
+  Fornisce \textit{isUsernameTaken(username)} e \textit{userExists(uid)}; \textit{createUserAtomically(uid, profile)} esegue una transazione che verifica collisioni sullo username e registra in modo coerente sia il documento utente sia il mapping tra username e uid (merge con \textit{SetOptions}). \textit{getUserProfile(uid)} legge e mappa il documento in \textit{UserModelDto}. \textit{updateUserProfile(uid, username, name, surname, email)} aggiorna i campi (incluso \textit{updatedAt}) e, in transazione, se lo username cambia rimuove il vecchio mapping in \textit{usernames}, verifica che il nuovo non sia occupato e crea il nuovo mapping prima di aggiornare il documento in \textit{users}; eventuali eccezioni sono rilanciate per la gestione a livello ViewModel.
 
 \end{itemize}
 
@@ -401,11 +480,15 @@ I seguenti file descritti rappresentano le view dell'applicazione definite in Je
     \item \textbf{ui.components:}
     \begin{itemize}
       \item \textbf{ProfileScreen.kt:}
-      \item \textbf{DatiPersonali.kt:}
-      \item \textbf{ModificaDatiPersonali.kt:}
-      \item \textbf{ListaAmici.kt:}
-      \item \textbf{FriendComponents.kt:}
-      \item \textbf{InfoSupporto.kt:}
+      Schermata profilo in Compose che orchestra la navigazione interna tra le sotto-pagine \textit{profile}, \textit{datiPersonali}, \textit{modificaDati} e \textit{infoSupporto}. Gestisce l’esito di salvataggio del \textit{profile view model} con \textit{LaunchedEffect}, intercetta il tasto indietro con \textit{BackHandler} e offre azioni di logout, apertura amici e passaggio ai dettagli. Include le componenti \textit{ProfileRoot}, \textit{ProfileHeader} e \textit{ProfileMenuCard} per layout e menu.
+      \item \textbf{PersonalDataScreen.kt:}
+      Vista di sola lettura dei dati utente con \textit{TopAppBar} per tornare indietro e pulsante \textit{Modifica}. Mostra avatar, username, email e campi anagrafici attraverso la componente \textit{LabelAndPlaceholder}; lo stile usa card e colori coerenti con Material.
+      \item \textbf{ModifyPersonalDataScreen.kt:}
+      Form di modifica profilo e cambio password in Compose. La sezione dati usa \textit{SimpleTextField} con validazioni base e invoca \textit{onSave}. La sezione password usa \textit{PasswordTextField} con visibilità alternabile, validazioni su lunghezza e conferma, e flusso di \textit{reauthenticate} e \textit{updatePassword} tramite Firebase Authentication, mostrando stato di caricamento ed errori.
+      \item \textbf{FriendsList.kt:} Schermata elenco amici con ricerca e tre schede (\textit{Amici}, \textit{Richieste}, \textit{Utenti}); carica dati tramite \textit{FriendsManager}, filtra i risultati, gestisce accettazione o rifiuto richieste e invio richiesta; tocco su un amico apre i dettagli tramite callback di navigazione; usa \textit{SearchAndTabs}, \textit{FriendItem}, \textit{RequestItem}.
+      \item \textbf{FriendDetailScreen.kt:} Dettaglio profilo amico con intestazione, statistiche di lettura, libri in corso e ultimi completati; include pulsante per rimuovere l’amicizia con dialogo di conferma e callback; layout composto da \textit{FriendProfileHeader}, \textit{ReadingStatisticsCard}, \textit{CurrentReadingBooksCard}, \textit{CompletedBooksCard}.
+      \item \textbf{FriendComponents.kt:} Componenti riutilizzabili per la sezione amici: barra di ricerca e selezione schede (\textit{SearchAndTabs}), riga utente con azioni contestuali (\textit{FriendItem}) e riga richiesta con accetta o rifiuta (\textit{RequestItem}); gestisce stati “non amico”, “in attesa”, “amico” con icone e colori dedicati.
+      \item \textbf{SupportScreen.kt:} Schermata informazioni e supporto con sezioni su versione app, contatti e policy; include area pericolosa per eliminazione account con doppio passaggio di conferma, reinserimento password e flusso di reautenticazione, rimozione dati e cancellazione account; dopo esito positivo invoca callback di uscita.
     \end{itemize}
   \end{itemize}
   \item \textbf{catalog:}
@@ -607,15 +690,51 @@ Gli \textit{Use Case} incapsulano singole operazioni di dominio (interazioni del
   \end{itemize}
 \end{itemize}
 
+\subsubsection{Navigation}
+La navigazione è dichiarativa: un \textit{NavController} gestisce lo stack delle schermate e un \textit{NavHost} mappa le route a funzioni \textit{composable}. Gli argomenti di route si definiscono con \textit{navArgument} e si possono annidare grafi per tab. Il passaggio di dati tra schermate usa in modo pulito il \textit{SavedStateHandle} della voce di back stack precedente, evitando query string verbose. Le opzioni \textit{popUpTo}, \textit{launchSingleTop} e \textit{restoreState} controllano il comportamento dello stack.
 
-\subsection{Unit Testing}
+\begin{itemize}
+  \item \textbf{AppNavHost.kt:}
+  \begin{itemize}
+    \item Istanzia il \textit{NavController} radice e, al cambio di stato di autenticazione, reindirizza alla schermata principale con \textit{popUpTo} della destinazione iniziale, \textit{inclusive true} e \textit{launchSingleTop}.
+    \item Definisce le destinazioni per login, registrazione, lista amici, dettaglio amico, dettaglio libro e la shell principale dell’app.
+    \item Per il dettaglio libro e il dettaglio amico passa oggetti complessi tramite \textit{SavedStateHandle}: la schermata chiamante salva il modello con chiave \textit{book} o \textit{friend}, la schermata di arrivo lo legge e poi lo rimuove. Il tasto indietro usa \textit{navigateUp}.
+    \item La schermata principale contiene un grafo annidato per le tab con un secondo \textit{NavController}. Qui gestisci \textit{Home}, \textit{Catalogo}, \textit{Scaffali} e \textit{Profilo} dentro \textit{AppScaffold} e \textit{NavBarComponent}; l’header si nasconde quando si entra nella lista di uno scaffale.
+    \item La voce \textit{Scaffali} naviga alla lista corrispondente passando lo stato selezionato come parametro testuale e apre il dettaglio libro popolando prima il \textit{SavedStateHandle}. La gestione dei \textit{PaddingValues} mantiene coerenti gli spazi tra top bar e bottom bar.
+    \item Il logout svuota lo stack e torna al login ripristinando una singola istanza della destinazione.
+    \item Viene richiamata dal file \textbf{MainActivity.kt} il quale stabilisce il punto di partenza per l'avvio dell'intera applicazione.
+  \end{itemize}
+
+\item \textbf{Routes.kt:}
+  \begin{itemize}
+    \item Centralizza le route con una gerarchia \textit{sealed} \textit{Screen}: ogni voce espone la stringa di route, eventuali argomenti tipizzati e un costruttore \textit{createRoute}. Esempi: dettaglio libro con parametro volume id e parametro facoltativo di provenienza, lista scaffale con parametro stato.
+    \item Fornisce funzioni \textit{Route} sottili che incapsulano le schermate reali: login e registrazione con \textit{hilt view model}, dettaglio libro con callback indietro, lista amici che delega la navigazione al dettaglio amico, dettaglio amico che carica i libri tramite \textit{FriendsManager} mostrando un indicatore di caricamento e gestendo la rimozione dell’amicizia.
+    \item Benefici: unica fonte di verità per stringhe e argomenti, rotte facilmente linkabili, separazione tra definizione di navigazione e UI. L’uso di \textit{SavedStateHandle} per oggetti evita limiti e fragilità delle query string; \textit{currentBackStackEntryAsState} consente UI reattiva alle route attive nelle tab; \textit{LaunchedEffect} pulisce gli stati transitivi dopo il consumo.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{MainActivity.kt}
+Punto di ingresso dell’app in Compose con integrazione \textit{Hilt}, gestione edge-to-edge e bootstrap della navigazione.
+\begin{itemize}
+\item Annotazione \textit{AndroidEntryPoint}: abilita l’iniezione nelle componenti Android.
+\item In \textit{onCreate} abilita il layout a tutto schermo con 
+
+\textit{WindowCompat.setDecorFitsSystemWindows(false)}.
+\item Dentro \textit{setContent} applica \textit{MaterialTheme} e calcola la luminanza di \textit{background} e \textit{surface} per scegliere icone scure o chiare nelle system bars.
+\item Con \textit{SideEffect} imposta i colori di \textit{status bar} e \textit{navigation bar} e i flag \textit{isAppearanceLightStatusBars} e \textit{isAppearanceLightNavigationBars} tramite \textit{WindowInsetsControllerCompat}.
+\item Crea \textit{isAuthenticated} leggendo l’utente corrente di \textit{FirebaseAuth} e monta \textit{AppNavHost} passando lo start \textit{Screen.Login} e il flag di autenticazione; la navigazione reagisce mostrando login se l’utente non è autenticato e la shell principale altrimenti.
+\end{itemize}
+
+\subsection{Testing}
 I test sono organizzati su due livelli complementari: \textit{unit test} (JVM pura) per validare la logica di dominio e di presentazione senza dipendenze Android, e \textit{instrumented test} (dispositivo/emulatore) per verificare integrazioni con il framework e l’interazione UI. Nel progetto sono impiegati \textit{JUnit4}, \textit{Truth} per le asserzioni, \textit{MockK} per il mocking, le librerie di test delle \textit{Coroutines} (scheduler virtuale, \textit{runTest}), \textit{Robolectric} per eseguire componenti Android su JVM, e per i test strumentati \textit{Hilt Android Testing}, \textit{Jetpack Compose Testing} e \textit{Navigation Testing}. L’uso di \textit{Hilt} consente di sostituire dipendenze reali con mock attraverso \textit{@BindValue}, mentre il controllo del dispatcher principale con \textit{Dispatchers.setMain} e gli scheduler di test garantisce determinismo temporale.
 \subsubsection{Unit Test - HomeViewModelTest.kt}
 Verifica il comportamento della logica di temporizzazione e aggiornamento pagine del \textit{HomeViewModel} isolandolo da I/O esterni. Le dipendenze \textit{HomeRepository}, \textit{StartBookTimerUseCase} e \textit{SetBookTimerUseCase} sono mockate con \textit{MockK}; il flusso dei libri in lettura è simulato con \textit{MutableStateFlow}. I test adottano \textit{RobolectricTestRunner} (esecuzione su JVM), \textit{StandardTestDispatcher} e \textit{runTest}/\textit{runCurrent} per pilotare il tempo virtuale e collezionano lo \textit{uiState} per attivare le combinazioni di flusso.
-In particolare: 
-(i) avvio sessione: l’invocazione di \textit{onStart} imposta \textit{isRunning=true} e valorizza \textit{sessionStartMillis} con il timestamp restituito dall’use case, verificando anche l’unicità della sessione quando un’altra è in corso; 
-(ii) arresto sessione: \textit{onStop} rimuove lo stato di running, apre la dialog di aggiornamento pagine e invoca \textit{SetBookTimerUseCase} con l’intervallo \textit{start/end}; 
-(iii) conferma pagine: \textit{confirmPages} invia \textit{repo.updatePagesRead} e, se il numero confermato raggiunge il totale, imposta lo stato \textit{READ} tramite \textit{repo.setStatus} costruendo un \textit{UserBook} coerente e chiudendo la dialog. Le asserzioni verificano i campi di \textit{HomeItemState}, l’apertura/chiusura della dialog e le interazioni attese con i mock.
+In particolare:
+\begin{itemize}
+  \item \textbf{Avvio sessione:} l’invocazione di \textit{onStart} imposta \textit{isRunning=true} e valorizza \textit{sessionStartMillis} con il timestamp restituito dall’use case, verificando anche l’unicità della sessione quando un’altra è in corso; 
+  \item \textbf{Arresto sessione:} \textit{onStop} rimuove lo stato di running, apre la dialog di aggiornamento pagine e invoca \textit{SetBookTimerUseCase} con l’intervallo \textit{start/end}; 
+  \item \textbf{Conferma pagine:} \textit{confirmPages} invia \textit{repo.updatePagesRead} e, se il numero confermato raggiunge il totale, imposta lo stato \textit{READ} tramite \textit{repo.setStatus} costruendo un \textit{UserBook} coerente e chiudendo la dialog. Le asserzioni verificano i campi di \textit{HomeItemState}, l’apertura/chiusura della dialog e le interazioni attese con i mock.
+\end{itemize} 
 \subsubsection{Instrumented Test - BookDetailScreenInstrumentedTest.kt}
 Convalida il flusso di interazione della \textit{BookDetailScreen} in un ambiente Android reale con \textit{Compose}. Il test è annotato \textit{@HiltAndroidTest} e utilizza \textit{HiltAndroidRule} più \textit{createAndroidComposeRule} su \textbf{HiltTestActivity}. Le dipendenze del \textit{ViewModel} sono sostituite a livello di processo mediante \textit{@BindValue} (mock di \textit{ObserveBookStatusUseCase}, \textit{SetBookStatusUseCase}, \textit{RemoveBookFromShelfUseCase}, \textit{SetPageCountUseCase}, \textit{ObserveUserBookUseCase}, \textit{UpsertStatusBookUseCase}).
 La schermata è montata dentro un \textit{NavHost} pilotato da \textit{TestNavHostController} con \textit{ComposeNavigator} per simulare la navigazione.
@@ -726,84 +845,306 @@ Si riportano gli attori e i tre casi d'uso principali che descrivono le azioni p
     \item \textit{CU24: AggiornaPagineInLettura} - L'utente può aggiornare le pagine 
 \end{itemize}
 
+\subsection{Gestione database - Firebase}
+Equivalente a Kotlin
+
+\subsubsection{File di configurazione}
+
+\begin{itemize}
+  \item \textbf{pubspec.yaml:}
+  Definisce metadati dell’app, versione e vincoli Dart. Elenca le \textit{dependencies} principali per Flutter, Firebase core autenticazione e database, Provider, Dio, Json annotation, Mobile scanner, Dotenv e Package info plus; nelle \textit{dev dependencies} include Build runner e Json serializable per la generazione dei model. Nella sezione \textit{flutter} abilita Material Icons e registra l’asset \textit{env} per la configurazione.
+  \item \textbf{AndroidManifest.xml:}
+  Dichiara la \textit{permission} per la fotocamera e la \textit{feature} camera non obbligatoria. Configura l’app con etichetta, nome applicazione e icona, e definisce la \textit{MainActivity} come \textit{launcher} con tema di avvio, accelerazione hardware e gestione della tastiera. Inserisce i \textit{meta data} richiesti da Flutter e una sezione \textit{queries} per l’intento di elaborazione testo, utile al motore Flutter.
+
+\end{itemize}
 \subsubsection{Sviluppo codice}
 \begin{itemize}
-  \item \textbf{core/ui/widgets/app-search-bar.dart:}
+  \item \textbf{core/ui/widgets/app-search-bar.dart:} Barra di ricerca riutilizzabile basata su \textit{TextField} con supporto a stato controllato (\textit{text}), placeholder (\textit{hintText}), callback \textit{onChanged}/\textit{onSubmitted} e azione di pulizia \textit{onClear}. Gestisce internamente un \textit{TextEditingController} sincronizzato in \textit{didUpdateWidget} e un \textit{ValueNotifier<bool>} per mostrare il tasto cancella (\textit{IconButton} in \textit{suffixIcon}) solo quando è presente testo, tramite \textit{ValueListenableBuilder}. L’\textit{InputDecoration} include l’icona di ricerca in \textit{prefixIcon}; la pressione di “pulisci” svuota il campo, richiama \textit{onChanged('')} e \textit{onClear}. Parametri aggiuntivi: \textit{padding}, \textit{autofocus}, \textit{textInputAction}, \textit{keyboardType}.
   \item \textbf{features/auth:}
   \begin{itemize}
-    \item \textbf{data/auth-repository.dart:}
-    \item \textbf{model/auth-state.dart:}
+    \item \textbf{data/auth-repository.dart:} Repository Flutter che incapsula \textit{FirebaseAuth} e \textit{FirebaseFirestore} per autenticazione e profili. Espone \textit{authState()} (stream di sessione utente), verifica disponibilità dello username cercando nella collezione \textit{usernames}, e gestisce la registrazione in modo atomico: prenota lo username con \textit{runTransaction}, crea l’account con email/password, salva il profilo in \textit{users/{uid}} e collega lo username allo \textit{uid} tramite \textit{batch}. Include gestione errori e rollback “soft” sulla prenotazione in caso di fallimento. Fornisce anche \textit{login} e \textit{logout}.
+    \item \textbf{model/auth-state.dart:} Modello di stato immutabile per la UI di autenticazione in Flutter. \textit{LoginUiState} mantiene email, password, flag di invio/esito/errore e la regola \textit{canSubmit}. \textit{RegisterUiState} gestisce i campi anagrafici (nome, cognome), username (con \textit{usernameAvailable}), email, password/conferma, flag di invio/esito/errore e le regole \textit{passwordsMatch} e \textit{canSubmit}. Entrambe le classi espongono \textit{copyWith} per aggiornamenti reattivi dello stato.
     \item \textbf{ui:}
     \begin{itemize}
-      \item \textbf{login-screen.dart:}
-      \item \textbf{registration-screen.dart:}
+      \item \textbf{login-screen.dart:} Schermata di accesso costruita con \textit{Scaffold} e \textit{AppBar}. Il corpo contiene una \textit{ListView} con due \textit{TextField} (email e password), un \textit{FilledButton} che richiama \textit{submitLogin} e mostra un \textit{CircularProgressIndicator} quando \textit{isSubmitting}, più un \textit{TextButton} per passare alla registrazione (\textit{onRegisterClick}). Gli errori di validazione/server sono mostrati in testa; l’abilitazione del bottone dipende da \textit{canSubmit}. Lo stato e le azioni provengono da \textit{AuthViewModel} tramite \textit{Provider} (\textit{context.watch<AuthViewModel>()}); al successo invoca \textit{onLoginSuccess}.
+      \item \textbf{registration-screen.dart:} Schermata di registrazione strutturata con \textit{Scaffold} e \textit{AppBar}. Include \textit{TextField} per nome, cognome, username, email, password e conferma; sotto lo username mostra un messaggio dinamico basato su \textit{usernameAvailable} (colore coerente con il tema). Il \textit{FilledButton} richiama \textit{submitRegister}, mostra lo spinner durante \textit{isSubmitting} ed è abilitato solo se \textit{canSubmit}; al completamento chiama \textit{onRegistered}. Presente un \textit{TextButton} per tornare al login (\textit{onLoginClick}) e un’area per eventuali errori. Stato e metodi sono forniti da \textit{AuthViewModel} tramite \textit{Provider}.
     \end{itemize}
-    \item \textbf{viewmodel/auth-view-model.dart:}
+    \item \textbf{viewmodel/auth-view-model.dart:} \textit{AuthViewModel} estende \textit{ChangeNotifier} e incapsula la logica di autenticazione usando \textbf{AuthRepository}. Espone due stati immutabili, \textit{LoginUiState} e \textit{RegisterUiState}, con metodi di aggiornamento dei campi e flag (\textit{isSubmitting}, \textit{success}, \textit{error}). Fornisce lo stream \textit{authState} e le azioni: \textit{submitLogin} (chiama \textit{repo.login}, sincronizza amici con \textit{FriendsManager.syncMyFriendsFromAcceptedRequests}, gestisce errori \textit{FirebaseAuthException}) e \textit{submitRegister} (chiama \textit{repo.register} con gestione di codice \textit{username-taken}). La disponibilità dello username è verificata con debounce (\textit{Timer} a 400 ms) in \textit{onUsernameChange}. Presente \textit{logout} e \textit{dispose} per annullare il timer.
   \end{itemize}
   \item \textbf{features/bookdetail:}
   \begin{itemize}
-    \item \textbf{ui/widgets/reading-dialogs.dart:}
-    \item \textbf{ui/book-detail-screen.dart:}
-    \item \textbf{viewmodel/book-detail-view-model.dart:}
+    \item \textbf{ui/widgets/reading-dialogs.dart:} Definisce due dialog numerici riutilizzabili: \textit{TotalPagesDialog} (imposta il totale pagine) e \textit{ReadPagesDialog} (aggiorna le pagine lette, opzionalmente mostrando “(d)/(max)”). Entrambi usano \textit{TextField} con filtro ai soli numeri, validazione con \textit{errorText}, e pulsanti \textit{Annulla}/\textit{Salva} che abilitano la conferma solo se l’input è valido.
+    \item \textbf{ui/book-detail-screen.dart:} Schermata dettagli libro \textit{BookDetailScreen} con intestazione (copertina \textit{BookCover}, titolo, autori, metadati) e descrizione espandibile \textit{ExpandableText}. Integra la barra di stato \textit{BookStatusBar} (icone “Da leggere”, “In lettura”, “Letto” con disabilitazione quando \textit{busy}) e orchestra i flussi \textit{ReadingFlowMode start/update}: se mancano le pagine totali chiede il totale, poi le pagine lette; in caso “Letto” imposta le pagine lette uguali al totale. Si collega al \textit{BookDetailViewModel} (\textit{bindVolume} in \textit{initState}), ascolta \textit{events} per mostrare \textit{SnackBar} e invoca \textit{setStatusWithPages}/\textit{clearStatus}; include un helper \textit{askPositiveInt} per prompt numerici rapidi.
+    \item \textbf{viewmodel/book-detail-view-model.dart:} \textit{ChangeNotifier} che media tra UI e Firestore per un volume. Espone stato osservabile: \textit{status} (enum \textit{ReadingStatus}), \textit{savedReadPages}, \textit{savedTotalPages}, flag \textit{isBusy} ed \textit{events} (stream di messaggi UI). \textit{bindVolume} sottoscrive il documento \textit{users/{uid}/books/{volumeId}} sincronizzando campi \textit{status}/\textit{pageInReading}/\textit{pageCount}. \textit{setStatusWithPages} esegue un upsert atomico (\textit{SetOptions.merge}) scrivendo metadati libro, \textit{status}, eventuali \textit{pageCount}/\textit{pageInReading} e timestamp server; aggiorna lo stato locale ed emette un evento descrittivo. Fornisce \textit{onStatusIconClick} (toggle: riclick sullo stesso stato rimuove il libro), \textit{clearStatus}, \textit{updatePageCount}, \textit{updatePagesRead}; ricava l’\textit{uid} da \textit{FirebaseAuth} e usa \textit{FirebaseFirestore}. Pulizia in \textit{dispose} (chiusura stream e subscription).
   \end{itemize}
   \item \textbf{features/catalog:}
   \begin{itemize}
     \item \textbf{data:}
     \begin{itemize}
-      \item \textbf{book-mapper.dart:}
-      \item \textbf{books-api.dart:}
-      \item \textbf{books-repository.dart:}
+      \item \textbf{book-mapper.dart:} Converte un \textit{Volume} dell’API in un dominio \textit{Book} in modo tollerante ai valori mancanti. Estrae in sicurezza stringhe, interi e liste, seleziona la miniatura migliore tra vari campi immagine (normalizzando da http a https), ricava i codici \textit{isbn13} e \textit{isbn10} dai campi identificativi e costruisce il \textit{Book} con titolo, autori, categorie, descrizione e data di pubblicazione.
+      \item \textbf{books-api.dart:} Wrapper su \textit{Dio} con base url Google Books. Il costruttore accetta una chiave applicativa e, se presenti, gli header per pacchetto e certificato Android. Espone \textit{search} con parametri di paginazione, ordinamento e lingua, restituendo un \textit{VolumeList} tipizzato, e \textit{getById} per ottenere un singolo \textit{Volume}.
+      \item \textbf{books-repository.dart:} Repository sottile che usa \textit{BooksApi}. Fornisce \textit{search} che ritorna coppia \textit{(lista volumi, totale risultati)} applicando dimensione pagina, lingua e ordinamento di default, e \textit{get} per recuperare un volume per id. È lo strato che il resto dell’app consuma al posto dell’api grezza.
     \end{itemize}
     \item \textbf{model:}
     \begin{itemize}
-      \item \textbf{book.dart:}
-      \item \textbf{catalog-state.dart:}
-      \item \textbf{category-section.dart:}
-      \item \textbf{volume.dart:}
-      \item \textbf{volume.g.dart:}
+      \item \textbf{book.dart:} Modello immutabile \textit{Book} per il dominio catalogo, con campi principali del volume e metodi di utilità (\textit{copyWith}) per aggiornare in modo sicuro le proprietà opzionali senza mutazioni.
+      \item \textbf{catalog-state.dart:} Stato della schermata catalogo (\textit{CatalogState}): gestisce query di ricerca, flag \textit{searching}, risultati \textit{searchResult}, categorie disponibili e selezionate, visibilità filtri e sezioni di categoria. Fornisce \textit{copyWith} per aggiornamenti atomici dello stato UI.
+      \item \textbf{category-section.dart:} Raggruppa libri per categoria tramite \textit{CategorySection} con nome categoria e lista di \textit{Book}; include \textit{copyWith} per aggiornare in modo mirato il gruppo senza mutazioni.
+      \item \textbf{volume.dart:} Modelli tipizzati per la risposta Google Books con \textit{json annotation}: \textit{VolumeList} (totale e lista), \textit{Volume} con \textit{VolumeInfo}, immagini (\textit{ImageLinks}) e identificativi (\textit{IndustryIdentifier}). \textit{VolumeInfo} espone helper comodi (\textit{thumbnail}, \textit{isbn13}, \textit{isbn10}) e collega il file generato tramite \textit{part volume.g.dart}.
+      \item \textbf{volume.g.dart:} Codice generato da \textit{json serializable} per \textit{fromJson} e \textit{toJson} di \textit{VolumeList}, \textit{Volume}, \textit{VolumeInfo}, \textit{ImageLinks}, \textit{IndustryIdentifier}; non modificabile a mano e rigenerato in build.
     \end{itemize}
     \item \textbf{ui:}
     \begin{itemize}
       \item \textbf{widgets:}
       \begin{itemize}
-        \item \textbf{book-card.dart:}
-        \item \textbf{category-row.dart:}
+        \item \textbf{book-card.dart:} Widget \textit{BookCard} (stateless) che mostra la copertina e il titolo di un \textit{Book} in una card verticale e cliccabile (\textit{InkWell} con callback \textit{onTap}). Usa \textit{ClipRRect}+\textit{AspectRatio} per l’immagine (\textit{Image.network}) con placeholder se \textit{thumbnail} manca; il titolo è troncato a \textit{titleMaxLines} righe con \textit{TextOverflow.ellipsis}.
+        \item \textbf{category-row.dart:} Widget \textit{CategoryRow} che visualizza il nome della categoria (titolo con \textit{titleLarge} e tinta primaria) e una riga orizzontale scrollabile (\textit{SingleChildScrollView}) di \textit{BookCard}. Quando \textit{books} è vuoto mostra un leggero placeholder “skeleton”. Accetta \textit{onBookTap} per propagare il tap del singolo libro.
       \end{itemize}
-      \item \textbf{catalog-screen.dart:}
+      \item \textbf{catalog-screen.dart:} Schermata catalogo che istanzia \textit{CatalogViewModel} via \textit{ChangeNotifierProvider} e compone la UI con \textit{SafeArea}. Include \textit{AppSearchBar} (ricerca live, submit e clear), una barra filtri con conteggio categorie e pulsante “Filtri”, e il dialog \textit{FiltersDialog} (lista di categorie selezionabili con \textit{CheckboxListTile}, azioni Pulisci/Annulla/Conferma). Il contenuto mostra: stato di caricamento (\textit{CircularProgressIndicator}); altrimenti, se ci sono risultati, una griglia di \textit{BookCard} con navigazione a \textit{BookDetailScreen} (wrappato da \textit{ChangeNotifierProvider} di \textit{BookDetailViewModel}); in assenza di risultati, un elenco di sezioni categoria tramite \textit{CategoryRow}. Navigazione gestita con \textit{Navigator} e \textit{MaterialPageRoute}.
     \end{itemize}
-    \item \textbf{viewmodel/catalog-view-model.dart:}
+    \item \textbf{viewmodel/catalog-view-model.dart:} ViewModel del catalogo basato su \textit{ChangeNotifier} che mantiene e aggiorna \textit{CatalogState} (query, flag di caricamento, risultati, filtri, sezioni per categoria). Inietta \textit{BooksRepository} e, in inizializzazione, carica i feed per categoria. Implementa ricerca esplicita e live con debounce (400 ms) tramite \textit{Timer}, mappa \textit{Volume} in \textit{Book}, gestisce apertura/chiusura filtri, selezione/pulizia categorie e conferma che ricarica i feed via query \textit{subject:...}. Il loader privato crea \textit{CategorySection} per le categorie selezionate (o tutte). Espone una factory \textit{makeCatalogVm} che costruisce \textit{BooksRepository}+\textit{BooksApi} usando la chiave \textit{kBooksApiKey} e cancella il debounce in \textit{dispose}.
   \end{itemize}
   \item \textbf{features/home:}
   \begin{itemize}
     \item \textbf{data:}
     \begin{itemize}
-      \item \textbf{firestore-home-repository.dart:}
-      \item \textbf{home-repository.dart:}
+      \item \textbf{firestore-home-repository.dart:} Implementazione di \textit{HomeRepository} su Firestore: risolve l’uid corrente e opera su \textit{users{}uid{}/books}. \textit{observeReadingBooks} ascolta i libri con \textit{status} = “READING” e mappa in \textit{UiHomeBook}. \textit{updatePagesRead} aggiorna \textit{pageInReading} con merge. \textit{setStatus} salva stato e metadati dal \textit{UserBook} impostando \textit{updatedAt} lato server. \textit{addSession} usa una transazione per incrementare \textit{totalReadSeconds} e aggiornare \textit{updatedAt}.
+      \item \textbf{home-repository.dart:} Interfaccia del repository Home: definisce \textit{observeReadingBooks}, \textit{updatePagesRead}, \textit{setStatus} (con payload \textit{UserBook}) e \textit{addSession} che registra l’intervallo della sessione e ritorna il totale aggiornato.
     \end{itemize}
     \item \textbf{model:}
     \begin{itemize}
-      \item \textbf{ui-home-book.dart:}
+      \item \textbf{ui-home-book.dart:} Modello UI che estende \textit{UserBook} aggiungendo \textit{totalReadSeconds}. Override di \textit{copyWith(\ldots)} con sentinella privata per distinguere “lascia invariato” da “imposta null” su \textit{status} e \textit{pageInReading}; helper \textit{copyWithHome(\ldots)} che include \textit{totalReadSeconds}; factory \textit{fromUserBook(\ldots)}; \textit{fromJson(\ldots)} che delega a \textit{UserBook} e legge \textit{totalReadSeconds}; \textit{toJson()} che aggiunge \textit{totalReadSeconds} alla mappa del super.
     \end{itemize}
     \item \textbf{ui:}
     \begin{itemize}
-      \item \textbf{widgets:}
-      \begin{itemize}
-        \item \textbf{book-card.dart:}
-        \item \textbf{category-row.dart:}
-      \end{itemize}
-      \item \textbf{catalog-screen.dart:}
+      \item \textbf{widgets/pages-dialog.dart:} Dialogo \textit{stateful} per confermare/aggiornare le pagine lette di un libro al termine della sessione. Mostra un \textit{TextField} precompilato con il valore iniziale, valida l’input numerico (intero, $\ge 0$, e—se noto—non superiore al totale pagine), visualizza errori inline e invoca i callback \textit{onDismiss} e \textit{onConfirm(pagine)}. È richiamato dalla \textit{HomeScreen} per aggiornare \textit{pageInReading}.
+      \item \textbf{home-screen.dart:} Schermata Home che legge lo stato da \textit{HomeViewModel} (Provider) e mostra l’elenco dei libri in lettura con \textit{ListView.separated} e card riassuntive: cover (fallback e normalizzazione \textit{https}), titolo, avanzamento con indicatore circolare, tempo totale e pulsante \emph{Start/Stop} del timer. Usa uno \textit{Stack} per sovrapporre la \textit{PagesDialog} alla fine della sessione; include utility per formattare il tempo e widget d’appoggio (\textit{ReadingCard}, \textit{ReadingProgressCircle}, \textit{BookCover}).
     \end{itemize}
-    \item \textbf{viewmodel/catalog-view-model.dart:}
+    \item \textbf{viewmodel/home-view-model.dart:} ViewModel (ChangeNotifier) della Home che osserva i libri “in lettura” dal repository e costruisce l’\textit{HomeUiState} (lista di \textit{HomeItemState} e \textit{PagesDialogState}). Gestisce un timer in memoria per libro (mappe \textit{running}/\textit{ticking} con ticker a 1 Hz) tramite \textit{onStart}/\textit{onStop}, apre la dialog per confermare le pagine lette e persiste i dati con \textit{addSession}, \textit{updatePagesRead} ed eventuale promozione a \textit{READ} via \textit{setStatus}. Libera risorse in \textit{dispose}.
+
   \end{itemize}
   \item \textbf{features/profile:}
+  \begin{itemize}
+    \item \textbf{data:}
+    \begin{itemize}
+      \item \textbf{friends-manager.dart:} Utility statico che incapsula FirebaseAuth e Firestore per la “social graph”: invia, accetta o rifiuta richieste di amicizia sulla collezione \textit{friend-requests} (transazioni/batch dove serve), sincronizza gli \textit{uid} accettati nell’array \textit{friends} del documento utente, carica lista amici e profili (anche con libri se già amici), determina lo stato relazione (amico/pendente/non amico) e gestisce la rimozione di amici.
+      \item \textbf{profile-repository.dart:} Repository profilo utente: legge il profilo corrente o per \textit{uid} dalla collezione \textit{users} e aggiorna nome, cognome, email e username. L’aggiornamento dell’username è transazionale e coerente con la collezione \textit{usernames} (campo normalizzato \textit{usernameLower}), garantendo unicità e gestendo il trasferimento/rilascio del vecchio username, con timestamp \textit{updatedAt}.
+    \end{itemize}
+    \item \textbf{model:}
+    \begin{itemize}
+      \item \textbf{friends-model.dart:}
+      Definisce i modelli \textit{Friend}, \textit{FriendRequest}, \textit{FriendBook} e l’enum \textit{UserRelationshipStatus}. Ogni modello espone \textit{fromDoc} per mappare in modo sicuro i documenti di Firestore; \textit{Friend} offre \textit{fullName} e \textit{matches} per ricerca testuale, \textit{FriendRequest} gestisce mittente, destinatario, stato e data, \textit{FriendBook} incapsula metadati e progresso di lettura.
+      \item \textbf{user-model.dart:}
+      Rappresenta il profilo utente con campi anagrafici e di contatto; include \textit{fromDoc} per la lettura da Firestore, \textit{toMap} per la scrittura, \textit{copyWith} per aggiornamenti immutabili e il getter \textit{usernameLower} per l’uso dell’username normalizzato.
+    \end{itemize}
+    \item \textbf{ui:}
+    \begin{itemize}
+      \item \textbf{friend-detail-screen.dart:}
+      Schermata di dettaglio per un amico: mostra intestazione con profilo, statistiche aggregate di lettura e due sezioni libri (\textit{in lettura} e \textit{completati}). Carica dati e libreria dell’utente selezionato solo se è nella propria lista amici, offre rimozione amicizia con conferma e formatta i tempi di lettura in modo leggibile.
+      \item \textbf{friends-list-screen.dart:}
+      Elenco amici con tre tab (\textit{Amici}, \textit{Richieste}, \textit{Utenti}), ricerca testuale, stato di caricamento ed errori. Consente invio richieste, accettazione o rifiuto, sincronizzazione automatica delle amicizie e navigazione al dettaglio amico. Usa elementi lista dedicati per utenti e richieste e aggiorna la vista in base ai filtri selezionati.
+      \item \textbf{profile-screen.dart:}
+      Hub del profilo utente con sottopagine \textit{Profilo}, \textit{Dati personali}, \textit{Modifica dati}, \textit{Info e supporto}. Integra il view model per leggere e aggiornare i dati, gestisce successo ed errori di salvataggio, logout ed eliminazione account. Dalla pagina principale apre lista amici e dettaglio amico; intercetta il tasto indietro per tornare ordinatamente alla vista precedente.
+    \end{itemize}
+    \item \textbf{viewmodel/profile-view-mode.dart:}
+    View model del profilo basato su \textit{ChangeNotifier}: carica il profilo dell’utente all’inizializzazione tramite il \textit{repository}, espone stato osservabile (utente, caricamento, caricamento aggiornamento, esito aggiornamento), e fornisce metodi per aggiornare i dati personali. Il metodo \textit{updateUserProfile} chiama il \textit{repository}, aggiorna la cache locale, gestisce gli esiti (successo, username non disponibile, errore) e notifica la UI; \textit{clearUpdateResult} azzera l’esito per successive operazioni.
+  \end{itemize}
   \item \textbf{features/shelves:}
-  \item \textbf{navigation:}
+  \begin{itemize}
+    \item \textbf{model:}
+    \begin{itemize}
+      \item \textbf{reading-status.dart:}
+      Definisce l’\textit{enumerazione} degli stati di lettura (Da leggere, In lettura, Letto) e i \textit{metodi di utilità} per convertirli: da stringa a stato, da stato a etichetta per la UI, e da stato a codice persistito (valori testuali come “TO READ”, “READING”, “READ”), oltre alla conversione inversa dai codici allo stato. Garantisce coerenza tra livello dominio, interfaccia e salvataggio su Firestore.
+      \item \textbf{user-book.dart:}
+      Modello dominio che estende il libro di catalogo con informazioni dell’utente: identificativo volume, stato di lettura e pagine lette. Include un \textit{copyWith} che consente di distinguere tra “lascio invariato” e “imposto a valore nullo”, e le conversioni \textit{fromJson} e \textit{toJson} per l’integrazione con Firestore (con rimozione dei campi non valorizzati). L’identificativo volume predefinito coincide con l’identificativo del libro, così da semplificare i flussi di scaffali e home.
+    \end{itemize}
+    \item \textbf{ui:}
+    \begin{itemize}
+      \item \textbf{widgets/isbn-scan-screen.dart:}
+      Schermata di scansione ISBN basata su \textit{StatefulWidget} con \textit{MobileScanner} (formato EAN-13, prefissi 978/979). Mostra l’anteprima camera, un overlay disegnato via \textit{CustomPainter} (maschera e cornice) e un pulsante torcia. Alla lettura valida, ripulisce il codice, fornisce un feedback visivo, interrompe lo scanner e chiude la pagina restituendo l’ISBN al chiamante tramite \textit{Navigator}. Gestisce input non valido con \textit{SnackBar}.
+      \item \textbf{shelves-screen.dart:}
+      Elenco degli scaffali dell’utente con navigazione verso la vista dei libri per stato. Ogni riga è un’anteprima con icona e titolo; al tocco apre la schermata dedicata passando lo stato selezionato. Il \textit{FloatingActionButton} avvia la scansione ISBN: al ritorno dell’ISBN usa \textit{BooksApi} per cercare e poi ottenere il volume completo, mappa i dati in \textit{Book} e apre il \textit{BookDetailScreen} dentro un \textit{ChangeNotifierProvider}. Gestisce errori di rete con \textit{DioException} e messaggi tramite \textit{SnackBar}.
+      \item \textbf{selected-shelf-screen.dart:}
+      Schermata che mostra i libri di uno specifico stato (da leggere, in lettura, letti). Riceve lo stato tramite argomento di navigazione, costruisce la UI con \textit{AnimatedBuilder} collegato al \textit{ShelvesViewModel} e aggiorna la lista in modo reattivo. Ogni elemento è una \textit{ListTile} con titolo, eventuale progresso pagine per i libri in lettura e miniatura; al tocco apre il \textit{BookDetailScreen} passando il modello \textit{Book}. Include stato vuoto con icona, titolo e suggerimento.
+    \end{itemize}
+    \item \textbf{viewmodel/shelves-view-model.dart:}
+    Gestore degli scaffali basato su \textit{ChangeNotifier} con istanza singleton. Estende \textit{ReadingStatus} tramite \textit{ReadingStatusX} aggiungendo etichetta, icona e conversioni codice-stato. Definisce il modello leggero \textit{UiShelfBook} per le righe lista. Si collega a Firestore (raccolta libri dell’utente autenticato) con listener in tempo reale ordinato per data di aggiornamento decrescente; per ogni documento determina lo stato, mappa i campi essenziali nel modello UI e ripartisce gli elementi nelle tre liste (da leggere, in lettura, letti), ignorando i documenti senza stato. Espone \textit{shelvesOrder} e \textit{booksFor} per la UI e notifica i cambiamenti; gestisce in modo sicuro il ciclo di vita della sottoscrizione in \textit{dispose}.
+  \end{itemize}
+  \item \textbf{navigation/app-nav-host.dart:}
+  Contiene lo scheletro di navigazione dell’app. Espone una chiave di navigazione globale e un \textit{AppNavHost} che ascolta lo stato di autenticazione tramite \textit{AuthViewModel}: se l’utente non è autenticato mostra la schermata di login e la registrazione, altrimenti carica \textit{MainShell}. \textit{MainShell} gestisce le quattro sezioni principali con \textit{IndexedStack} e \textit{NavigationBar} (Scaffali, Catalogo, Home, Profilo), mantenendo lo stato delle schede. L’host usa \textit{PopScope} per intercettare il tasto indietro: se ci sono pagine nello stack esegue il pop, altrimenti chiude l’app.
+  \item \textbf{firebase-options.dart:}
+  File generato da FlutterFire che fornisce le configurazioni per inizializzare Firebase su ogni piattaforma. La classe \textit{DefaultFirebaseOptions} espone \textit{currentPlatform} e gli oggetti di configurazione per web, Android, iOS, macOS e Windows, utilizzati all’avvio da \textit{Firebase.initializeApp}.
+  \item \textbf{main.dart:}
+  Punto di ingresso dell’app. Inizializza Firebase con \textit{DefaultFirebaseOptions.currentPlatform} e recupera le info del pacchetto per firmare le richieste di \textit{BooksApi}. Configura i provider applicativi: \textit{AuthRepository} e \textit{AuthViewModel} per l’autenticazione, \textit{BooksApi} per le ricerche Google Books, \textit{HomeRepository} (implementazione Firestore) e \textit{HomeViewModel} per la Home. Lancia \textit{MyApp}, che costruisce un \textit{MaterialApp} con tema Material 3 e imposta \textit{AppNavHost} come home.
 \end{itemize}
 
 \section{UI - Interfaccia applicazione}
+\subsection{Versione in Android Studio - Kotlin}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{login.png}
+  \caption{Schermata di login}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{register.png}
+  \caption{Schermata di registrazione}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{home.png}
+  \caption{Schermata della home, con libri in lettura e la propria sessione temporale}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{catalog.png}
+  \caption{Schermata del catalogo}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{shelf.png}
+  \caption{Schermata dello scaffale}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{to-read-shelf.png}
+  \caption{Schermata della lista di libri da leggere}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{reading-shelf.png}
+  \caption{Schermata della lista di libri in lettura}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{read-shelf.png}
+  \caption{Schermata della lista di libri terminati}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{book-detail.png}
+  \caption{Schermata delle info del libro selezionato}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{profile.png}
+  \caption{Schermata del profilo}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{friends-list.png}
+  \caption{Schermata dela lista amici}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{friend-screen.png}
+  \caption{Schermata di dettaglio dell'amico}
+  \label{fig:sitemap}
+\end{figure}
+
+\subsection{Versione in Flutter - Dart}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{login-f.png}
+  \caption{Schermata di login}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{register-f.png}
+  \caption{Schermata di registrazione}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{home-f.png}
+  \caption{Schermata della home, con libri in lettura e la propria sessione temporale}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{catalog-f.png}
+  \caption{Schermata del catalogo}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{shelf-f.png}
+  \caption{Schermata dello scaffale}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{read-shelf.png}
+  \caption{Schermata della lista di libri terminati}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{book-screen-f.png}
+  \caption{Schermata delle info del libro selezionato}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{profile-f.png}
+  \caption{Schermata del profilo}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{friends-list-f.png}
+  \caption{Schermata dela lista amici}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{friend-screen-f.png}
+  \caption{Schermata di dettaglio dell'amico}
+  \label{fig:sitemap}
+\end{figure}
 
 \section{Discussioni di problematiche riscontrate}
+In merito a problematiche riscontrate durante il progetto, si rende noto il mancato salvataggio dei filtri per categoria lato database, con il quale sono stati scritti dei file dedicati ma non più utilizzati
+in quanto il salvataggio locale è risultato più che sufficiente. In Flutter, sono state riscontrate ulteriori difficoltà non risolte completamente. L'applicazione potrebbe non aggiornarsi immediatamente con i dati del nuovo utente che accede correttamente subito dopo il logout dell'utente precedente.
+Per risolvere è necessario riavviare l'applicazione e verranno mostrati i nuovi dati dell'utente autenticato. L'eliminazione in flutter non è stata implementata correttamente e risulta in un semplice logout.
+La rimozione di un amico non avviene correttamente tramite interfaccia. Il resto delle funzionalità delle due applicazioni risulta principalmente funzionante.
 
 \section{Conclusioni}
+Il progetto sviluppato ha ampiato in modo ricco e approfondito la conoscenza dell'ambiente Android e multipiattaforma tramite Flutter, permettendo uno sviluppo autonomo e una ricerca dei componenti adeguati da utilizzare nel codice.
+Non sono mancate sfide da risolvere per avere una buona interfaccia grafica o una gestione coerente e completa dei requisiti da soddisfare, che hanno permesso di ampliare il bagaglio culturale in questo ambito.
 
 \end{document}

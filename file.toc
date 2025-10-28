@@ -8,29 +8,35 @@
 \contentsline {subsubsection}{\numberline {2.2.1}MVVM}{10}{subsubsection.2.2.1}%
 \contentsline {subsubsection}{\numberline {2.2.2}Diagramma delle componenti}{11}{subsubsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.3}Gestione Database - Firebase}{11}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}API utilizzate - Google Books}{13}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}Sviluppo}{13}{subsection.2.5}%
-\contentsline {subsubsection}{\numberline {2.5.1}Struttura package}{14}{subsubsection.2.5.1}%
-\contentsline {subsubsection}{\numberline {2.5.2}File di configurazione}{14}{subsubsection.2.5.2}%
-\contentsline {subsection}{\numberline {2.6}Spiegazione codice in dettaglio}{15}{subsection.2.6}%
-\contentsline {subsubsection}{\numberline {2.6.1}core: Componenti Compose riutilizzabili}{15}{subsubsection.2.6.1}%
-\contentsline {subsubsection}{\numberline {2.6.2}di: Dependency Injection}{15}{subsubsection.2.6.2}%
-\contentsline {subsubsection}{\numberline {2.6.3}Package interni a features}{16}{subsubsection.2.6.3}%
-\contentsline {subsubsection}{\numberline {2.6.4}File di sorgente per gestione autenticazione}{17}{subsubsection.2.6.4}%
-\contentsline {subsubsection}{\numberline {2.6.5}Model: file principali}{17}{subsubsection.2.6.5}%
-\contentsline {subsubsection}{\numberline {2.6.6}View: funzioni Composable per l'interfaccia}{19}{subsubsection.2.6.6}%
-\contentsline {subsubsection}{\numberline {2.6.7}ViewModel: file di definizione}{22}{subsubsection.2.6.7}%
-\contentsline {subsubsection}{\numberline {2.6.8}Repository}{24}{subsubsection.2.6.8}%
-\contentsline {subsubsection}{\numberline {2.6.9}UseCases}{26}{subsubsection.2.6.9}%
-\contentsline {subsection}{\numberline {2.7}Unit Testing}{28}{subsection.2.7}%
-\contentsline {subsubsection}{\numberline {2.7.1}Unit Test - HomeViewModelTest.kt}{28}{subsubsection.2.7.1}%
-\contentsline {subsubsection}{\numberline {2.7.2}Instrumented Test - BookDetailScreenInstrumentedTest.kt}{28}{subsubsection.2.7.2}%
-\contentsline {section}{\numberline {3}Progettazione e sviluppo in Flutter}{29}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Requisiti e casi d'uso}{29}{subsection.3.1}%
-\contentsline {subsubsection}{\numberline {3.1.1}Requisiti funzionali}{29}{subsubsection.3.1.1}%
-\contentsline {subsubsection}{\numberline {3.1.2}Requisiti non funzionali}{31}{subsubsection.3.1.2}%
-\contentsline {subsubsection}{\numberline {3.1.3}Casi d'uso}{31}{subsubsection.3.1.3}%
-\contentsline {subsubsection}{\numberline {3.1.4}Sviluppo codice}{34}{subsubsection.3.1.4}%
-\contentsline {section}{\numberline {4}UI - Interfaccia applicazione}{36}{section.4}%
-\contentsline {section}{\numberline {5}Discussioni di problematiche riscontrate}{36}{section.5}%
-\contentsline {section}{\numberline {6}Conclusioni}{36}{section.6}%
+\contentsline {subsection}{\numberline {2.4}API utilizzate - Google Books}{18}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Sviluppo}{18}{subsection.2.5}%
+\contentsline {subsubsection}{\numberline {2.5.1}Struttura package}{19}{subsubsection.2.5.1}%
+\contentsline {subsubsection}{\numberline {2.5.2}File di configurazione}{20}{subsubsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.6}Spiegazione codice in dettaglio}{20}{subsection.2.6}%
+\contentsline {subsubsection}{\numberline {2.6.1}core: Componenti Compose riutilizzabili}{20}{subsubsection.2.6.1}%
+\contentsline {subsubsection}{\numberline {2.6.2}di: Dependency Injection}{21}{subsubsection.2.6.2}%
+\contentsline {subsubsection}{\numberline {2.6.3}Package interni a features}{21}{subsubsection.2.6.3}%
+\contentsline {subsubsection}{\numberline {2.6.4}File di sorgente per gestione autenticazione}{22}{subsubsection.2.6.4}%
+\contentsline {subsubsection}{\numberline {2.6.5}Model: file principali}{22}{subsubsection.2.6.5}%
+\contentsline {subsubsection}{\numberline {2.6.6}View: funzioni Composable per l'interfaccia}{24}{subsubsection.2.6.6}%
+\contentsline {subsubsection}{\numberline {2.6.7}ViewModel: file di definizione}{28}{subsubsection.2.6.7}%
+\contentsline {subsubsection}{\numberline {2.6.8}Repository}{30}{subsubsection.2.6.8}%
+\contentsline {subsubsection}{\numberline {2.6.9}UseCases}{32}{subsubsection.2.6.9}%
+\contentsline {subsubsection}{\numberline {2.6.10}Navigation}{34}{subsubsection.2.6.10}%
+\contentsline {subsubsection}{\numberline {2.6.11}MainActivity.kt}{35}{subsubsection.2.6.11}%
+\contentsline {subsection}{\numberline {2.7}Testing}{35}{subsection.2.7}%
+\contentsline {subsubsection}{\numberline {2.7.1}Unit Test - HomeViewModelTest.kt}{36}{subsubsection.2.7.1}%
+\contentsline {subsubsection}{\numberline {2.7.2}Instrumented Test - BookDetailScreenInstrumentedTest.kt}{36}{subsubsection.2.7.2}%
+\contentsline {section}{\numberline {3}Progettazione e sviluppo in Flutter}{37}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Requisiti e casi d'uso}{37}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Requisiti funzionali}{37}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Requisiti non funzionali}{38}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}Casi d'uso}{38}{subsubsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.2}Gestione database - Firebase}{42}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}File di configurazione}{42}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Sviluppo codice}{42}{subsubsection.3.2.2}%
+\contentsline {section}{\numberline {4}UI - Interfaccia applicazione}{51}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Versione in Android Studio - Kotlin}{51}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Versione in Flutter - Dart}{63}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Discussioni di problematiche riscontrate}{72}{section.5}%
+\contentsline {section}{\numberline {6}Conclusioni}{73}{section.6}%
