@@ -569,8 +569,7 @@ I seguenti file descritti rappresentano le view dell'applicazione definite in Je
   \item \textbf{catalog:}
   \begin{itemize}
     \item \textbf{CatalogViewModel.kt:} ViewModel del catalogo annotato \textit{@HiltViewModel} che inietta \textit{SearchBookUseCase}, \textit{GetCategoryFeedUseCase}, \textit{UserPreferencesRepository} e \textit{GetCurrentUidUseCase}. Gestisce lo stato principale (\textit{UiState}) con query di ricerca, stato di caricamento, risultati, 
-    elenco delle categorie disponibili e selezionate, righe di categoria (\textit{CategoryRowState \{ category, books, isLoading, error \}}), visibilità del dialog dei filtri e \textit{currentUid}. All’avvio recupera l’utente corrente, carica le categorie selezionate salvate e popola ogni riga tramite \textit{getCategoryFeed} 
-    (con fallback alla pagina successiva se vuota). Espone azioni per ricerca “istantanea” con debounce (\textit{performLiveSearch}), ricerca esplicita (\textit{performSearch}), pulizia query (\textit{clearSearch}), apertura/chiusura del dialog filtri e gestione del set di categorie (\textit{toggleCategory}, \textit{clearFilters}, 
+    elenco delle categorie disponibili e selezionate, righe di categoria (\textit{CategoryRowState \{ category, books, isLoading, error \}}), visibilità del dialog dei filtri e \textit{currentUid}. Espone azioni per ricerca “istantanea” con debounce (\textit{performLiveSearch}), ricerca esplicita (\textit{performSearch}), pulizia query (\textit{clearSearch}), apertura/chiusura del dialog filtri e gestione del set di categorie (\textit{toggleCategory}, \textit{clearFilters}, 
     \textit{confirmFilters} con persistenza su \textit{UserPreferencesRepository} e ricarica delle righe).
   \end{itemize}
   \item \textbf{bookdetail:}
@@ -581,15 +580,15 @@ I seguenti file descritti rappresentano le view dell'applicazione definite in Je
   \end{itemize}
   \item \textbf{home:}
   \begin{itemize}
-    \item \textbf{HomeViewModel.kt:} ViewModel della schermata \emph{Home} annotato \textit{@HiltViewModel} che inietta \textit{HomeRepository}, \textit{StartBookTimerUseCase} e \textit{SetBookTimerUseCase}. Mantiene due stati interni mappa (\textit{MutableStateFlow}) per i timer: \emph{running} (bookId → istante di avvio) e \emph{ticking} (bookId → secondi trascorsi), più lo stato della dialog pagine (\textit{PagesDialogState}). 
-    Espone \textit{uiState} come \textit{StateFlow<HomeUiState>} ottenuto con \textit{combine} tra i libri in lettura (\textit{repo.observeReadingBooks()}), i timer e la dialog, mappando ciascun libro in \textit{HomeItemState} (inclusi \emph{isRunning}, \emph{sessionElapsedSec} e \emph{totalReadSec}). L’azione \emph{onStart} avvia una singola sessione alla volta (guardando \emph{running}), chiama \textit{startTimer} 
+    \item \textbf{HomeViewModel.kt:} ViewModel della schermata \emph{Home} annotato \textit{@HiltViewModel} che inietta \textit{HomeRepository}, \textit{StartBookTimerUseCase} e \textit{SetBookTimerUseCase}. Mantiene due stati interni mappa (\textit{MutableStateFlow}) per i timer: \emph{running} (bookId e istante di avvio) e \emph{ticking} (bookId e secondi trascorsi), più lo stato della dialog pagine (\textit{PagesDialogState}). 
+    Espone \textit{uiState} come \textit{StateFlow\textless HomeUiState\textgreater} ottenuto con \textit{combine} tra i libri in lettura (\textit{repo.observeReadingBooks()}), i timer e la dialog, mappando ciascun libro in \textit{HomeItemState} (inclusi \emph{isRunning}, \emph{sessionElapsedSec} e \emph{totalReadSec}). L’azione \emph{onStart} avvia una singola sessione alla volta (guardando \emph{running}), chiama \textit{startTimer} 
     per ottenere l’istante di avvio e attiva un ticker a 1 Hz che aggiorna \emph{ticking}; \emph{onStop} ferma subito la sessione in UI, apre la \emph{PagesDialog} e salva in background l’intervallo con \textit{setTimer}. Con \emph{confirmPages} aggiorna le pagine lette (\textit{repo.updatePagesRead}) e, se raggiunge il totale, imposta lo stato \textit{READ} tramite \textit{repo.setStatus} passando il \textit{UserBook} completo; \emph{closeDialog} chiude la dialog. Il ticker viene disattivato automaticamente quando non ci sono sessioni attive.
   \end{itemize}
   \item \textbf{profile:}
   \begin{itemize}
     \item \textbf{ProfileViewModel.kt:} ViewModel della sezione profilo che gestisce caricamento e aggiornamento dei dati utente su Firestore. 
     
-    All’avvio carica il profilo dell’utente corrente (ricavato da \textit{FirebaseAuth}) tramite \textit{FirestoreUserDataSource.getUserProfile} e 
+    All'avvio carica il profilo dell’utente corrente (ricavato da \textit{FirebaseAuth}) tramite \textit{FirestoreUserDataSource.getUserProfile} e 
     lo espone come \textit{StateFlow\textless{}UserModelDto?\textgreater{}} (\textit{user}); gestisce flag di caricamento interni (\textit{\_loading}, \textit{updateLoading}) 
     e un esito di aggiornamento (\textit{updateResult} con valori “success”, “error\_no\_user”, “error\_update\_failed”). La funzione \textit{updateUserProfile(username, name, surname, email)}
     invia le modifiche al datasource (\textit{updateUserProfile}), aggiorna lo stato locale in caso di successo e popola \textit{updateResult}; \textit{clearUpdateResult()} azzera l’esito. Tutte le operazioni avvengono in \textit{viewModelScope} con coroutine.
@@ -613,15 +612,17 @@ I seguenti file implementano il \textit{Repository pattern}, fungendo da strato 
   \item La trasformazione dei DTO remoti in modelli di dominio, inclusa la normalizzazione dei dati (es. estrazione ISBN, forzatura \textit{https} per le immagini); 
   \item La gestione asincrona tramite coroutine e \textit{Flow\textless{}T\textgreater{}} per stream in tempo reale (osservazione libri per stato, aggiornamenti profilo, ecc.); 
   \item La coerenza su Firestore con scritture atomiche/transaction o \textit{batch write}, merge controllati (\textit{SetOptions.merge}) e validazioni applicative (vincoli su pagine totali/lette, unicità dello \textit{username}); 
-  \item La mappatura degli errori provider–specific in esiti di dominio (sealed result \textit{Success}/\textit{Error}) così da semplificare la logica di UI. In sintesi, i repository centralizzano l’accesso ai dati (autenticazione, catalogo libri, scaffali e sessioni di lettura), applicano regole funzionali e offrono un contratto pulito e indipendente dall’infrastruttura ai layer superiori.
-\end{itemize}
+  \item La mappatura degli errori provider–specific in esiti di dominio (sealed result \textit{Success}/\textit{Error}) così da semplificare la logica di UI. 
+  \end{itemize}
+In sintesi, i repository centralizzano l’accesso ai dati (autenticazione, catalogo libri, scaffali e sessioni di lettura), applicano regole funzionali e offrono un contratto pulito e indipendente dall’infrastruttura ai layer superiori.
+
 Di seguito la distinzione per package:
 \begin{itemize}
   \item \textbf{auth:}
   \begin{itemize}
     \item \textbf{AuthRepository.kt/AuthRepositoryImpl.kt:} Definisce il contratto e l’implementazione del livello di dominio per l’autenticazione. L’interfaccia espone \textit{isUsernameAvailable}, \textit{register}, \textit{login} e \textit{getCurrentUserProfile}, 
     con risultati modellati come sealed result \textit{RegisterResult} e \textit{LoginResult} (varianti \textit{Success}/\textit{Error} con codice e messaggio). L’implementazione usa \textit{FirebaseAuthDataSource} e \textit{FirestoreUserDataSource}: 
-    verifica la disponibilità dello username (negando \textit{isUsernameTaken}); in \textit{register} crea l’utente su Auth, costruisce \textit{UserModelDto} e salva in modo atomico profilo e mapping username\,$\rightarrow$\,uid, 
+    verifica la disponibilità dello username (negando \textit{isUsernameTaken}); in \textit{register} crea l’utente su Auth, costruisce \textit{UserModelDto} e salva in modo atomico profilo e mapping username - uid, 
     mappando gli errori più comuni (es. \textit{EMAIL\_IN\_USE}, \textit{USERNAME\_TAKEN}, \textit{NETWORK}, \textit{AUTH\_ERROR}); in \textit{login} effettua il sign-in, controlla l’esistenza del profilo su Firestore (altrimenti esegue sign-out),
     e normalizza gli errori frequenti (\textit{USER\_NOT\_FOUND}, \textit{USER\_DISABLED}, \textit{INVALID\_EMAIL}, \textit{WRONG\_PASSWORD}, \textit{INVALID\_CREDENTIALS}, \textit{TOO\_MANY\_REQUESTS}, \textit{NETWORK}). 
     Tutte le operazioni I/O girano su dispatcher dedicato e ritornano esiti strutturati anziché propagare eccezioni ai layer superiori.
@@ -1046,6 +1047,20 @@ Equivalente a Kotlin
 
 \begin{figure}[H]
   \centering
+  \includegraphics[width=0.6\linewidth]{pages-read.png}
+  \caption{Finestra di dialogo per aggiornamento pagine in lettura}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{set-pages.png}
+  \caption{Finestra di dialogo per impostazione di pagine totali di un libro}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
   \includegraphics[width=0.6\linewidth]{profile.png}
   \caption{Schermata del profilo}
   \label{fig:sitemap}
@@ -1104,7 +1119,7 @@ Equivalente a Kotlin
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.6\linewidth]{read-shelf.png}
+  \includegraphics[width=0.6\linewidth]{reading-shelf-f.png}
   \caption{Schermata della lista di libri terminati}
   \label{fig:sitemap}
 \end{figure}
@@ -1113,6 +1128,20 @@ Equivalente a Kotlin
   \centering
   \includegraphics[width=0.6\linewidth]{book-screen-f.png}
   \caption{Schermata delle info del libro selezionato}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{pages-read-f.png}
+  \caption{Finestra di dialogo per aggiornamento pagine in lettura}
+  \label{fig:sitemap}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\linewidth]{set-pages-f.png}
+  \caption{Finestra di dialogo per impostazione di pagine totali di un libro}
   \label{fig:sitemap}
 \end{figure}
 
@@ -1140,7 +1169,7 @@ Equivalente a Kotlin
 \section{Discussioni di problematiche riscontrate}
 In merito a problematiche riscontrate durante il progetto, si rende noto il mancato salvataggio dei filtri per categoria lato database, con il quale sono stati scritti dei file dedicati ma non più utilizzati
 in quanto il salvataggio locale è risultato più che sufficiente. In Flutter, sono state riscontrate ulteriori difficoltà non risolte completamente. L'applicazione potrebbe non aggiornarsi immediatamente con i dati del nuovo utente che accede correttamente subito dopo il logout dell'utente precedente.
-Per risolvere è necessario riavviare l'applicazione e verranno mostrati i nuovi dati dell'utente autenticato. L'eliminazione in flutter non è stata implementata correttamente e risulta in un semplice logout.
+Per risolvere è necessario riavviare l'applicazione e verranno mostrati i nuovi dati dell'utente autenticato. L'eliminazione dell'utente non è stata implementata correttamente e risulta in un semplice logout.
 La rimozione di un amico non avviene correttamente tramite interfaccia. Il resto delle funzionalità delle due applicazioni risulta principalmente funzionante.
 
 \section{Conclusioni}

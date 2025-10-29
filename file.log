@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.4.28)  28 OCT 2025 23:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.4.28)  29 OCT 2025 09:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -168,6 +168,18 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 File: l3backend-pdftex.def 2025-03-14 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count286
 ) (file.aux
+
+LaTeX Warning: Label `fig:sitemap' multiply defined.
+
+
+LaTeX Warning: Label `fig:sitemap' multiply defined.
+
+
+LaTeX Warning: Label `fig:sitemap' multiply defined.
+
+
+LaTeX Warning: Label `fig:sitemap' multiply defined.
+
 
 LaTeX Warning: Label `fig:sitemap' multiply defined.
 
@@ -645,79 +657,80 @@ File: omscmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 572.
 
-Overfull \hbox (13.97716pt too wide) in paragraph at lines 571--575
+Overfull \hbox (13.97716pt too wide) in paragraph at lines 571--574
 []\OT1/cmr/bx/n/10 CatalogViewModel.kt: \OT1/cmr/m/n/10 View-Model del cat-a-l-ogo an-no-tato \OT1/cmr/m/it/10 @HiltView-
  []
 
 
-Overfull \hbox (9.30661pt too wide) in paragraph at lines 571--575
+Overfull \hbox (9.30661pt too wide) in paragraph at lines 571--574
 \OT1/cmr/m/it/10 Model \OT1/cmr/m/n/10 che ini-etta \OT1/cmr/m/it/10 Search-BookUse-Case\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 Get-Cat-e-go-ryFee-dUse-Case\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 User-
  []
 
 
-Overfull \hbox (8.48137pt too wide) in paragraph at lines 578--581
+Overfull \hbox (8.48137pt too wide) in paragraph at lines 577--580
 \OT1/cmr/m/it/10 Sta-tusUse-Case\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 Ob-serveUser-BookUse-Case\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 Set-Book-Sta-tusUse-Case\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 Re-
  []
 
 
 
 [28]
-Overfull \hbox (10.75888pt too wide) in paragraph at lines 584--587
-\OT1/cmr/m/n/10 ot-tenuto con \OT1/cmr/m/it/10 com-bine \OT1/cmr/m/n/10 tra i libri in let-tura (\OT1/cmr/m/it/10 repo.observeReadingBooks()\OT1/cmr/m/n/10 ),
- []
-
-LaTeX Font Info:    Trying to load font information for OML+cmr on input line 593.
-(C:\Users\crist\AppData\Local\Programs\MiKTeX\tex/latex/base\omlcmr.fd
+LaTeX Font Info:    Trying to load font information for OML+cmr on input line 584.
+ (C:\Users\crist\AppData\Local\Programs\MiKTeX\tex/latex/base\omlcmr.fd
 File: omlcmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/it' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 593.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 584.
 
-Overfull \hbox (9.11717pt too wide) in paragraph at lines 592--596
+Overfull \hbox (10.75888pt too wide) in paragraph at lines 583--586
+\OT1/cmr/m/n/10 ot-tenuto con \OT1/cmr/m/it/10 com-bine \OT1/cmr/m/n/10 tra i libri in let-tura (\OT1/cmr/m/it/10 repo.observeReadingBooks()\OT1/cmr/m/n/10 ),
+ []
+
+
+Overfull \hbox (9.11717pt too wide) in paragraph at lines 591--595
 []\OT1/cmr/m/n/10 All'avvio car-ica il pro-filo dell'utente cor-rente (ri-ca-vato da \OT1/cmr/m/it/10 Fire-baseAuth\OT1/cmr/m/n/10 )
  []
 
 
-Overfull \hbox (10.51671pt too wide) in paragraph at lines 592--596
+Overfull \hbox (10.51671pt too wide) in paragraph at lines 591--595
 \OT1/cmr/m/n/10 tramite \OT1/cmr/m/it/10 Fire-storeUser-Data-Source.getUserProfile \OT1/cmr/m/n/10 e lo espone come \OT1/cmr/m/it/10 State-
  []
 
 
 
 [29]
-Overfull \hbox (39.14233pt too wide) in paragraph at lines 604--607
+Overfull \hbox (39.14233pt too wide) in paragraph at lines 603--606
 \OT1/cmr/m/n/10 man-doli in \OT1/cmr/m/it/10 UiShelf-Book \OT1/cmr/m/n/10 ed espo-nen-doli come \OT1/cmr/m/it/10 State-Flow\OML/cmm/m/it/10 <\OT1/cmr/m/it/10 List\OML/cmm/m/it/10 <\OT1/cmr/m/it/10 UiShelfBook\OML/cmm/m/it/10 >>
  []
 
 
-Overfull \hbox (2.76123pt too wide) in paragraph at lines 622--628
+Overfull \hbox (2.76123pt too wide) in paragraph at lines 623--629
 \OT1/cmr/m/n/10 L'implementazione usa \OT1/cmr/m/it/10 Fire-baseAu-th-Data-Source \OT1/cmr/m/n/10 e \OT1/cmr/m/it/10 Fire-storeUser-Data-
  []
 
 
-Overfull \hbox (34.33562pt too wide) in paragraph at lines 622--628
-\OT1/cmr/m/n/10 map-pando gli er-rori pi^^Ru co-muni (es. \OT1/cmr/m/it/10 EMAIL[]IN[]USE\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 USER-NAME[]TAKEN\OT1/cmr/m/n/10 ,
+Overfull \hbox (15.44667pt too wide) in paragraph at lines 623--629
+\OT1/cmr/m/n/10 pando gli er-rori pi^^Ru co-muni (es. \OT1/cmr/m/it/10 EMAIL[]IN[]USE\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 USER-NAME[]TAKEN\OT1/cmr/m/n/10 ,
  []
 
 
-Overfull \hbox (4.52245pt too wide) in paragraph at lines 622--628
+Overfull \hbox (4.52245pt too wide) in paragraph at lines 623--629
 \OT1/cmr/m/n/10 mal-izza gli er-rori fre-quenti (\OT1/cmr/m/it/10 USER[]NOT[]FOUND\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 USER[]DISABLED\OT1/cmr/m/n/10 ,
  []
 
 
-Overfull \hbox (15.14645pt too wide) in paragraph at lines 622--628
+Overfull \hbox (15.14645pt too wide) in paragraph at lines 623--629
 \OT1/cmr/m/it/10 IN-VALID[]EMAIL\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 WRONG[]PASSWORD\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 IN-VALID[]CREDENTIALS\OT1/cmr/m/n/10 ,
  []
 
 
 
 [30]
-Overfull \hbox (11.16531pt too wide) in paragraph at lines 631--637
+Overfull \hbox (11.16531pt too wide) in paragraph at lines 632--638
 \OT1/cmr/m/n/10 is-tanza ripete \OT1/cmr/m/it/10 sub-ject:category\OT1/cmr/m/n/10 ; in tutti i casi im-posta \OT1/cmr/m/it/10 or-derBy=relevance
  []
 
 
-Overfull \hbox (1.44614pt too wide) in paragraph at lines 640--644
+Overfull \hbox (1.44614pt too wide) in paragraph at lines 641--645
 []\OT1/cmr/bx/n/10 HomeRepository.kt/HomeRepositoryImpl.kt: \OT1/cmr/m/n/10 Definisce il con-
  []
 
@@ -725,134 +738,134 @@ Overfull \hbox (1.44614pt too wide) in paragraph at lines 640--644
 
 [31]
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 650.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 651.
 
 
-LaTeX Warning: Command \textgreater invalid in math mode on input line 651.
+LaTeX Warning: Command \textgreater invalid in math mode on input line 652.
 
 
-LaTeX Warning: Command \textgreater invalid in math mode on input line 651.
+LaTeX Warning: Command \textgreater invalid in math mode on input line 652.
 
 
-Overfull \hbox (6.62662pt too wide) in paragraph at lines 647--653
+Overfull \hbox (6.62662pt too wide) in paragraph at lines 648--654
 \OT1/cmr/m/n/10 con-tratto degli scaf-fali (\OT1/cmr/m/it/10 ob-serve-Books\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 ob-serve-Book-Sta-tus\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 ob-serveUser-
  []
 
 
 
 [32]
-Overfull \hbox (1.2743pt too wide) in paragraph at lines 664--665
+Overfull \hbox (1.2743pt too wide) in paragraph at lines 665--666
 []\OT1/cmr/bx/n/10 GetCurrentUidUseCase.kt: \OT1/cmr/m/n/10 legge l'UID dall'istanza \OT1/cmr/m/it/10 Fire-baseAuth
  []
 
 
-Overfull \hbox (3.77415pt too wide) in paragraph at lines 665--666
+Overfull \hbox (3.77415pt too wide) in paragraph at lines 666--667
 []\OT1/cmr/bx/n/10 CheckUsernameAvailableUseCase.kt: \OT1/cmr/m/n/10 ver-i-fica disponi-bilit^^Ra user-
  []
 
 
-Overfull \hbox (7.98814pt too wide) in paragraph at lines 665--666
+Overfull \hbox (7.98814pt too wide) in paragraph at lines 666--667
 \OT1/cmr/m/n/10 name de-man-dando a \OT1/cmr/m/it/10 Au-thRepos-i-tory.isUsernameAvailable\OT1/cmr/m/n/10 , con guardia
  []
 
 
-Overfull \hbox (18.80093pt too wide) in paragraph at lines 676--677
+Overfull \hbox (18.80093pt too wide) in paragraph at lines 677--678
 []\OT1/cmr/bx/n/10 StartBookTimerUseCase.kt: \OT1/cmr/m/n/10 avvia una ses-sione di let-tura restituendo
  []
 
 
-Overfull \hbox (0.50728pt too wide) in paragraph at lines 677--678
+Overfull \hbox (0.50728pt too wide) in paragraph at lines 678--679
 \OT1/cmr/m/n/10 gando a \OT1/cmr/m/it/10 Home-Repos-i-tory.addReadingSession(bookId, start-Mil-lis, end-
  []
 
 
-Overfull \hbox (24.30415pt too wide) in paragraph at lines 682--683
+Overfull \hbox (24.30415pt too wide) in paragraph at lines 683--684
 []\OT1/cmr/bx/n/10 ObserveBooksByStatusUseCase.kt: \OT1/cmr/m/n/10 espone \OT1/cmr/m/it/10 Flow\OML/cmm/m/it/10 <\OT1/cmr/m/it/10 List\OML/cmm/m/it/10 <\OT1/cmr/m/it/10 UserBook\OML/cmm/m/it/10 >>
  []
 
 
-Overfull \hbox (0.7822pt too wide) in paragraph at lines 684--685
+Overfull \hbox (0.7822pt too wide) in paragraph at lines 685--686
 []\OT1/cmr/bx/n/10 ObserveUserBookUseCase.kt: \OT1/cmr/m/n/10 espone \OT1/cmr/m/it/10 Flow\OML/cmm/m/it/10 <\OT1/cmr/m/it/10 UserBook?\OML/cmm/m/it/10 > \OT1/cmr/m/n/10 per os-
  []
 
 
-Overfull \hbox (118.21623pt too wide) in paragraph at lines 686--687
+Overfull \hbox (118.21623pt too wide) in paragraph at lines 687--688
 []\OT1/cmr/bx/n/10 SetBookStatusUseCase.kt: \OT1/cmr/m/n/10 im-posta lo stato unico del li-bro (\OT1/cmr/m/it/10 TO[]READ\OT1/cmr/m/n/10 /\OT1/cmr/m/it/10 READING\OT1/cmr/m/n/10 /\OT1/cmr/m/it/10 READ\OT1/cmr/m/n/10 )
  []
 
 
-Overfull \hbox (4.41176pt too wide) in paragraph at lines 687--688
+Overfull \hbox (4.41176pt too wide) in paragraph at lines 688--689
 []\OT1/cmr/bx/n/10 SetPageCountUseCase.kt: \OT1/cmr/m/n/10 as-segna/aggiorna \OT1/cmr/m/it/10 page-Count \OT1/cmr/m/n/10 val-i-dando
  []
 
 
-Overfull \hbox (0.50224pt too wide) in paragraph at lines 688--689
+Overfull \hbox (0.50224pt too wide) in paragraph at lines 689--690
 []\OT1/cmr/bx/n/10 SetPageInReadingUseCase.kt: \OT1/cmr/m/n/10 ag-giorna le pagine lette val-i-dando
  []
 
 
 
 [33]
-Overfull \hbox (0.58376pt too wide) in paragraph at lines 710--711
+Overfull \hbox (0.58376pt too wide) in paragraph at lines 711--712
 []\OT1/cmr/m/n/10 Centralizza le route con una ger-ar-chia \OT1/cmr/m/it/10 sealed Screen\OT1/cmr/m/n/10 : ogni voce espone
  []
 
 
 
 [34]
-Overfull \hbox (2.88956pt too wide) in paragraph at lines 731--734
+Overfull \hbox (2.88956pt too wide) in paragraph at lines 732--735
 \OT1/cmr/m/n/10 Verifica il com-por-ta-mento della log-ica di tem-po-riz-zazione e ag-gior-na-mento pagine
  []
 
 
 
 [35]
-Overfull \hbox (18.89763pt too wide) in paragraph at lines 739--743
+Overfull \hbox (18.89763pt too wide) in paragraph at lines 740--744
 \OT1/cmr/m/it/10 fUse-Case\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 Set-Page-Coun-tUse-Case\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 Ob-serveUser-BookUse-Case\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 Up-sert-Sta-tus-BookUse-
  []
 
 
-Overfull \hbox (23.60341pt too wide) in paragraph at lines 746--749
+Overfull \hbox (23.60341pt too wide) in paragraph at lines 747--750
 \OT1/cmr/m/n/10 cu-rando ac-ces-si-bilit^^Ra e se-let-tori sta-bili. L'infrastruttura di test in-clude \OT1/cmr/bx/n/10 HiltTestRun-
  []
 
 
-Overfull \hbox (5.91661pt too wide) in paragraph at lines 746--749
+Overfull \hbox (5.91661pt too wide) in paragraph at lines 747--750
 \OT1/cmr/bx/n/10 ner \OT1/cmr/m/n/10 (boot-strap di \OT1/cmr/m/it/10 HiltTestAp-pli-ca-tion\OT1/cmr/m/n/10 ) e un man-i-fest di test che dichiara \OT1/cmr/bx/n/10 HiltTes-
  []
 
 
 
 [36]
-Overfull \hbox (10.08957pt too wide) in paragraph at lines 768--769
+Overfull \hbox (10.08957pt too wide) in paragraph at lines 769--770
 []\OT1/cmr/m/it/10 RF11: Elim-i-nazione ac-count utente \OT1/cmr/m/n/10 - L'applicazione per-me-tte all'utente
  []
 
 
-Overfull \hbox (30.94344pt too wide) in paragraph at lines 774--775
+Overfull \hbox (30.94344pt too wide) in paragraph at lines 775--776
 []\OT1/cmr/m/it/10 RF14: Vi-su-al-iz-zazione lista libri (da leg-gere, in let-tura, letti) \OT1/cmr/m/n/10 - L'applicazione
  []
 
 
 
 [37]
-Overfull \hbox (19.81192pt too wide) in paragraph at lines 780--781
+Overfull \hbox (19.81192pt too wide) in paragraph at lines 781--782
 []\OT1/cmr/m/it/10 RF20: Vi-su-al-iz-zazione per-centuale com-ple-ta-mento di libri \OT1/cmr/m/n/10 - L'applicazione
  []
 
 File: images/cu_attori.png Graphic file (type png)
 <use images/cu_attori.png>
-Package pdftex.def Info: images/cu_attori.png  used on input line 799.
+Package pdftex.def Info: images/cu_attori.png  used on input line 800.
 (pdftex.def)             Requested size: 207.0021pt x 142.31561pt.
 
 
 [38]
 File: images/cu_utente.png Graphic file (type png)
 <use images/cu_utente.png>
-Package pdftex.def Info: images/cu_utente.png  used on input line 806.
+Package pdftex.def Info: images/cu_utente.png  used on input line 807.
 (pdftex.def)             Requested size: 276.00105pt x 313.6015pt.
 
-Overfull \hbox (48.53992pt too wide) in paragraph at lines 812--813
+Overfull \hbox (48.53992pt too wide) in paragraph at lines 813--814
 []\OT1/cmr/m/it/10 CU1: Reg-is-trazioneU-tente \OT1/cmr/m/n/10 - L'utente, per usufruire dei servizi of-ferti dall'applicazione,
  []
 
@@ -861,227 +874,227 @@ Overfull \hbox (48.53992pt too wide) in paragraph at lines 812--813
 [39]
 File: images/cu_attivita.png Graphic file (type png)
 <use images/cu_attivita.png>
-Package pdftex.def Info: images/cu_attivita.png  used on input line 827.
+Package pdftex.def Info: images/cu_attivita.png  used on input line 828.
 (pdftex.def)             Requested size: 248.40042pt x 357.86378pt.
 
 
 [40]
 
 [41]
-Overfull \hbox (8.12415pt too wide) in paragraph at lines 854--856
+Overfull \hbox (8.12415pt too wide) in paragraph at lines 855--857
 []\OT1/cmr/bx/n/10 pubspec.yaml: \OT1/cmr/m/n/10 Definisce meta-dati dell'app, ver-sione e vin-coli Dart. Elenca
  []
 
 
-Overfull \hbox (16.12646pt too wide) in paragraph at lines 854--856
+Overfull \hbox (16.12646pt too wide) in paragraph at lines 855--857
 \OT1/cmr/m/n/10 le \OT1/cmr/m/it/10 de-pen-den-cies \OT1/cmr/m/n/10 prin-ci-pali per Flut-ter, Fire-base core au-t-en-ti-cazione e database,
  []
 
 
 
 [42]
-Overfull \hbox (1.78404pt too wide) in paragraph at lines 865--866
+Overfull \hbox (1.78404pt too wide) in paragraph at lines 866--867
 []\OT1/cmr/bx/n/10 data/auth-repository.dart: \OT1/cmr/m/n/10 Repos-i-tory Flut-ter che in-cap-sula \OT1/cmr/m/it/10 Fire-
  []
 
 
-Overfull \hbox (7.36256pt too wide) in paragraph at lines 869--870
+Overfull \hbox (7.36256pt too wide) in paragraph at lines 870--871
 \OT1/cmr/m/n/10 Gli er-rori di val-i-dazione/server sono mostrati in testa; l'abilitazione
  []
 
 
-Overfull \hbox (57.42761pt too wide) in paragraph at lines 869--870
+Overfull \hbox (57.42761pt too wide) in paragraph at lines 870--871
 \OT1/cmr/m/n/10 gono da \OT1/cmr/m/it/10 Au-thView-Model \OT1/cmr/m/n/10 tramite \OT1/cmr/m/it/10 Provider \OT1/cmr/m/n/10 (\OT1/cmr/m/it/10 con-text.watch<AuthViewModel>()\OT1/cmr/m/n/10 );
  []
 
 
-Overfull \hbox (31.04837pt too wide) in paragraph at lines 872--873
+Overfull \hbox (31.04837pt too wide) in paragraph at lines 873--874
 []\OT1/cmr/bx/n/10 viewmodel/auth-view-model.dart: \OT1/cmr/m/it/10 Au-thView-Model \OT1/cmr/m/n/10 es-tende \OT1/cmr/m/it/10 ChangeNo-
  []
 
 
-Overfull \hbox (80.63147pt too wide) in paragraph at lines 872--873
+Overfull \hbox (80.63147pt too wide) in paragraph at lines 873--874
 \OT1/cmr/m/it/10 repo.login\OT1/cmr/m/n/10 , sin-cronizza am-ici con \OT1/cmr/m/it/10 Friends-Man-ager.syncMyFriendsFromAcceptedRequests\OT1/cmr/m/n/10 ,
  []
 
 
-Overfull \hbox (32.3642pt too wide) in paragraph at lines 872--873
+Overfull \hbox (32.3642pt too wide) in paragraph at lines 873--874
 \OT1/cmr/m/n/10 gestisce er-rori \OT1/cmr/m/it/10 Fire-baseAu-thEx-cep-tion\OT1/cmr/m/n/10 ) e \OT1/cmr/m/it/10 sub-mitReg-is-ter \OT1/cmr/m/n/10 (chiama \OT1/cmr/m/it/10 repo.register
  []
 
 
-Overfull \hbox (14.10374pt too wide) in paragraph at lines 872--873
+Overfull \hbox (14.10374pt too wide) in paragraph at lines 873--874
 \OT1/cmr/m/n/10 name ^^Re ver-i-fi-cata con de-bounce (\OT1/cmr/m/it/10 Timer \OT1/cmr/m/n/10 a 400 ms) in \OT1/cmr/m/it/10 onUser-nameChange\OT1/cmr/m/n/10 .
  []
 
 
 
 [43]
-Overfull \hbox (40.32947pt too wide) in paragraph at lines 876--877
+Overfull \hbox (40.32947pt too wide) in paragraph at lines 877--878
 \OT1/cmr/m/it/10 Pages-Di-a-log \OT1/cmr/m/n/10 (ag-giorna le pagine lette, opzional-mente mostrando \(d)/(max)").
  []
 
 
-Overfull \hbox (22.16977pt too wide) in paragraph at lines 877--878
+Overfull \hbox (22.16977pt too wide) in paragraph at lines 878--879
 []\OT1/cmr/bx/n/10 ui/book-detail-screen.dart: \OT1/cmr/m/n/10 Scher-mata det-tagli li-bro \OT1/cmr/m/it/10 BookDe-tailScreen
  []
 
 
-Overfull \hbox (10.99641pt too wide) in paragraph at lines 877--878
+Overfull \hbox (10.99641pt too wide) in paragraph at lines 878--879
 \OT1/cmr/m/n/10 tazione quando \OT1/cmr/m/it/10 busy\OT1/cmr/m/n/10 ) e or-ches-tra i flussi \OT1/cmr/m/it/10 Read-ingFlow-Mode start/update\OT1/cmr/m/n/10 :
  []
 
 
-Overfull \hbox (1.50221pt too wide) in paragraph at lines 878--879
+Overfull \hbox (1.50221pt too wide) in paragraph at lines 879--880
 \OT1/cmr/m/it/10 tus\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 up-datePage-Count\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 up-datePages-Read\OT1/cmr/m/n/10 ; ri-cava l'\OT1/cmr/m/it/10 uid \OT1/cmr/m/n/10 da \OT1/cmr/m/it/10 Fire-baseAuth
  []
 
 
 
 [44]
-Overfull \hbox (14.6771pt too wide) in paragraph at lines 891--892
+Overfull \hbox (14.6771pt too wide) in paragraph at lines 892--893
 []\OT1/cmr/bx/n/10 catalog-state.dart: \OT1/cmr/m/n/10 Stato della scher-mata cat-a-l-ogo (\OT1/cmr/m/it/10 Cat-a-logState\OT1/cmr/m/n/10 ):
  []
 
 
-Overfull \hbox (22.41411pt too wide) in paragraph at lines 900--901
+Overfull \hbox (22.41411pt too wide) in paragraph at lines 901--902
 \OT1/cmr/m/n/10 ca-bile (\OT1/cmr/m/it/10 InkWell \OT1/cmr/m/n/10 con call-back \OT1/cmr/m/it/10 on-Tap\OT1/cmr/m/n/10 ). Usa \OT1/cmr/m/it/10 ClipRRect\OT1/cmr/m/n/10 +\OT1/cmr/m/it/10 AspectRatio
  []
 
 
 
 [45]
-Overfull \hbox (14.93536pt too wide) in paragraph at lines 903--904
+Overfull \hbox (14.93536pt too wide) in paragraph at lines 904--905
 \OT1/cmr/m/it/10 boxList-Tile\OT1/cmr/m/n/10 , azioni Pulisci/Annulla/Conferma). Il con-tenuto mostra:
  []
 
 
-Overfull \hbox (9.96648pt too wide) in paragraph at lines 903--904
+Overfull \hbox (9.96648pt too wide) in paragraph at lines 904--905
 \OT1/cmr/m/n/10 ci sono risul-tati, una griglia di \OT1/cmr/m/it/10 Book-Card \OT1/cmr/m/n/10 con nav-igazione a \OT1/cmr/m/it/10 BookDe-
  []
 
 
-Overfull \hbox (5.38834pt too wide) in paragraph at lines 905--906
+Overfull \hbox (5.38834pt too wide) in paragraph at lines 906--907
 \OT1/cmr/m/n/10 basato su \OT1/cmr/m/it/10 ChangeNo-ti-fier \OT1/cmr/m/n/10 che mantiene e ag-giorna \OT1/cmr/m/it/10 Cat-a-logState \OT1/cmr/m/n/10 (query,
  []
 
 
-Overfull \hbox (11.2289pt too wide) in paragraph at lines 912--913
+Overfull \hbox (11.2289pt too wide) in paragraph at lines 913--914
 []\OT1/cmr/bx/n/10 home-repository.dart: \OT1/cmr/m/n/10 In-ter-fac-cia del repos-i-tory Home: definisce
  []
 
 
 
 [46]
-Overfull \hbox (18.85745pt too wide) in paragraph at lines 916--917
+Overfull \hbox (18.85745pt too wide) in paragraph at lines 917--918
 \OT1/cmr/m/n/10 in-clude \OT1/cmr/m/it/10 to-tal-Read-Sec-onds\OT1/cmr/m/n/10 ; fac-tory \OT1/cmr/m/it/10 fro-mUser-Book(...)\OT1/cmr/m/n/10 ; \OT1/cmr/m/it/10 fromJ-son(...)
  []
 
 
-Overfull \hbox (42.3146pt too wide) in paragraph at lines 920--921
+Overfull \hbox (42.3146pt too wide) in paragraph at lines 921--922
 []\OT1/cmr/bx/n/10 widgets/pages-dialog.dart: \OT1/cmr/m/n/10 Di-al-ogo \OT1/cmr/m/it/10 state-ful \OT1/cmr/m/n/10 per con-fer-mare/aggiornare
  []
 
 
-Overfull \hbox (27.53278pt too wide) in paragraph at lines 921--922
+Overfull \hbox (27.53278pt too wide) in paragraph at lines 922--923
 []\OT1/cmr/bx/n/10 home-screen.dart: \OT1/cmr/m/n/10 Scher-mata Home che legge lo stato da \OT1/cmr/m/it/10 HomeView-
  []
 
 
-Overfull \hbox (46.4218pt too wide) in paragraph at lines 921--922
+Overfull \hbox (46.4218pt too wide) in paragraph at lines 922--923
 \OT1/cmr/m/it/10 Model \OT1/cmr/m/n/10 (Provider) e mostra l'elenco dei libri in let-tura con \OT1/cmr/m/it/10 ListView.separated
  []
 
 
-Overfull \hbox (1.53223pt too wide) in paragraph at lines 921--922
+Overfull \hbox (1.53223pt too wide) in paragraph at lines 922--923
 \OT1/cmr/m/n/10 e card ri-as-sun-tive: cover (fall-back e nor-mal-iz-zazione \OT1/cmr/m/it/10 https\OT1/cmr/m/n/10 ), titolo,
  []
 
 
-Overfull \hbox (5.5966pt too wide) in paragraph at lines 923--924
+Overfull \hbox (5.5966pt too wide) in paragraph at lines 924--925
 []\OT1/cmr/bx/n/10 viewmodel/home-view-model.dart: \OT1/cmr/m/n/10 View-Model (ChangeNo-ti-fier)
  []
 
 
-Overfull \hbox (2.15201pt too wide) in paragraph at lines 923--924
+Overfull \hbox (2.15201pt too wide) in paragraph at lines 924--925
 \OT1/cmr/m/n/10 l'\OT1/cmr/m/it/10 HomeUiState \OT1/cmr/m/n/10 (lista di \OT1/cmr/m/it/10 Home-It-em-State \OT1/cmr/m/n/10 e \OT1/cmr/m/it/10 Pages-Di-alogState\OT1/cmr/m/n/10 ). Gestisce
  []
 
 
-Overfull \hbox (13.27055pt too wide) in paragraph at lines 930--931
+Overfull \hbox (13.27055pt too wide) in paragraph at lines 931--932
 []\OT1/cmr/bx/n/10 friends-manager.dart: \OT1/cmr/m/n/10 Util-ity statico che in-cap-sula Fire-baseAuth
  []
 
 
-Overfull \hbox (4.22627pt too wide) in paragraph at lines 930--931
+Overfull \hbox (4.22627pt too wide) in paragraph at lines 931--932
 \OT1/cmr/m/n/10 di am-i-cizia sulla collezione \OT1/cmr/m/it/10 friend-requests \OT1/cmr/m/n/10 (transazioni/batch dove
  []
 
 
 
 [47]
-Overfull \hbox (8.2997pt too wide) in paragraph at lines 935--937
+Overfull \hbox (8.2997pt too wide) in paragraph at lines 936--938
 \OT1/cmr/m/it/10 Friend-Book \OT1/cmr/m/n/10 e l'enum \OT1/cmr/m/it/10 User-Re-la-tion-ship-Sta-tus\OT1/cmr/m/n/10 . Ogni mod-ello espone
  []
 
 
-Overfull \hbox (7.39919pt too wide) in paragraph at lines 944--946
+Overfull \hbox (7.39919pt too wide) in paragraph at lines 945--947
 []\OT1/cmr/bx/n/10 friends-list-screen.dart: \OT1/cmr/m/n/10 Elenco am-ici con tre tab (\OT1/cmr/m/it/10 Am-ici\OT1/cmr/m/n/10 , \OT1/cmr/m/it/10 Richi-
  []
 
 
-Overfull \hbox (8.30493pt too wide) in paragraph at lines 949--951
+Overfull \hbox (8.30493pt too wide) in paragraph at lines 950--952
 []\OT1/cmr/bx/n/10 viewmodel/profile-view-mode.dart: \OT1/cmr/m/n/10 View model del pro-filo basato
  []
 
 
-Overfull \hbox (13.50972pt too wide) in paragraph at lines 949--951
+Overfull \hbox (13.50972pt too wide) in paragraph at lines 950--952
 \OT1/cmr/m/n/10 su \OT1/cmr/m/it/10 ChangeNo-ti-fier\OT1/cmr/m/n/10 : car-ica il pro-filo dell'utente all'inizializzazione tramite
  []
 
 
 
 [48]
-Overfull \hbox (2.22574pt too wide) in paragraph at lines 963--965
+Overfull \hbox (2.22574pt too wide) in paragraph at lines 964--966
 []\OT1/cmr/bx/n/10 widgets/isbn-scan-screen.dart: \OT1/cmr/m/n/10 Scher-mata di scan-sione ISBN
  []
 
 
-Overfull \hbox (0.47035pt too wide) in paragraph at lines 963--965
+Overfull \hbox (0.47035pt too wide) in paragraph at lines 964--966
 \OT1/cmr/m/n/10 l'ISBN al chia-mante tramite \OT1/cmr/m/it/10 Nav-i-ga-tor\OT1/cmr/m/n/10 . Gestisce in-put non valido
  []
 
 
-Overfull \hbox (2.58015pt too wide) in paragraph at lines 965--967
+Overfull \hbox (2.58015pt too wide) in paragraph at lines 966--968
 \OT1/cmr/m/n/10 igazione verso la vista dei libri per stato. Ogni riga ^^Re un'anteprima
  []
 
 
-Overfull \hbox (7.39787pt too wide) in paragraph at lines 970--972
+Overfull \hbox (7.39787pt too wide) in paragraph at lines 971--973
 []\OT1/cmr/bx/n/10 viewmodel/shelves-view-model.dart: \OT1/cmr/m/n/10 Ge-store degli scaf-fali basato
  []
 
 
-Overfull \hbox (11.81517pt too wide) in paragraph at lines 970--972
+Overfull \hbox (11.81517pt too wide) in paragraph at lines 971--973
 \OT1/cmr/m/n/10 su \OT1/cmr/m/it/10 ChangeNo-ti-fier \OT1/cmr/m/n/10 con is-tanza sin-gle-ton. Es-tende \OT1/cmr/m/it/10 Read-ingSta-tus \OT1/cmr/m/n/10 tramite
  []
 
 
 
 [49]
-Overfull \hbox (0.92603pt too wide) in paragraph at lines 975--977
+Overfull \hbox (0.92603pt too wide) in paragraph at lines 976--978
 \OT1/cmr/m/it/10 fault-Fire-baseOp-tions \OT1/cmr/m/n/10 espone \OT1/cmr/m/it/10 cur-rent-Plat-form \OT1/cmr/m/n/10 e gli oggetti di con-fig-u-razione
  []
 
 
-Overfull \hbox (9.2861pt too wide) in paragraph at lines 977--979
+Overfull \hbox (9.2861pt too wide) in paragraph at lines 978--980
 \OT1/cmr/m/it/10 thRepos-i-tory \OT1/cmr/m/n/10 e \OT1/cmr/m/it/10 Au-thView-Model \OT1/cmr/m/n/10 per l'autenticazione, \OT1/cmr/m/it/10 Book-sApi \OT1/cmr/m/n/10 per le ricerche
  []
 
 <images/login.png, id=478, 1084.05pt x 2409.0pt>
 File: images/login.png Graphic file (type png)
 <use images/login.png>
-Package pdftex.def Info: images/login.png  used on input line 986.
+Package pdftex.def Info: images/login.png  used on input line 987.
 (pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
 
 
@@ -1089,7 +1102,7 @@ Package pdftex.def Info: images/login.png  used on input line 986.
 <images/register.png, id=483, 1084.05pt x 2409.0pt>
 File: images/register.png Graphic file (type png)
 <use images/register.png>
-Package pdftex.def Info: images/register.png  used on input line 993.
+Package pdftex.def Info: images/register.png  used on input line 994.
 (pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
 
 
@@ -1097,7 +1110,7 @@ Package pdftex.def Info: images/register.png  used on input line 993.
 <images/home.png, id=490, 1084.05pt x 2409.0pt>
 File: images/home.png Graphic file (type png)
 <use images/home.png>
-Package pdftex.def Info: images/home.png  used on input line 1000.
+Package pdftex.def Info: images/home.png  used on input line 1001.
 (pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
 
 
@@ -1105,7 +1118,7 @@ Package pdftex.def Info: images/home.png  used on input line 1000.
 <images/catalog.png, id=497, 925.4575pt x 2057.6875pt>
 File: images/catalog.png Graphic file (type png)
 <use images/catalog.png>
-Package pdftex.def Info: images/catalog.png  used on input line 1007.
+Package pdftex.def Info: images/catalog.png  used on input line 1008.
 (pdftex.def)             Requested size: 207.0021pt x 460.22812pt.
 
 
@@ -1113,7 +1126,7 @@ Package pdftex.def Info: images/catalog.png  used on input line 1007.
 <images/shelf.png, id=504, 1084.05pt x 2409.0pt>
 File: images/shelf.png Graphic file (type png)
 <use images/shelf.png>
-Package pdftex.def Info: images/shelf.png  used on input line 1014.
+Package pdftex.def Info: images/shelf.png  used on input line 1015.
 (pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
 
 
@@ -1121,7 +1134,7 @@ Package pdftex.def Info: images/shelf.png  used on input line 1014.
 <images/to-read-shelf.png, id=510, 1084.05pt x 2409.0pt>
 File: images/to-read-shelf.png Graphic file (type png)
 <use images/to-read-shelf.png>
-Package pdftex.def Info: images/to-read-shelf.png  used on input line 1021.
+Package pdftex.def Info: images/to-read-shelf.png  used on input line 1022.
 (pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
 
 
@@ -1129,7 +1142,7 @@ Package pdftex.def Info: images/to-read-shelf.png  used on input line 1021.
 <images/reading-shelf.png, id=518, 1084.05pt x 2409.0pt>
 File: images/reading-shelf.png Graphic file (type png)
 <use images/reading-shelf.png>
-Package pdftex.def Info: images/reading-shelf.png  used on input line 1028.
+Package pdftex.def Info: images/reading-shelf.png  used on input line 1029.
 (pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
 
 
@@ -1137,7 +1150,7 @@ Package pdftex.def Info: images/reading-shelf.png  used on input line 1028.
 <images/read-shelf.png, id=525, 1084.05pt x 2409.0pt>
 File: images/read-shelf.png Graphic file (type png)
 <use images/read-shelf.png>
-Package pdftex.def Info: images/read-shelf.png  used on input line 1035.
+Package pdftex.def Info: images/read-shelf.png  used on input line 1036.
 (pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
 
 
@@ -1145,118 +1158,151 @@ Package pdftex.def Info: images/read-shelf.png  used on input line 1035.
 <images/book-detail.png, id=532, 1084.05pt x 2409.0pt>
 File: images/book-detail.png Graphic file (type png)
 <use images/book-detail.png>
-Package pdftex.def Info: images/book-detail.png  used on input line 1042.
+Package pdftex.def Info: images/book-detail.png  used on input line 1043.
 (pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
 
 
 [58 <./images/read-shelf.png>]
-<images/profile.png, id=539, 1084.05pt x 2409.0pt>
-File: images/profile.png Graphic file (type png)
-<use images/profile.png>
-Package pdftex.def Info: images/profile.png  used on input line 1049.
+<images/pages-read.png, id=539, 1084.05pt x 2409.0pt>
+File: images/pages-read.png Graphic file (type png)
+<use images/pages-read.png>
+Package pdftex.def Info: images/pages-read.png  used on input line 1050.
 (pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
 
 
 [59 <./images/book-detail.png>]
-<images/friends-list.png, id=546, 1084.05pt x 2409.0pt>
+<images/set-pages.png, id=546, 1084.05pt x 2409.0pt>
+File: images/set-pages.png Graphic file (type png)
+<use images/set-pages.png>
+Package pdftex.def Info: images/set-pages.png  used on input line 1057.
+(pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
+
+
+[60 <./images/pages-read.png>]
+<images/profile.png, id=553, 1084.05pt x 2409.0pt>
+File: images/profile.png Graphic file (type png)
+<use images/profile.png>
+Package pdftex.def Info: images/profile.png  used on input line 1064.
+(pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
+
+
+[61 <./images/set-pages.png>]
+<images/friends-list.png, id=561, 1084.05pt x 2409.0pt>
 File: images/friends-list.png Graphic file (type png)
 <use images/friends-list.png>
-Package pdftex.def Info: images/friends-list.png  used on input line 1056.
+Package pdftex.def Info: images/friends-list.png  used on input line 1071.
 (pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
 
 
-[60 <./images/profile.png>]
-<images/friend-screen.png, id=553, 1084.05pt x 2409.0pt>
+[62 <./images/profile.png>]
+<images/friend-screen.png, id=568, 1084.05pt x 2409.0pt>
 File: images/friend-screen.png Graphic file (type png)
 <use images/friend-screen.png>
-Package pdftex.def Info: images/friend-screen.png  used on input line 1063.
+Package pdftex.def Info: images/friend-screen.png  used on input line 1078.
 (pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
 
 
-[61 <./images/friends-list.png>]
-<images/login-f.png, id=561, 1084.05pt x 2409.0pt>
+[63 <./images/friends-list.png>]
+<images/login-f.png, id=575, 1084.05pt x 2409.0pt>
 File: images/login-f.png Graphic file (type png)
 <use images/login-f.png>
-Package pdftex.def Info: images/login-f.png  used on input line 1072.
+Package pdftex.def Info: images/login-f.png  used on input line 1087.
 (pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
 
 
-[62 <./images/friend-screen.png>]
-<images/register-f.png, id=568, 1084.05pt x 2409.0pt>
+[64 <./images/friend-screen.png>]
+<images/register-f.png, id=582, 1084.05pt x 2409.0pt>
 File: images/register-f.png Graphic file (type png)
 <use images/register-f.png>
-Package pdftex.def Info: images/register-f.png  used on input line 1079.
+Package pdftex.def Info: images/register-f.png  used on input line 1094.
 (pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
 
 
-[63 <./images/login-f.png>]
-<images/home-f.png, id=575, 1084.05pt x 2409.0pt>
+[65 <./images/login-f.png>]
+<images/home-f.png, id=589, 1084.05pt x 2409.0pt>
 File: images/home-f.png Graphic file (type png)
 <use images/home-f.png>
-Package pdftex.def Info: images/home-f.png  used on input line 1086.
+Package pdftex.def Info: images/home-f.png  used on input line 1101.
 (pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
 
 
-[64 <./images/register-f.png>]
-<images/catalog-f.png, id=582, 891.33pt x 1981.4025pt>
+[66 <./images/register-f.png>]
+<images/catalog-f.png, id=596, 891.33pt x 1981.4025pt>
 File: images/catalog-f.png Graphic file (type png)
 <use images/catalog-f.png>
-Package pdftex.def Info: images/catalog-f.png  used on input line 1093.
+Package pdftex.def Info: images/catalog-f.png  used on input line 1108.
 (pdftex.def)             Requested size: 207.0021pt x 460.15735pt.
 
 
-[65 <./images/home-f.png>]
-<images/shelf-f.png, id=589, 1084.05pt x 2409.0pt>
+[67 <./images/home-f.png>]
+<images/shelf-f.png, id=604, 1084.05pt x 2409.0pt>
 File: images/shelf-f.png Graphic file (type png)
 <use images/shelf-f.png>
-Package pdftex.def Info: images/shelf-f.png  used on input line 1100.
+Package pdftex.def Info: images/shelf-f.png  used on input line 1115.
 (pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
 
 
-[66 <./images/catalog-f.png>]
-File: images/read-shelf.png Graphic file (type png)
-<use images/read-shelf.png>
-Package pdftex.def Info: images/read-shelf.png  used on input line 1107.
+[68 <./images/catalog-f.png>]
+<images/reading-shelf-f.png, id=610, 1084.05pt x 2409.0pt>
+File: images/reading-shelf-f.png Graphic file (type png)
+<use images/reading-shelf-f.png>
+Package pdftex.def Info: images/reading-shelf-f.png  used on input line 1122.
 (pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
 
 
-[67 <./images/shelf-f.png>]
-<images/book-screen-f.png, id=602, 1084.05pt x 2409.0pt>
+[69 <./images/shelf-f.png>]
+<images/book-screen-f.png, id=617, 1084.05pt x 2409.0pt>
 File: images/book-screen-f.png Graphic file (type png)
 <use images/book-screen-f.png>
-Package pdftex.def Info: images/book-screen-f.png  used on input line 1114.
+Package pdftex.def Info: images/book-screen-f.png  used on input line 1129.
 (pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
 
 
-[68]
-<images/profile-f.png, id=608, 1084.05pt x 2409.0pt>
+[70 <./images/reading-shelf-f.png>]
+<images/pages-read-f.png, id=624, 1084.05pt x 2409.0pt>
+File: images/pages-read-f.png Graphic file (type png)
+<use images/pages-read-f.png>
+Package pdftex.def Info: images/pages-read-f.png  used on input line 1136.
+(pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
+
+
+[71 <./images/book-screen-f.png>]
+<images/set-pages-f.png, id=631, 1084.05pt x 2409.0pt>
+File: images/set-pages-f.png Graphic file (type png)
+<use images/set-pages-f.png>
+Package pdftex.def Info: images/set-pages-f.png  used on input line 1143.
+(pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
+
+
+[72 <./images/pages-read-f.png>]
+<images/profile-f.png, id=638, 1084.05pt x 2409.0pt>
 File: images/profile-f.png Graphic file (type png)
 <use images/profile-f.png>
-Package pdftex.def Info: images/profile-f.png  used on input line 1121.
+Package pdftex.def Info: images/profile-f.png  used on input line 1150.
 (pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
 
 
-[69 <./images/book-screen-f.png>]
-<images/friends-list-f.png, id=615, 1084.05pt x 2409.0pt>
+[73 <./images/set-pages-f.png>]
+<images/friends-list-f.png, id=646, 1084.05pt x 2409.0pt>
 File: images/friends-list-f.png Graphic file (type png)
 <use images/friends-list-f.png>
-Package pdftex.def Info: images/friends-list-f.png  used on input line 1128.
+Package pdftex.def Info: images/friends-list-f.png  used on input line 1157.
 (pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
 
 
-[70 <./images/profile-f.png>]
-<images/friend-screen-f.png, id=622, 1084.05pt x 2409.0pt>
+[74 <./images/profile-f.png>]
+<images/friend-screen-f.png, id=653, 1084.05pt x 2409.0pt>
 File: images/friend-screen-f.png Graphic file (type png)
 <use images/friend-screen-f.png>
-Package pdftex.def Info: images/friend-screen-f.png  used on input line 1135.
+Package pdftex.def Info: images/friend-screen-f.png  used on input line 1164.
 (pdftex.def)             Requested size: 207.0021pt x 459.99377pt.
 
 
-[71 <./images/friends-list-f.png>]
+[75 <./images/friends-list-f.png>]
 
-[72 <./images/friend-screen-f.png>]
+[76 <./images/friend-screen-f.png>]
 
-[73] (file.aux)
+[77] (file.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-03-26>
@@ -1269,17 +1315,17 @@ Package rerunfilecheck Info: File `file.out' has not changed.
 (rerunfilecheck)             Checksum: CB20D045E283D7A964CA98C9B3AD6BE1;7813.
  ) 
 Here is how much of TeX's memory you used:
- 9429 strings out of 469959
- 151859 string characters out of 5469834
+ 9482 strings out of 469959
+ 153161 string characters out of 5469834
  540376 words of memory out of 5000000
- 35978 multiletter control sequences out of 15000+600000
+ 36023 multiletter control sequences out of 15000+600000
  632101 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,7n,79p,1171b,819s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\crist\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcbx1000.pk> <C:\Users\crist\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/crist/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on file.pdf (73 pages, 6177387 bytes).
+Output written on file.pdf (77 pages, 7791028 bytes).
 PDF statistics:
- 722 PDF objects out of 1000 (max. 8388607)
- 155 named destinations out of 1000 (max. 500000)
- 522 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 753 PDF objects out of 1000 (max. 8388607)
+ 163 named destinations out of 1000 (max. 500000)
+ 547 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -25,10 +25,10 @@
 \contentsline {subsubsection}{\numberline {2.6.10}Navigation}{34}{subsubsection.2.6.10}%
 \contentsline {subsubsection}{\numberline {2.6.11}MainActivity.kt}{35}{subsubsection.2.6.11}%
 \contentsline {subsection}{\numberline {2.7}Testing}{35}{subsection.2.7}%
-\contentsline {subsubsection}{\numberline {2.7.1}Unit Test - HomeViewModelTest.kt}{36}{subsubsection.2.7.1}%
+\contentsline {subsubsection}{\numberline {2.7.1}Unit Test - HomeViewModelTest.kt}{35}{subsubsection.2.7.1}%
 \contentsline {subsubsection}{\numberline {2.7.2}Instrumented Test - BookDetailScreenInstrumentedTest.kt}{36}{subsubsection.2.7.2}%
-\contentsline {section}{\numberline {3}Progettazione e sviluppo in Flutter}{37}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Requisiti e casi d'uso}{37}{subsection.3.1}%
+\contentsline {section}{\numberline {3}Progettazione e sviluppo in Flutter}{36}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Requisiti e casi d'uso}{36}{subsection.3.1}%
 \contentsline {subsubsection}{\numberline {3.1.1}Requisiti funzionali}{37}{subsubsection.3.1.1}%
 \contentsline {subsubsection}{\numberline {3.1.2}Requisiti non funzionali}{38}{subsubsection.3.1.2}%
 \contentsline {subsubsection}{\numberline {3.1.3}Casi d'uso}{38}{subsubsection.3.1.3}%
@@ -37,6 +37,6 @@
 \contentsline {subsubsection}{\numberline {3.2.2}Sviluppo codice}{42}{subsubsection.3.2.2}%
 \contentsline {section}{\numberline {4}UI - Interfaccia applicazione}{51}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Versione in Android Studio - Kotlin}{51}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Versione in Flutter - Dart}{63}{subsection.4.2}%
-\contentsline {section}{\numberline {5}Discussioni di problematiche riscontrate}{72}{section.5}%
-\contentsline {section}{\numberline {6}Conclusioni}{73}{section.6}%
+\contentsline {subsection}{\numberline {4.2}Versione in Flutter - Dart}{65}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Discussioni di problematiche riscontrate}{76}{section.5}%
+\contentsline {section}{\numberline {6}Conclusioni}{77}{section.6}%
